@@ -1,0 +1,275 @@
+<!doctype html>
+<html>
+
+<head>
+    <title> SIMERART</title>
+    <link rel="stylesheet" href="assets/style.css">
+    
+    <link rel="window.js">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+
+    <link rel="shortcut icon" type="image/png" href="icon/spin-smile.gif">
+
+</head>
+<body >
+        <div class="menu">
+            <div class="dropup">
+                <button class="box border" onclick="toggleDropUp()" style="color:black"><b>Start</b></button>
+            <div class="drop-up-content" class="dropbtn"> 
+                    <a href="#" onclick="openTab(5)">  
+                      <img src="icon/user_computer-1.png">
+                        Home
+                    </a>
+                    <a href="#" onclick="openTab(2)">Gallery</a>
+                    <a href="#" onclick="openTab(7)">About Me</a>
+                    <a href="#" onclick="openTab(5)">Chat Room</a>
+                   
+                    <a href="#" onclick="openTab(8)">Email</a>
+                   
+                    
+                </div>
+                
+                </div>
+                <button id="tab2" class="box border" onclick="closeTab(2)" style="display: groove;" >Gallery</button>
+                <button id="tab7" class="box border" onclick="closeTab(7)" style="display: inline-block;">About Me</button>
+                <button id="tab5" class="box border" onclick="closeTab(5)" style="display: none;" >Chat Room</button>
+                <button id="tab6" class="box border" onclick="closeTab(6)" style="display: none;" >Poem</button>
+                <button id="tab4" class="box border" onclick="closeTab(4)" style="display: none;" >Bus</button>
+                <button id="tab8" class="box border" onclick="closeTab(8)" style="display: none;" >Email</button>
+
+                <button id="tab1" class="box border" onclick="closeTab(1)" style="display: none;" >Movies</button>
+                <button id="tab3" class="box border" onclick="closeTab(3)" style="display: none;" >Books</button>
+
+
+                <div class="divider"></div>
+                
+             
+
+                <p id="clock" style="float:right"></p>
+            </div>
+            
+        
+
+
+
+<div class="icons">
+<button class="icon" onclick="openTab(2)">
+  <img src="icon/open_file_mydocs-1.png">
+  <br>
+  Gallery
+</button>
+
+<button class="icon" onclick="openTab(3)">
+  <img src="icon/book-pages.gif" style="width: 32px;">
+  <a href="boo"></a>
+  <br>
+  Books
+</button>
+
+  <button class="icon" onclick="openTab(7)">
+    <img src="icon/camera3_vid-3.png">
+    <br>
+    About Me
+  </button>
+
+  <button class="icon" onclick="openTab(1)">
+    <img src="icon/cam_38.gif" style="width: 45px;">
+    <a href=""></a>
+    <br>
+    Movie
+  </button>
+
+  <button class="icon" onclick="openTab(4)">
+    <img src="icon/bus1.png" style="width: 32px;">
+    <a href="../the bus/index.html"></a>
+    <br>
+    Bus
+  </button>
+
+  <button class="icon" onclick="openTab(5)">
+    <img src="icon/network_internet_pcs_installer-4.png" style="width: 32px;">
+    <a href="chat.html"></a>
+    <br>
+    Chat Roon
+  </button>
+
+  <button class="icon" onclick="openTab(6)">
+    <img src="icon/address_book_pad.png" style="width: 32px;">
+    <a href="Poem.html"></a>
+    <br>
+    Poems
+  </button>
+
+  <button class="icon" onclick="openTab(8)">
+    <img src="icon/mail-0664.gif" style="width: 32px;">
+    <a href="email.html"></a>
+    <br>
+    Email
+  </button>
+  
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+        </div>
+
+           <div id="div2" class="hidden-div draggable">
+            <div class="header" id="buttons" ><img src="icon/open_file_mydocs-1.png" style="height: 20px; width: 20px; padding-top: 2px;"><b>Concert photograghy</b>
+            
+              <button class="x-button border" onclick="closeTab(2)">X</button>
+            </div>
+            <div class="explorer-navigator">
+              <span class="nav-tab"><u>F</u>ile</span> <span class="nav-tab"><u>E</u>dit</span><span class="nav-tab"><u>S</u>earch</span><span class="nav-tab"><u>H</u>elp</span>
+            </div>
+            <span class="nav-search-bar">
+              <div class="explorer-navigator">
+                <span class="back-button border" onclick="loaFrame(this)">&#6;</span>
+                 <span class="nav-search-bar" class="search-bar-text" style="height: 10px; top:2px" >My Documents</span></span>
+              </div>
+              <div class="content">
+                <iframe src="rock.html" id="frame2"></iframe>
+              </div>
+            </div>
+
+
+
+
+<div id="div8" class="hidden-div draggable">
+ <div class="header"><img src="icon/open_file_mydocs-1.png" style="height: 20px; width: 20px; padding-top: 2px;"><b>Concert photograghy</b>
+  
+   <button class="x-button border" onclick="closeTab(8)">X</button>
+ </div>
+ <div class="explorer-navigator">
+   <span class="nav-tab"><u>F</u>ile</span> <span class="nav-tab"><u>E</u>dit</span><span class="nav-tab"><u>S</u>earch</span><span class="nav-tab"><u>H</u>elp</span>
+ </div>
+ <span class="nav-search-bar">
+   <div class="explorer-navigator">
+     <span class="back-button border" onclick="loaFrame(this)">&#6;</span>
+      <span class="nav-search-bar" class="search-bar-text" style="height: 10px; top:2px" >My Documents</span></span>
+   </div>
+   <div class="content">
+    <body>
+      <!-- Email Icon -->
+      <div class="email-icon" onclick="toggleEmailPopup()">
+          📧
+      </div>
+  
+      <!-- Email Popup -->
+      <div id="emailPopup" class="email-popup">
+          <div class="email-header">
+              <h3>Inbox</h3>
+              <button onclick="toggleEmailPopup()">✖</button>
+          </div>
+          <div class="email-messages">
+              <div class="message">
+                  <div class="message-header">
+                      <span class="subject">New Project Available</span>
+                      <span class="date">Oct 15, 2024</span>
+                  </div>
+                  <p>We have a new design project</p>
+
+   </div>
+   
+</div>
+<p></p>
+           
+        </div>
+        </div>
+        </div>
+      
+      
+  
+
+
+
+       
+
+        <div id="div7" class="hidden-div draggable">
+          <div class="header"><img src="images\todo32.png"><b>About Me</b>
+            <button class="x-button border" onclick="closeTab(7)">X</button>
+          </div>
+          <div class="content">
+              <div class="subtitle" style="margin-bottom: 3px;"><b>Welcome to Me</b></div> 
+
+            <span class="title">
+              <img src="amogusorange.png ">
+          </span>
+
+          <p> <span style="color: rgb(255, 123, 0);">p.s Simera :)</span> </p>
+  <p>"Hi! I'm an unconventional, hippie, alternative graphic design artist with a love for exploring the world in my school bus. I also do concert photography on the side. Once you get to know me, I have the quirky vibe of a sitcom character - think Phoebe from Friends!" 
+      
+  </p>
+  <p>My favorite color is <span style="color:rgb(255, 123, 0);font-weight:bold;">Orange</span></p>  
+  <br><p> what are my hoobies </p>
+  <ul>
+      <li><a href="rock.html">concert photograghy</a></li>
+      <li>rock climing </li>
+      <li>yoga</li>
+      <li>Unconventional <a href="Art.html">art</a></li>
+  </ul> 
+</div>
+</div>
+
+
+
+
+
+
+
+  <div id="div5" class="hidden-div draggable" style="display:none;">
+    <div class="header"><img src="icon/network_internet_pcs_installer-4.png"><b>Chat Room</b>
+      <button class="x-button border" onclick="closeTab(5)">X</button>
+    </div class="content">
+      <iframe src="chat.html" ></iframe>       
+    </div>
+  </div>
+  
+
+
+
+
+    <div id="div6" class="hidden-div draggable" style="display:none;">
+      <div class="header"><img src="icon/address_book_pad.png"><b>Poems</b>
+        <button class="x-button border" onclick="closeTab(6)">X</button>
+      </div>
+    
+      <div class="content">
+        <iframe src="Poem.html"></iframe>
+      </div>
+    </div>
+
+
+
+</div>
+</div>
+
+
+
+
+
+<script src="jquery-3.7.1.min.js"></script>
+    <script src="jquery-ui.min.js"></script>
+    <script src="assets/fos.min.js" ></script>
+    <script src="main.js"></script>
+</body>
+</html>

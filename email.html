@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Updates</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Email Icon -->
+    <div class="email-icon" onclick="toggleEmailPopup()">
+        📧
+    </div>
+
+    <!-- Email Popup -->
+    <div id="emailPopup" class="email-popup">
+        <div class="email-header">
+            <h3>Inbox</h3>
+            <button onclick="toggleEmailPopup()">✖</button>
+        </div>
+        <div class="email-messages">
+            <div class="message">
+                <div class="message-header">
+                    <span class="subject">New Project Available</span>
+                    <span class="date">Oct 15, 2024</span>
+                </div>
+                <p>We have a new design project
+
+ </div>
+
+    <script>function toggleEmailPopup() {
+        const popup = document.getElementById("emailPopup");
+        popup.style.display = popup.style.display === "none" || popup.style.display === "" ? "flex" : "none";
+    }
+    </script>
+</body>
+</html>

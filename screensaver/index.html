@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <p class="notice">
+        keep moving </br>
+       👁
+     </p>
+     <div class="card">
+       <p id="text">
+         PSST, HEY. PSSSSSSST. Hey you still there?....you stiilll there? LOL I knew you were still there. THATS RIGHT!!!</p>
+     </div>
+       
+     <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Secret Message</title>
+        <style>
+          #text {
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            position: absolute;
+            top: 50px;
+            left: 20px;
+            visibility: hidden; /* Start hidden */
+          }
+          canvas {
+            display: block;
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1; /* Ensure canvas is behind the text */
+          }
+        </style>
+      </head>
+      <body>
+        <div id="text">This is a hidden message.</div>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+        <script>
+          let txt = document.getElementById("text");
+          let string = txt.innerHTML;
+          let words = string.split("");
+          
+          let w = window.innerWidth;
+          let h = window.innerHeight;
+      
+          let lastMouseX;
+          let lastMouseY;
+      
+          let timer;
+          
+          function setup() {
+            // Create canvas to fill the window
+            createCanvas(w, h);
+            lastMouseX = mouseX;
+            lastMouseY = mouseY;
+            frameRate(10); // Limit frame rate
+          }
+      
+          function draw() {
+            clear();
+      
+            // Check if the mouse has moved
+            if (mouseX !== lastMouseX || mouseY !== lastMouseY) {
+              lastMouseX = mouseX;
+              lastMouseY = mouseY;
+      
+              // Show the hidden message
+              txt.style.visibility = "visible";
+              txt.innerHTML = "Hush! this is a secret message " + "<br><br>" + string;
+      
+              // Clear any existing timer
+              clearTimeout(timer);
+      
+              // Hide the message after 3 seconds of inactivity
+              timer = setTimeout(function() {
+                txt.style.visibility = "hidden";
+              }, 3000);
+            } else {
+              // If no movement, animate letters
+              move();
+              txt.style.visibility = "hidden";
+            }
+          }
+      
+          function move() {
+            noStroke();
+            textFont('Courier New');
+            for (let i = 0; i < words.length; i++) {
+              let s = random(20, 50); // Random font size between 20 and 50
+              textSize(s);
+              text(words[i], random(w), random(h)); // Draw letters at random positions
+            }
+          }
+      
+          // Adjust canvas size if the window is resized
+          function windowResized() {
+            w = window.innerWidth;
+            h = window.innerHeight;
+            resizeCanvas(w, h);
+          }
+        </script>
+
+</body>
+
+</html>

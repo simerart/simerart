@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Poem Page</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f3f3f3;
+      transition: background-color 1s;
+    }
+    #poem {
+      text-align: center;
+      font-size: 24px;
+      max-width: 600px;
+      opacity: 1;
+      transition: opacity 1s;
+    }
+  </style>
+</head>
+<body onclick="nextPoem()">
+
+<div id="poem">Poem 1 goes here...</div>
+
+<script>
+  const poems = [
+    "Poem 1 goes here...",
+    "Poem 2 appears here...",
+    "Poem 3 shines here...",
+    "Poem 4 flows here..."
+  ];
+
+  let currentPoemIndex = 0;
+
+  function nextPoem() {
+    const poemElement = document.getElementById('poem');
+    poemElement.style.opacity = 0;
+
+    setTimeout(() => {
+      currentPoemIndex = (currentPoemIndex + 1) % poems.length;
+      poemElement.innerHTML = poems[currentPoemIndex];
+      poemElement.style.opacity = 1;
+    }, 1000);
+  }
+</script>
+
+</body>
+</html>

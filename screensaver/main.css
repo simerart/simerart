@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+body{
+  background-color: #EFE8DC;
+  color: #353A47;
+  font-family:"Press Start 2P";
+  overflow:hidden;
+}
+.notice{
+  text-align:center;
+  background-color: #EFE8DC;
+  z-index:10;
+}
+.card{
+  position: absolute;
+  bottom:50%;
+  left:50%;
+  transform:translate(-50%,50%);
+  width:80vw;
+  text-align:justify;
+  visibility:hidden;
+}
+canvas{
+  z-index:-1;
+  display: block;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-family:"Press Start 2P";
+}
+
+
+ 
