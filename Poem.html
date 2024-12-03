@@ -11,8 +11,9 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f3f3f3;
+      font-family: monospace;
+      line-height: 1.5;
+      background-color: #ffe;
       transition: background-color 1s;
     }
     #poem {
@@ -22,18 +23,22 @@
       opacity: 1;
       transition: opacity 1s;
     }
+    .typewriter {
+      font-family: monospace;
+      line-height: 1.5;
+    }
   </style>
 </head>
 <body onclick="nextPoem()">
 
-<div id="poem">Poem 1 goes here...</div>
+<div id="poem" class="typewriter">Click ME</div>
 
 <script>
   const poems = [
-    "Poem 1 goes here...",
-    "Poem 2 appears here...",
-    "Poem 3 shines here...",
-    "Poem 4 flows here..."
+    "impossible                   I,M  POSSIBLE.              IM,               IM,                        I'M POSSIBLE  ",
+    "gotta -mi-g-h-t--as--w-ell--  love yuorself  before anybody else can.",
+    "disconnect.    you are the one machine on this planet that needs no batteries or needs for outside energy. you have it all within you. unplug, yyyyigdh hfkiyyygj y yh yfr cmsmhgk ffffffff ff f fduuuu  u uuuff",
+    ":)       sometimes you meet people who makes you"
   ];
 
   let currentPoemIndex = 0;
@@ -46,8 +51,38 @@
       currentPoemIndex = (currentPoemIndex + 1) % poems.length;
       poemElement.innerHTML = poems[currentPoemIndex];
       poemElement.style.opacity = 1;
+      type(poemElement);  // Apply typewriter effect to the new poem text
     }, 1000);
   }
+
+  // Typewriter effect
+  function type(element) {
+    function randomOpacity() {
+      return (Math.floor(Math.random() * 50) + 50) / 100;
+    }
+
+    function randomEms() {
+      if (Math.random() > 0.8) {
+        return (Math.floor(Math.random() * 100) - 50) / 800;
+      } else {
+        return 0;
+      }
+    }
+
+    function wrap(char) {
+      return '<span style="opacity:' + randomOpacity() + '; text-shadow:' + randomEms() + 'em ' + randomEms() + 'em currentColor;">' + char + '</span>';
+    }
+
+    const wrappedText = Array.from(element.textContent).map(wrap);
+    element.innerHTML = wrappedText.join('');
+  }
+
+  // Initialize the typewriter effect on the initial poem
+  document.addEventListener('DOMContentLoaded', () => {
+    const poemElement = document.getElementById('poem');
+    type(poemElement);  // Apply the typewriter effect to the first poem
+  });
+
 </script>
 
 </body>

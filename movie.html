@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="movie.css">
+    <title>GIF TV</title>
+</head>
+<body>
+<section class="section gutter">
+    <div class="wrapper">
+        <div class="gif-tv">
+            <!-- TV Display -->
+            <div id="gif_tv_viewport" class="viewport">
+                <div id="gif_tv_video_container" class="video-container">
+                    <img id="gif_tv_image" class="video" src="" style="display: none;">
+                    <video id="gif_tv_video" class="video" autoplay loop muted style="display: none;">
+                        <source id="gif_tv_video_source" src="" type="video/mp4">
+                    </video>
+                </div>
+                <div id="gif_tv_pixels" class="pixels" style="background-image: url('https://res.cloudinary.com/cyborgspaceviking/image/upload/v1571119227/vhs-overlay_zpzs7x.png');"></div>
+                <!-- Metadata -->
+                <div class="meta-left">
+                    <span id="gif_tv_message_channel"></span>
+                    <span id="gif_tv_message_hd" class="small-message"></span>
+                    <span id="gif_tv_message_hue_shift" class="small-message"></span>
+                    <span id="gif_tv_message_bright" class="small-message"></span>
+                    <span id="gif_tv_message_color" class="small-message"></span>
+                </div>
+                <div class="meta-right">
+                    <span id="gif_tv_message_volume"></span>
+                    <span id="gif_tv_message_mute" class="small-message"></span>
+                </div>
+            </div>
+            <img class="tv" src="https://res.cloudinary.com/cyborgspaceviking/image/upload/v1571119227/80s-tv_ekkex2.png">
+            <!-- Buttons -->
+            <button id="gif_tv_button_channel" class="dial" title="Change the Channels"></button>
+            <button id="gif_tv_button_volume" class="dial" title="Adjust Volume"></button>
+            <button id="gif_tv_button_mute" class="switch" title="Mute / Unmute"></button>
+            <button id="gif_tv_button_hd" class="switch" title="High Def"></button>
+            <button id="gif_tv_button_hue_shift" class="switch" title="Hue Shift"></button>
+            <button id="gif_tv_button_bright" class="switch" title="Bright / Dark"></button>
+            <button id="gif_tv_button_color" class="switch" title="Color / B&W"></button>
+            <span class="cta">Push the Buttons!</span>
+        </div>
+        <div class="heading"><h1>GIF TV</h1></div>
+    </div>
+</section>
+
+<script>
+const baseVideoURL = "https://res.cloudinary.com/cyborgspaceviking/video/upload/";
+const gifTVVideoNames = [
+    "Untitledxa.mp4",
+    "space-stallions.mp4",
+    "dancing-bears-small.mp4",
+    "trippy-rick.mp4",
+    "psychedelic-reindeer.mp4",
+    "jake-the-dog.mp4",
+    "the-regular-show.mp4",
+];
+
+class GifTV {
+    constructor(channels = []) {
+        this.gifVideo = document.getElementById('gif_tv_video');
+        this.gifImage = document.getElementById('gif_tv_image');
+        this.videoSource = document.getElementById('gif_tv_video_source');
+        this.channels = channels;
+        this.currentChannelIndex = 0; // Start at the first channel
+        this.displayChannel();
+    }
+
+    displayChannel() {
+        const currentURL = baseVideoURL + this.channels[this.currentChannelIndex];
+        if (currentURL.endsWith('.mp4')) {
+            this.gifImage.style.display = 'none';
+            this.gifVideo.style.display = 'block';
+            this.videoSource.src = currentURL;
+            this.gifVideo.load();
+        } else {
+            this.gifVideo.style.display = 'none';
+            this.gifImage.style.display = 'block';
+            this.gifImage.src = currentURL;
+        }
+    }
+
+    changeChannel(direction) {
+        if (direction === 'up') {
+            this.currentChannelIndex = (this.currentChannelIndex + 1) % this.channels.length;
+        } else if (direction === 'down') {
+            this.currentChannelIndex =
+                (this.currentChannelIndex - 1 + this.channels.length) % this.channels.length;
+        }
+        this.displayChannel();
+    }
+}
+
+// Initialize GIF TV with channel names
+const gifTV = new GifTV(gifTVVideoNames);
+
+// Button Interactions
+document.getElementById('gif_tv_button_channel').addEventListener('click', () => gifTV.changeChannel('up'));
+document.getElementById('gif_tv_button_volume').addEventListener('click', () => alert('Volume feature not implemented.'));
+document.getElementById('gif_tv_button_mute').addEventListener('click', () => alert('Mute feature not implemented.'));
+</script>
+</body>
+</html>

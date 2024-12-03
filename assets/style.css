@@ -815,24 +815,24 @@ body {
   padding-bottom: 5px;
   left: 700px;
   bottom: 19%;
-  width: 600px;
-  height: 630px;
+  width: 900px;
+  height: 900px;
 }
 
 
 #div2 .content {
-  /* width: 560px;
-  height: 452px; */
+  width: 100%;
+  height: 100%;
 }
 
 
 #frame2 {
   width: 100%;
-  height: 450px;
+  height: 85%;
   border: 2px solid var(--dark);
   border-right: 2px solid var(--lightest);
   margin: 0px;
-  padding: 0px;
+  padding: 5px;
   display:block;
   background-color: var(--contrastbg);
 }
