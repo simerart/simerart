@@ -1,0 +1,1172 @@
+html, body {
+	position: relative;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+	font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Microsoft YaHei New", "Microsoft YaHei", "微软雅黑", 宋体, SimSun;
+	font-size: 10px;
+	color: black;
+	background: transparent;
+}
+
+
+
+
+
+
+@font-face {
+    font-family: 'Open Sans';
+	font-weight: 400;
+    src: url('//static.cbox.ws/fonts/opensans-regular1.eot');
+    src: url('//static.cbox.ws/fonts/opensans-regular1.eot?#iefix') format('embedded-opentype'),
+         url('//static.cbox.ws/fonts/opensans-regular1.woff2') format('woff2'),
+         url('//static.cbox.ws/fonts/opensans-regular1.woff') format('woff'),
+         url('//static.cbox.ws/fonts/opensans-regular1.ttf') format('truetype');
+    font-style: normal;
+}
+
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('//static.cbox.ws/fonts/fontawesome-webfont.eot?v=4.6.3');
+  src: url('//static.cbox.ws/fonts/fontawesome-webfont.eot?#iefix&v=4.6.3') format('embedded-opentype'), url('//static.cbox.ws/fonts/fontawesome-webfont.woff2?v=4.6.3') format('woff2'), url('//static.cbox.ws/fonts/fontawesome-webfont.woff?v=4.6.3') format('woff'), url('//static.cbox.ws/fonts/fontawesome-webfont.ttf?v=4.6.3') format('truetype'), url('//static.cbox.ws/fonts/fontawesome-webfont.svg?v=4.6.3#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+#messages, #users, #overlay, .popBdy {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;		
+	bottom: 6.2em;	
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+	cursor: default;
+	overflow-x: hidden; 
+}
+
+#users {
+	left: auto;
+    width: 35%;
+	display: none;	
+}
+
+
+#messages {
+	
+}
+
+
+#overlay {
+	background: transparent;
+	display: none;
+}
+
+body.WithOverlay > #messages, body.WithOverlay > #users {
+	opacity: 0.5;
+	filter: blur(3px) contrast(110%);
+	-webkit-filter: blur(3px) contrast(110%);
+}
+
+
+body.WithOverlay.Full > #messages, body.WithOverlay.Full > #users {
+	opacity: 0.3;
+	filter: none;
+	-webkit-filter: none;
+}
+
+body.WithOverlay > #overlay {
+	display: block;
+}
+
+#overlay > .ovrNotice {
+	padding: 1em;
+}
+
+#overlay > .ovrDebug {
+	font-family: monospace;
+	direction: ltr;
+	font-size: 12px;
+	color: #aaa;
+	background: rgba(0, 0, 0, 0.8);
+	padding: 6px;
+	word-wrap: break-word;
+}
+
+
+
+#overlay > .ovrImage img {
+	max-width: 100%;
+	
+	padding: 0;
+	margin: 0 auto;
+	display: block;
+	padding: 0;
+	cursor: zoom-out;
+}
+
+.msg, .usr {
+	position: relative;
+	clear: both;
+	padding: 0.2em;
+	word-wrap: break-word;
+	margin: 4px;
+	background: transparent;
+	overflow: hidden;	
+	box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.9);
+	right: 0;	
+	line-height: 1.4em;	
+	transition: background 300ms ease-in, opacity 300ms ease-in, filter 300ms ease-in;
+}
+
+.notMsg, .notUsr {
+	position: relative;
+	overflow: hidden;
+	text-align: center;
+	margin: 4px;
+}
+.notMsg.Welcome {
+    background: transparent;
+    padding: 1em;
+    margin-bottom: 3em;
+}
+
+.emote {
+	max-width: 100%;		
+	height: auto;
+	vertical-align: top;
+}
+
+.emoteBtn {
+	display: inline-block;
+	padding: 0.5em;
+	
+	vertical-align: top;
+    min-width: 2em;
+    text-align: center;
+	max-width: 20%;
+}
+
+.imgBox {
+    max-width: 100%;
+    position: relative;
+    display: inline-block;
+	overflow: hidden;
+	text-align: left;	
+}
+
+html[dir="rtl"] .imgBox {
+    text-align: right;
+}
+
+.imgBox div {
+	
+	
+}
+
+.imgBox img {
+	position: absolute;
+	width: 100%;
+	top: 0;	
+}
+
+
+.nme {
+	color: black;
+	display: inline;
+    padding-right: 0.5em;
+	font-weight: 300;
+}
+
+.pic {
+	float: left;
+	width: 5px;
+	height: 5px;
+	margin: 0;
+	vertical-align: top;
+	margin-right: 4px;
+}
+
+html[dir="rtl"] .pic {
+	float: right;
+	margin-right: 0;
+	margin-left: 4px;
+}
+
+.msgtools {
+	position: relative;
+	float: right;
+	line-height: 0;
+}
+
+.msgtools:not(.Open) > button {
+	color: black;
+	background: transparent;
+	opacity: 0.5;
+}
+
+.msg:hover .msgtools > button, 
+.msgtools > button:focus {
+    opacity: 1;
+}
+
+.msgtools > button {
+	
+}
+
+
+.btntray {
+    display: none;
+	position: absolute;
+	
+	
+	white-space: nowrap;
+	background: transparent;
+    box-shadow: 0 3px 4px -3px transparent;	
+    transition: none;
+	z-index: 10;
+}
+
+.msgtools.Open {
+	background: transparent;
+}
+
+.msgtools.Open > .btntray {
+	display: block;
+	top: 0;
+}
+
+.body {
+
+}
+
+.dtxt, .status {
+	color: black;
+	font-size: 80%;
+	line-height: 1.5em;
+	text-align: right;
+	float: right;
+	padding: 0 0.5em;
+}
+
+.msg > .dtxt {
+	min-width: 6em;	
+}
+
+.msg.Sending {
+	opacity: 0.3;
+}
+.msg.Sent {
+	opacity: 1;
+	transition: opacity 500ms ease-in;
+}
+.msg.Unread {
+	filter: saturate(0%);
+    opacity: 0.6;
+}
+
+.msg.Deleting {
+	opacity: 0.2;
+	
+}
+
+.msg.Deleted {
+	right: 100%;
+	transition: right 500ms cubic-bezier(0.165, 0.84, 0.44, 1);
+	
+}
+
+.msg.Private .status:after {
+	content: '\f023';
+	font-family: "FontAwesome";
+}
+.msg.Private.Sent .status:after {
+	content: '\f00c\f023';
+	font-family: "FontAwesome";
+}
+.msg.Private.Delivered .status:after {
+	content: '\f00c\f00c\f023';
+	font-family: "FontAwesome";
+}
+
+.msg.Redirected .status:after {
+	content: '\f0e3';
+	font-family: "FontAwesome";
+}
+
+
+
+html[dir="rtl"] .dtxt, html[dir="rtl"] .status {
+	float: left;
+}
+
+html[dir="rtl"] .msgtools {
+    right: auto;
+    left: 0;
+}
+
+a.nmeurl:after {
+    content: '\f045';
+    font-family: FontAwesome;
+}
+a.nmeurl {
+	padding: 0 0.5em;
+}
+
+
+.atname, .bbUser {
+	font-weight: bold;
+}
+
+.bbUser:before {
+	content: '@';
+}
+
+
+.bbImg {
+	max-width: 100%;
+	max-height: 10em;
+	vertical-align: top;
+}
+
+.bbBig {
+	font-size: 150%;
+}
+
+.bbSmall {
+	font-size: 70%;
+}
+
+.flag {
+    float: right;
+    width: 16px;
+    height: 11px;
+    overflow: hidden;
+	margin: 4px;
+	margin-left: 0.5em;
+}
+
+html[dir="rtl"] .flag {
+    float: left;
+    margin-left: 4px;
+	margin-right: 0.5em;
+}
+
+form#frmMain {
+	background: transparent;
+	position: absolute;
+	z-index: 1;
+    bottom: 0;
+	width: 100%;
+	line-height: 0;
+	margin-bottom: 0;
+	padding-bottom: 0.2em;
+	transition: background 1s ease-in;
+}
+
+form#frmMain button, 
+form#frmMain a.btn
+ {
+	color: inherit;
+	background: transparent;
+}
+
+html[dir="rtl"] form#frmMain button:not(.Right) {
+	float: left;	
+}
+
+form fieldset {
+	border: 0;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	position: relative;
+}
+
+
+
+
+
+#barNotice.Error button {
+	background: #E91E63;
+	color: #fff;
+}
+#barNotice.Okay button {
+	background: #8bc34a;
+	color: #fff;
+}
+#barNotice.Warn button {
+	background: #ff9800;
+	color: #fff;
+}
+
+.bar.Hide {
+	display: none;
+}
+
+
+#typingStatus {
+    line-height: 1em;
+    color: black;
+    padding: 0.5em;
+	position: absolute;
+	right: 0;		
+	margin-right: 18px;		
+	left: auto;
+	bottom: 180px;
+	background: transparent;
+	font-size: 80%;
+	opacity: 0;
+}
+
+#typingStatus.Show {
+	opacity: 1;
+	transition: none;
+}
+#typingStatus.SlowHide {
+	opacity: 0;
+	transition: 1000ms ease-in;
+}
+
+#tooltip {
+	position: absolute;
+    z-index: 10;
+	line-height: 1em;
+	color: #fff;
+    background: rgba(0, 0, 0, 0.8);
+	padding: 0.5em 1em;
+	font-size: 80%;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 200ms ease-in;
+}
+
+#tooltip.Visible {
+	opacity: 1;
+	transition: none;
+}
+
+#menu {
+	position: absolute;
+	z-index: 10;
+	width: 15em;
+    box-shadow: 0 3px 4px -3px transparent;	
+	display: none;
+}
+
+#menu.Visible {
+	display: block;
+}
+
+#menu > button {
+	width: 100%;
+}
+
+#caret {
+	width: 2px;
+    background: transparent;
+    height: 1em;
+    position: absolute;
+    bottom: 0;
+    left: 3em;
+    margin-bottom: 0.5em;
+	animation: carrotblink 1s infinite steps(1, end);
+	pointer-events: none;
+}
+
+#caret.Hide {
+	display: none;
+}
+
+@keyframes carrotblink {
+  0%, 100% {
+    background: transparent;
+  }
+
+  50% {
+    background: inherit;
+  }
+}
+
+
+textarea, input {
+	font-family: inherit;
+	font-size: inherit;
+	background: transparent;
+	line-height: normal;	
+	height: 2em;
+	border: 0px;
+	color: inherit;
+	padding: 0.25em 0.25em;
+	margin: 0;
+	outline: none;
+	outline-offset: -4px;
+	box-sizing: border-box;
+	width: 100%;
+	resize: none;
+	border-radius: 0;
+}
+
+::-webkit-input-placeholder { 
+    color: inherit;
+	opacity: 0.4;
+}
+:-moz-placeholder { 
+   color: inherit;
+   opacity: 0.4;
+}
+::-moz-placeholder { 
+   color: inherit;
+   opacity: 0.4;
+}
+:-ms-input-placeholder { 
+   color: inherit;
+   opacity: 1;	
+}
+
+
+textarea[name="pst"], input[name="nme"], input[name="eml"] {
+	padding-left: 3em;
+	padding-right: 3em;
+	overflow: hidden;
+}
+
+textarea[name="pst"] {
+	height: auto;
+}
+
+textarea:focus, input:focus {
+	
+}
+
+input[type=submit] {
+	width: auto;
+	float: right;
+}
+
+label {
+	font-size: 80%;
+}
+
+
+a, a:visited {
+	text-decoration:none;
+	color: black;
+}
+
+a:active, a:hover {
+	text-decoration:underline;
+	color: black;
+}
+
+a.btn, label.btn, button {
+	font-family: inherit;
+	font-size: 8px;
+	background: transparent;
+    padding: 0 0.5em;
+    line-height: 2em;
+	height: 2em;
+    display: inline-block;
+	text-decoration: none;
+	box-sizing: border-box;
+	border: 0;
+	color: black;
+	background: transparent;
+	outline: none;
+	outline-offset: -4px;
+	cursor: default;
+	min-width: 3em;
+	text-align: left;
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	
+	opacity: 0.2;
+	
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	
+}
+
+
+a.btn, button[type="submit"] {
+	opacity: 1;
+}
+
+a.btn.Interactive, label.btn.Interactive, button.Interactive {
+	opacity: 1;
+}
+
+a.btn.Disabled, label.btn.Disabled, button.Disabled {
+	opacity: 0.2;
+}
+
+button a, button a:active, button a:hover, button a:visited {
+	text-decoration: underline;
+	color: inherit;
+}
+
+form#frmMain .btn.OverInput, form#frmMain button.OverInput {
+	color: inherit;
+	font-size: inherit;
+}
+
+
+
+.btn.Right, button.Right {
+	float: right;
+}
+
+.btn.AbsBL, button.AbsBL {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+}
+
+.btn.AbsBR, button.AbsBR {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+
+button.AbsTL {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+button.AbsTR {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+button.AbsBR i.ico, 
+button.AbsTR i.ico,
+button.Right i.ico,
+a.btn.Right i.ico {
+	float: right;
+}
+
+.btn.Full, button.Full {
+	width: 100%;
+    text-align: left;
+}
+.btn.Half, button.Half {
+	width: 50%;
+}
+
+button i.ico.Right {
+	float: right;
+}
+
+.btn.fileMagic input {
+	display: none;
+}
+
+#usrAvatar {
+	display: block;
+    position: absolute;
+    width: 2em;
+    top: 2em;
+    padding-left: 0.5em;
+}
+
+.btn:focus, button:focus {
+	
+	outline: 1px dashed rgba(255, 255, 255, 0.4);
+}
+.btn.OverInput:focus, button.OverInput:focus {
+	outline: 1px dashed rgba(30, 30, 30, 0.4);
+}
+
+.btn.Hand { 
+	cursor: pointer;
+}
+
+.btn.Interactive:hover, 
+button.Interactive:hover {
+	opacity: 1;
+}
+
+.btn.Interactive:hover > i.ico, 
+button.Interactive:hover > i.ico {
+	transform: scale(1.1);
+}
+
+.btn.Interactive:active, 
+button.Interactive:active {
+	background-color: transparent;
+	opacity: 1;
+}
+.btn.Interactive:active > i.ico, 
+button.Interactive:active > i.ico {
+	transform: scale(0.9);
+}
+
+
+button:disabled {
+	opacity: 0.2;
+}
+
+
+i.ico {
+	display: inline-block;
+	font: normal normal normal 14px/1 FontAwesome;
+	font-size: 8px;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.btn i.ico, button i.ico {
+	margin: 0 0.5em;
+	line-height: inherit;
+	float: left;
+}
+.btn span, button span {
+	
+    font-size: 80%;
+	
+	
+	
+}
+
+button#btnUser {
+	max-width: 8em;
+}
+
+
+i.ico.Help:before {
+	content: '\f29c';	
+}
+i.ico.VolumeHigh:before {
+	content: '\f028';	
+}
+i.ico.VolumeLow:before {
+	content: '\f027';	
+}
+i.ico.VolumeMute:before {
+	content: '\f026';	
+}
+i.ico.Smile:before {
+	content: '\f118';
+}
+i.ico.Go:before {
+	content: '\f0da';
+}
+i.ico.Users:before {
+	content: '\f0c0';
+}
+i.ico.DoubleDown:before {
+	content: '\f103';
+}
+i.ico.DoubleUp:before {
+	content: '\f102';
+}
+
+i.ico.User:before {
+	content: '\f007';
+}
+i.ico.Pop:before {
+	content: '\f08e';
+}
+i.ico.Paperclip:before {
+	content: '\f0c6';
+}
+i.ico.Wrench:before {
+	content: '\f0ad';
+}
+i.ico.EllipsisV:before {
+	content: '\f142';
+}
+i.ico.EllipsisH:before {
+	content: '\f141';
+}
+i.ico.Ban:before {
+	content: '\f235';	
+}
+i.ico.Kick:before {
+	content: '\f08b';
+}
+i.ico.Trash:before {
+	content: '\f014';
+}
+i.ico.Envelope:before {
+	content: '\f003';
+}
+i.ico.Microphone:before {
+	content: '\f130';
+}
+i.ico.ChevDown:before {
+	content: '\f078';
+}
+i.ico.ChevLeft:before {
+	content: '\f053';
+}
+i.ico.SignIn:before {
+	content: '\f090';
+}
+i.ico.SignOut:before {
+	content: '\f08b';
+}
+i.ico.Accept:before {
+	content: '\f00c';
+}
+i.ico.VoiceOn:before {
+	content: '\f0a1';	
+}
+i.ico.UserPlus:before {
+	content: '\f234';
+}
+i.ico.Settings:before {
+	content: '\f1de';	
+}
+i.ico.Circle:before {
+	content: '\f10c';
+}
+i.ico.CirclePause:before {
+	content: '\f28c';
+}
+i.ico.CirclePlay:before {
+	content: '\f01d';
+}
+i.ico.Cancel:before {
+	content: '\f00d';
+}
+i.ico.Save:before {
+	content: '\f0c7';
+}
+i.ico.Approval:before {
+	content: '\f164';
+}
+i.ico.Upload:before {
+	content: '\f093';
+}
+i.ico.Camera:before {
+	content: '\f030';
+}
+i.ico.Refresh:before {
+	content: '\f021';
+}
+i.ico.Hashtag:before {
+	content: '\f292';
+}
+i.ico.Pin:before {
+	content: '\f08d';
+}
+i.ico.Clock:before {
+	content: '\f017';
+}
+i.ico.Mod:before {
+	content: '\f006';
+}
+
+.btn > #onliners {
+	text-align: right;
+	width: 2em;
+}
+
+
+.btnAuthFB {
+	display: inline-block;
+	background: url('//static.cbox.ws/gfx/ico_wfb50.png') 6px center/30px no-repeat #3B579D;
+	padding-left: 40px;
+	color: #fff;
+	text-align: center;
+	line-height: 40px;
+	padding-right: 6px;
+	cursor: pointer;
+	height: 40px;
+	transition: background-color 200ms ease-in;
+	max-width: 15em;
+}
+.btnAuthFB.Loading {
+	background-color: #ccc;
+	cursor: progress;
+}
+
+
+#authForm {
+	display: none;
+	margin: 1em 0;
+}
+#authForm.Show {
+	display: block;
+}
+
+#overlay fieldset {
+	border: 0;
+	max-width: 300px;
+	margin: 1em auto;
+    padding: 0 1em;
+    box-sizing: border-box;
+}
+
+#overlay input {
+	border: 1px solid #444;
+	margin-bottom: 1em;
+}
+
+
+#authForm button {
+	float: right;
+}
+
+#authForm hr {
+	border: 0;
+	border-top: #ddd 1px solid;
+}
+
+#authForm fieldset, 
+#authForm hr {
+	display: none;
+}
+
+#authForm.WithPW fieldset {
+	display: block;
+}
+
+#authForm #btnLoginFB {
+	display: none;
+}
+#authForm.WithFB #btnLoginFB {
+	display: block;
+	margin: 0 auto;
+}
+
+#authForm.WithFB.WithPW hr {
+	display: block;
+}
+
+
+#authForm.Login.WithPW input:nth-of-type(2),
+#authForm.Login.WithPW label:nth-of-type(2) {
+	display: none;
+}
+
+#authForm #authMsg {
+	font-size: 80%;
+}
+
+
+#overlay .btn.Full, #overlay button.Full {
+	margin-bottom: 1em;
+}
+
+#imgContainer {
+	width: 50%;
+	max-width: 20em;
+	min-width: 150px;
+	margin: 1em auto;
+	text-align: center;
+}
+
+#imgContainer img {
+	max-width: 100%;
+    max-height: 10em;
+    margin: 0.5em auto;
+    display: block;
+    box-shadow: 0 0 5px -1px;
+}
+
+.indicator.Okay {
+	text-shadow: 0 0 4px #43ff43;
+}
+.indicator.Pulse {
+	animation: pulseOkay 0.5s infinite ease-in;
+}
+
+@keyframes pulseOkay {
+  0%, 100% {
+    text-shadow: 0 0 4px #43ff43, 0 0 8px #43ff43;
+  }
+
+  50% {
+    text-shadow: 0 0 2px #43ff43;
+  }
+}
+
+.msg .nme, .usr .nme {
+	color: black;
+}
+
+.msg.Reg .nme, .usr.Reg .nme {
+	color: black;
+}
+
+.msg.Mod .nme, .usr.Mod .nme {
+	color: black;
+}
+.msg.Adm .nme, .usr.Adm .nme {
+	color: black;
+}
+
+.msg.Mod .nme:after, .usr.Mod .nme:after {
+    content: '\f006';
+    font-family: "FontAwesome";
+    margin-left: 0.2em;
+}
+.msg.Adm .nme:after, .usr.Adm .nme:after {
+    content: '\f005';
+    font-family: "FontAwesome";
+    margin-left: 0.2em;
+}
+
+.usr[data-pres="active"] .dtxt {
+    display: none;	
+}
+
+.usr {
+	filter: none;
+	transition: filter 2000ms ease-in;
+}
+
+.usr.Joined, .usr.Left {
+	filter: saturate(0) opacity(0);
+}
+
+.badges {
+	float: right;
+}
+
+.badge {
+	font-size: 80%;
+	color: #fff;
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+	overflow: hidden;
+	padding-right: 1em;
+}
+
+.badge .imgBox {
+	margin: 0;
+	display: block;
+	float: left;
+	width: 1.5em;
+	height: 1.5em;
+	vertical-align: top;
+}
+
+.badge .grpnme {
+	float: left;
+	height: 1.5em;
+	line-height: 1.5em;
+	padding: 0 0.5em;
+	
+}
+
+.cc_rolldie, .cc_rolltot, .cc_rollmodinc, .cc_rollmoddec {
+	display: inline-block;
+    padding: 0.5em 0;
+    line-height: 1em;
+    background: #8BC34A;
+    font-size: 140%;
+    width: 2em;
+    text-align: center;
+    color: #fff;
+}
+
+.cc_rolltot {
+    background: transparent;
+    color: #444;
+}
+.cc_rolltot:before {
+	content: '=';
+}
+.cc_rollmodinc:before {
+	content: '+';
+}
+.cc_rollmoddec:before {
+	content: '-';
+}
+
+
+
+body.Connwait  #btnRefresh > i {
+	animation: pulse 2s linear infinite;
+}
+
+body.Connecting #btnRefresh > i {
+	animation: pulse 1s linear infinite;
+}
+
+body.Connected #btnRefresh > i {
+   
+}
+
+@keyframes pulse {
+   0% { transform: scale(1); }
+   30% { transform: scale(0.8); }
+   80% { transform: scale(1.5); }
+}
+
+.notMsg.Marker {
+	background: transparent;
+    width: 100%;
+    height: 0.2em;
+    position: absolute;
+	margin: 0;
+    margin-top: -0.2em;	
+	z-index: 1;
+}
+
+.msg.Server {
+    background: rgba(0, 0, 0, 0);
+    box-shadow: none;
+	opacity: 0.6;
+}
+.msg.Server .pic.Empty {
+    display: none;
+}
+.msg.Server .body {
+    display: inline;
+}
+.msg.Server .body, .msg.Server .nme {
+    font-size: 80%;
+}
+
+@media (min-width: 480px) {
+	body.WithUserPanel #users {
+		display: block;
+	}
+	body.WithUserPanel #messages,
+	body.WithUserPanel #typingStatus {
+		right: 35%;
+	}
+}
+
+.nme {
+    font-weight: bolder;
+}
+
+html[dir="rtl"] .nme {
+    float: right;
+	padding-left: 0.5em;
+}
+
+.body {
+	display: inline;
+}
+
+.pic.Empty {
+  display: none;
+}
+
+a.nmeurl {
+    float: right;
+	color: inherit;
+}
+
+
+html[dir="rtl"] a.nmeurl {
+    float: left;
+}
+
+.msg, .usr, .notMsg, .notUsr {
+    box-shadow: none;
+    margin: 0.25em 0.25em;
+	padding: 0;
+}

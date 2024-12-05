@@ -141,18 +141,18 @@ $(".draggable").resizable();
   });
   });
   
-  // function updateTime() {
-  // const now = new Date();
-  // const hours = String(now.getHours()).padStart(2, '0');
-  // const minutes = String(now.getMinutes()).padStart(2, '0');
-  // const seconds = String(now.getSeconds()).padStart(2, '0');
-  // const timeString = `${hours}:${minutes}:${seconds}`;
+  function updateTime() {
+  const now = new Date();
   
-  // document.getElementById('clock').textContent = timeString;
-  // }
+  const timeString = now.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second:'numeric', hour12: true });
   
-  // setInterval(updateTime, 1000); // Update every 1000ms (1 second)
-  // updateTime(); // Initial call to set the time immediately
+  
+  
+  document.getElementById('clock').textContent = timeString;
+  }
+  
+  setInterval(updateTime, 1000); // Update every 1000ms (1 second)
+  updateTime(); // Initial call to set the time immediately
   
   // document.addEventListener("DOMContentLoaded", function () {
   // const toggleButton = document.getElementById("toggleButton");
