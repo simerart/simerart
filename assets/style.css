@@ -9,15 +9,8 @@ p{
   body{
     background-image:url("wall/CARPET5.JPG");
     position:relative;
-    font-family:  "Courier New", 'Courier New', Courier, monospace;
-    height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  
-}
     
-  
+  }
   text{
     font-family: "Lucida Console", "Courier New", monospace;
   }
@@ -33,8 +26,8 @@ p{
   }
 
 
- 
-
+  body {
+  }
 
   .menu {
     position: fixed;
@@ -784,9 +777,6 @@ body {
 
 
 
-
-
-
 .show {
   display: block;
 }
@@ -1239,251 +1229,7 @@ body {
 
 
 
-  .container1 {
-    position: absolute;
-    top: 5px;
-    width: 600px;
-    height: 750px;
-    background-color: #EBE4C7;
-    border: 6px solid #868b75;
-    padding-top: 50px;
-    padding-right: 80px;
-    padding-bottom: 50px;
-    padding-left: 80px;
-  
-  }
-  
-      
-      /* img {
-          width: 258px;
-          height: 258px;
-          border-radius: 50%;
-          border:6px solid #868b75;
-      } */
-      font-size: 31px;
 
-  
-  
-  .info1 {
-    font-family: "sans";
-    font-size: 15px;
-    position: absolute;
-    width: 280px;
-    
-    top: 140px;
-    color: #000000;
-  }
-  
-  .abt2 {
-    position: absolute;
-    width: 300px;
-    
-    top: 200px;
-    color: #868b75;
-  }
-  
-  .likes {
-    font-family: "sans";
-    font-size: 15px;
-    position: absolute;
-    width: 280px;
-    
-    top: 242px;
-    color: #000000;
-    
-  }
-  
-  .dislikes {
-    font-family: "sans";
-    font-size: 15px;
-    position: absolute;
-    width: 280px;
-    left: 100px; 
-    top: 352px;
-    color: #000000;
-    
-  }
-  
-  
-  .fa {
-    padding: 20px;
-    font-size: 30px;
-    width: 10px;
-    height: 10px;
-    text-align: center;
-    text-decoration: none;
-    margin: 5px 2px;
-    border-radius: 50%;
-  }
-  
-  .fa:hover {
-      opacity: 0.7;
-  }
-  
-  
-  .fa-pinterest {
-    position: absolute;
-    left: 420px; 
-    top: -30px;
-    color: #868b75;
-  }
-  
-  .fa-instagram {
-    position: absolute;
-    left: 460px; 
-    top: -30px;
-    color: #868b75;
-  }
-  .fa-solid {
-    padding: 20px;
-    font-size: 30px;
-    width: 10px;
-    height: 10px;
-    text-align: center;
-    text-decoration: none;
-    margin: 5px 2px;
-    border-radius: 50%;
-  }
-  .fa-solid:hover {
-      opacity: 0.7;
-  }
-  
-  .fa-c {
-    position: absolute;
-    left: 500px; 
-    top: -30px;
-    color: #868b75;
-  }
-  
-  .fa-brands {
-    padding: 20px;
-    font-size: 30px;
-    width: 10px;
-    height: 10px;
-    text-align: center;
-    text-decoration: none;
-    margin: 5px 2px;
-    border-radius: 50%;
-  }
-  .fa-brands:hover {
-      opacity: 0.7;
-  }
-  
-  .fa-spotify {
-    position: absolute;
-    left: 540px; 
-    top: -30px;
-    color: #868b75;
-  }
-  
-  .socials {
-    font-family: "sans";
-    font-size:15px;
-    position: absolute;
-    width: 300px;
-    left: 480px; 
-    top: 400px;
-    color: #868b75;
-  }
-  /* unvisited link */
-  a.class1:link {
-    color: #868b75;
-    text-decoration: none;
-  }
-  
-  /* visited link */
-  a.class1:visited {
-    color: black;
-    text-decoration: none;
-  }
-  
-  /* mouse over link */
-  a.class1:hover {
-    color:#acb984;
-    text-decoration: underline;
-  }
-  
-  /* selected link */
-  a.class1:active {
-    color: #acb984;
-    text-decoration: underline;
-  }
-  
-  .info3 {
-    font-family: "sans";
-    font-size: 15px;
-    position: absolute;
-    width: 170px;
-    height: 150px;
-    left: 120px; 
-    top: 452px;
-    color: #000000;
-  }
-  
-  .box {
-    position: absolute;
-    width: 650px;
-    height: 300px;
-    left: 100px; 
-    top: 452px;
-    color: #000000;
-    border: 2px solid #868b75;
-  }
-  
-    img.something {
-      position: absolute;
-      left:250px;
-      top: 20px;
-      width: 190px;
-      height: 250px;
-      border-radius: 10%;
-      border:5px solid #868b75;
-    
-  }
-  
-  img.image2 {
-      position: absolute;
-      left:330px;
-      top: 470px;
-      width: 190px;
-      height: 250px;
-      border-radius: 10%;
-      border:5px solid #868b75;
-      }
-  
-  .b4yf {
-    font-family: "sans";
-    font-size: 15px;
-    position: absolute;
-    width: 170px;
-    height: 150px;
-    left: 570px; 
-    top: 452px;
-    color: #000000;
-    
-  }
-  .dnfi {
-    font-family: "sans";
-    font-size: 15px;
-    position: absolute;
-    width: 170px;
-    height: 150px;
-    left: 570px; 
-    top: 582px;
-    color: #000000;
-    
-  }
-  
-  .madeby {
-    font-family: "sans";
-    font-size: 15px;
-    position: absolute;
-    width: 170px;
-    height: 150px;
-    left: 370px; 
-    top: 782px;
-    color: #868b75;
-  }
 
 
 
@@ -1526,7 +1272,7 @@ body {
     --scrollbar-button-inner-size: 9px;
   
     /* Colors */
-    /* --ActiveBorder: rgb(192, 192, 192);
+    --ActiveBorder: rgb(192, 192, 192);
     --ActiveTitle: rgb(0, 0, 128);
     --AppWorkspace: rgb(128, 128, 128);
     --Background: rgb(0, 128, 128);
@@ -1556,4 +1302,4 @@ body {
     --WindowFrame: rgb(0, 0, 0);
     --WindowText: rgb(0, 0, 0);
   }
-   */
+  
