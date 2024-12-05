@@ -1,146 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Polaroid Photo Gallery with Categories</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            display: flex;
-            min-height: 100vh;
-            overflow: hidden;
-        }
-
-        /* Sidebar for categories */
-        #sidebar {
-            width: 200px;
-            background-color: #333;
-            color: white;
-            padding: 20px;
-            overflow-y: auto;
-            position: fixed;
-            left: 0;
-            top: 0;
-            bottom: 0;
-        }
-
-        #sidebar h2 {
-            font-size: 18px;
-            margin-bottom: 10px;
-            border-bottom: 1px solid #555;
-            padding-bottom: 10px;
-        }
-
-        #sidebar button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 5px;
-            background-color: #444;
-            color: white;
-            border: none;
-            cursor: pointer;
-            text-align: left;
-        }
-
-        #sidebar button:hover {
-            background-color: #555;
-        }
-
-        #gallery {
-            display: flex;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 20px;
-            padding: 20px;
-            margin-left: 220px;
-            max-width: calc(100% - 220px);
-        }
-
-        .polaroid {
-            position: relative;
-            background-color: #fff;
-            padding: 10px;
-            width: 200px;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s;
-            cursor: pointer;
-        }
-
-        .polaroid img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .caption {
-            font-size: 16px;
-            color: #333;
-            text-align: center;
-            padding-top: 8px;
-            font-family: "Courier New", Courier, monospace;
-        }
-
-        .hidden {
-            display: none;
-        }
-    </style>
-</head>
-<body>
-    <!-- Sidebar with category menu -->
-    <div id="sidebar">
-        <h2>Categories</h2>
-        <button onclick="filterGallery('all')">All</button>
-        <button onclick="filterGallery('summer')">Summer</button>
-        <button onclick="filterGallery('winter')">Winter</button>
-        <button onclick="filterGallery('autumn')">Autumn</button>
-        <button onclick="filterGallery('spring')">Spring</button>
-        <button onclick="filterGallery('storm')">Storm</button>
-    </div>
-
-    <!-- Gallery -->
-    <div id="gallery">
-        <div class="polaroid" data-category="summer">
-            <img src="https://images.unsplash.com/photo-1610042560883-3cab6606b805?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTMxODczNDB8&ixlib=rb-4.0.3&q=100&w=500" alt="Pink and blue clouds at sunset.">
-            <div class="caption">8 PM, Summer</div>
-        </div>
-        <div class="polaroid" data-category="winter">
-            <img src="https://images.unsplash.com/photo-1566228015668-4c45dbc4e2f5?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTMxODczNDB8&ixlib=rb-4.0.3&q=100&w=500" alt="Low angle view of deep blue clouds.">
-            <div class="caption">3 PM, Winter</div>
-        </div>
-        <div class="polaroid" data-category="storm summer">
-            <img src="https://images.unsplash.com/photo-1525920980995-f8a382bf42c5?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTMxODc0ODZ8&ixlib=rb-4.0.3&q=100&w=500" alt="Heavy gray clouds in the sky.">
-            <div class="caption">10 AM, Summer Storm</div>
-        </div>
-        <!-- Add more photos with data-category as needed -->
-    </div>
-
-    <script>
-        function filterGallery(category) {
-            const polaroids = document.querySelectorAll('.polaroid');
-            polaroids.forEach(polaroid => {
-                // Show all if category is 'all'
-                if (category === 'all') {
-                    polaroid.classList.remove('hidden');
-                } else {
-                    // Show or hide based on category match
-                    if (polaroid.getAttribute('data-category').includes(category)) {
-                        polaroid.classList.remove('hidden');
-                    } else {
-                        polaroid.classList.add('hidden');
-                    }
-                }
-            });
-        }
-    </script>
+    
+<body class="connected">
+    <form id="frmMain" name="cbox" action=". /?boxid-932992&boxtag=gZw9r&sec=submit" method="post">
+<div id= barDefault class= "bar">
+<button id="btnUser" class="btn Interactive" type="button" aria-label="Your Profile">
+<i class= "ico User"
+::before
+</i>
+<span> </span>
+</button>
+<a id= "btRefresh" class= "btn Right Interactive" href="/?boxid=932992&boxtag=gZWV9Y&sec=main">
+<i class= "ico DoubleDown"
+::before
+</i>
+<span></span>
+<button id-"btnPop" class-"Right" type-"button"></button>
+~<a class="btn Right Interactive Hand" href="https://www.cbox.ws/upgrade?uname=venuschatbox&ref=box" target="_blank" title="Upgrade this box to unlock Premiun
+features
+</a>
+COLVE
+• «div id-"barTitle" class="bar Hide"› </div>
+• <div id-"barNotice" class="bar Hide"> (</div>
+PeTIAOSATS
+• button id-"btnProfile" class="btn OverInput AbsTR' type-"button" tabindex="4" aria-label="Log in / register"> (</button> (event)
+‹input type= hidden name= key value="">
+<input type-"text" maxlength-"25" name-"nme"' tabindex="2" placeholder="name" spellcheck-"false" autocomplete-"off' size="10" value-'''>| <input type= hidden maxlength=100" name= eml value="">
+cdiv id-"caret! class="Hide"s</divs
+<textarea name="pst"' placeholder="message" cols="15' tabindex="¡" rows="¡" style-"height: auto; "></textarea> (event)
+• <button id="btnSubmit" class="OverInput AbsBR Disabled" type="submit" name="sub" tabindex="3" aria-label="Post">(∞</button>
+</tieldset>
+</form:
+•ediv id-lchannelcils
+</divs
+• «div id-"users" style="bottom: 56px; overflow: auto; top: auto;") </div>
+• ‹div id-"messages" style="bottom: 56px; overflow: auto; top: Opx;"> (scroll (overfLow) (event) <div id-"olderMsgs" class="notMsg" style-"height: 20px; ">whitespace) </div> overflow) ‹div class="msg " data-id="2019" data-uid="g" data-time="1726362468" data-lvl="¡"›(</div>
 </body>
 </html>
 
