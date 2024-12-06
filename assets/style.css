@@ -1020,11 +1020,11 @@ body {
 
 /* information / to do div7 */
 #div7 {
-  display: block;
+  display: none;
   width: 250px;
   height: 500px;
   padding-bottom: 2px;
-  left: 435px;
+  left: 433px;
   bottom: 25%;
   font-size: 14px;
   line-height: 13px;
