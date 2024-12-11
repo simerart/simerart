@@ -237,7 +237,17 @@ $(".draggable").resizable();
   // };
   // };
   
-        
+  function loadResponsiveContent() {
+    const iframe = document.getElementById("frame2");
+
+    // Check screen width
+    if (window.innerWidth <= 768) {
+        iframe.src = "mobile_pics.html"; // Load mobile-specific HTML
+    } else {
+        iframe.src = "pics.html"; // Load default HTML
+    }
+}
+
  
   
  
