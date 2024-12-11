@@ -9,7 +9,13 @@ p{
   body{
     background-image:url("wall/CARPET5.JPG");
     position:relative;
-    
+    flex-wrap:wrap;
+  }
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
   }
   text{
     font-family: "Lucida Console", "Courier New", monospace;
@@ -26,8 +32,7 @@ p{
   }
 
 
-  body {
-  }
+ 
 
   .menu {
     position: fixed;
@@ -878,7 +883,7 @@ body {
 #div2 {
   display: block;
   padding-bottom: 5px;
-  left: 700px;
+  left: 467px;
   bottom: 19%;
   width: 900px;
   height: 900px;

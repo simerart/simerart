@@ -2,103 +2,389 @@
 <html>
 <head>
     <link rel="stylesheet" href="movie.css">
-    <title>GIF TV</title>
+    <title>SIM TV</title>
 </head>
 <body>
-<section class="section gutter">
-    <div class="wrapper">
-        <div class="gif-tv">
-            <!-- TV Display -->
-            <div id="gif_tv_viewport" class="viewport">
-                <div id="gif_tv_video_container" class="video-container">
-                    <img id="gif_tv_image" class="video" src="" style="display: none;">
-                    <video id="gif_tv_video" class="video" autoplay loop muted style="display: none;">
-                        <source id="gif_tv_video_source" src="" type="video/mp4">
-                    </video>
+    <section class="section gutter">
+        <div class="wrapper">
+            
+            <div class="gif-tv">
+                <div id="gif_tv_viewport" class="viewport">
+                    <img id="gif_tv_video" class="video" src="/video-url-goes-here/">
+                    <div id="gif_tv_pixels" class="pixels" style="background-image: url('https://res.cloudinary.com/cyborgspaceviking/image/upload/v1571119227/vhs-overlay_zpzs7x.png')"></div>
+                    <div class="meta-left">
+                        <span id="gif_tv_message_channel"></span>
+                        <span id="gif_tv_message_hd" class="small-message"></span>
+                        <span id="gif_tv_message_hue_shift" class="small-message"></span>
+                        <span id="gif_tv_message_bright" class="small-message"></span>
+                        <span id="gif_tv_message_color" class="small-message"></span>
+                    </div>
+                    <div class="meta-right">
+                        <span id="gif_tv_message_volume"></span>
+                        <span id="gif_tv_message_mute" class="small-message"></span>
+                    </div>
                 </div>
-                <div id="gif_tv_pixels" class="pixels" style="background-image: url('https://res.cloudinary.com/cyborgspaceviking/image/upload/v1571119227/vhs-overlay_zpzs7x.png');"></div>
-                <!-- Metadata -->
-                <div class="meta-left">
-                    <span id="gif_tv_message_channel"></span>
-                    <span id="gif_tv_message_hd" class="small-message"></span>
-                    <span id="gif_tv_message_hue_shift" class="small-message"></span>
-                    <span id="gif_tv_message_bright" class="small-message"></span>
-                    <span id="gif_tv_message_color" class="small-message"></span>
-                </div>
-                <div class="meta-right">
-                    <span id="gif_tv_message_volume"></span>
-                    <span id="gif_tv_message_mute" class="small-message"></span>
-                </div>
+                <img class="tv" src="https://res.cloudinary.com/cyborgspaceviking/image/upload/v1571119227/80s-tv_ekkex2.png">
+                
+                <button id="gif_tv_button_channel" class="dial" title="Change the Channels"></button>
+                <button id="gif_tv_button_volume" class="dial" title="Mute / Unmute"></button>
+        
+                <button id="gif_tv_button_mute" class="switch" title="Mute / Unmute"></button>
+                <button id="gif_tv_button_hd" class="switch" title="High Def"></button>
+                <button id="gif_tv_button_hue_shift" class="switch" title="Hue Shift"></button>
+                <button id="gif_tv_button_bright" class="switch" title="Bright / Dark"></button>
+                <button id="gif_tv_button_color" class="switch" title="Color / B&W"></button>
+            
+                <span class="cta">Push the Buttons!</span>
             </div>
-            <img class="tv" src="https://res.cloudinary.com/cyborgspaceviking/image/upload/v1571119227/80s-tv_ekkex2.png">
-            <!-- Buttons -->
-            <button id="gif_tv_button_channel" class="dial" title="Change the Channels"></button>
-            <button id="gif_tv_button_volume" class="dial" title="Adjust Volume"></button>
-            <button id="gif_tv_button_mute" class="switch" title="Mute / Unmute"></button>
-            <button id="gif_tv_button_hd" class="switch" title="High Def"></button>
-            <button id="gif_tv_button_hue_shift" class="switch" title="Hue Shift"></button>
-            <button id="gif_tv_button_bright" class="switch" title="Bright / Dark"></button>
-            <button id="gif_tv_button_color" class="switch" title="Color / B&W"></button>
-            <span class="cta">Push the Buttons!</span>
+            
+         
+    
         </div>
-        <div class="heading"><h1>SIMTV</h1></div>
+    </section>
+    <div>
+        <a href="index.html">Its time to hit The hay</a>
     </div>
-</section>
+    <script>
+        
+const gifTVURLs = [
+	'Movie0075 copy.gif',
+	'Movie0069.gif',
+	'Movie0075 copy.gif',
+	'.gif',
+	'.gif',
+	'.gif',
+	'.gif',
+]
 
-<script>
-const baseVideoURL = "https://res.cloudinary.com/cyborgspaceviking/video/upload/";
-const gifTVVideoNames = [
-    "Untitledxa.mp4",
-    "space-stallions.mp4",
-    "dancing-bears-small.mp4",
-    "trippy-rick.mp4",
-    "psychedelic-reindeer.mp4",
-    "jake-the-dog.mp4",
-    "the-regular-show.mp4",
-];
+class GifTV
+{
+	constructor( channels = ['https://res.cloudinary.com/cyborgspaceviking/image/upload/v1571155222/giphy_n0r827.gif'] )
+	{
+		// elements
+		this.gifVideo = document.getElementById('gif_tv_video');
+		this.pixels = document.getElementById('gif_tv_pixels');
+		this.viewport = document.getElementById('gif_tv_viewport');
 
-class GifTV {
-    constructor(channels = []) {
-        this.gifVideo = document.getElementById('gif_tv_video');
-        this.gifImage = document.getElementById('gif_tv_image');
-        this.videoSource = document.getElementById('gif_tv_video_source');
-        this.channels = channels;
-        this.currentChannelIndex = 0; // Start at the first channel
-        this.displayChannel();
-    }
+		// data
+		this.channels = channels;
+		this.staticGIF = 'https://res.cloudinary.com/cyborgspaceviking/image/upload/v1571155222/giphy_n0r827.gif';
+		this.currentChannelURL = this.channels[0];
+		
+		// sounds
+		this.sound = {
+			static: 'https://freesound.org/data/previews/41/41029_410502-lq.mp3',
+			dial: 'https://freesound.org/data/previews/485/485486_10145800-lq.mp3',
+			switch: 'https://freesound.org/data/previews/219/219477_4056007-lq.mp3',
+		}
 
-    displayChannel() {
-        const currentURL = baseVideoURL + this.channels[this.currentChannelIndex];
-        if (currentURL.endsWith('.mp4')) {
-            this.gifImage.style.display = 'none';
-            this.gifVideo.style.display = 'block';
-            this.videoSource.src = currentURL;
-            this.gifVideo.load();
-        } else {
-            this.gifVideo.style.display = 'none';
-            this.gifImage.style.display = 'block';
-            this.gifImage.src = currentURL;
-        }
-    }
+		// dials
+		this.dial = {
+			// Channels Dial
+			channel: {
+				button: document.getElementById('gif_tv_button_channel'),
+				currentIndex: 0,
+				message: document.getElementById('gif_tv_message_channel'),
+				messageTimer: null,
+			},
+			// Volume Dial
+			volume: {
+				button: document.getElementById('gif_tv_button_volume'),
+				currentIndex: 8,
+				message: document.getElementById('gif_tv_message_volume'),
+				messageTimer: null,
+			},
+		}
 
-    changeChannel(direction) {
-        if (direction === 'up') {
-            this.currentChannelIndex = (this.currentChannelIndex + 1) % this.channels.length;
-        } else if (direction === 'down') {
-            this.currentChannelIndex =
-                (this.currentChannelIndex - 1 + this.channels.length) % this.channels.length;
-        }
-        this.displayChannel();
-    }
+		// switches
+		this.switch = {
+			// Mute Switch
+			mute: {
+				button: document.getElementById('gif_tv_button_mute'),
+				isActive: false,
+				message: document.getElementById('gif_tv_message_mute'),
+				messageTimer: null,
+			},
+			// HD Switch
+			hd: {
+				button: document.getElementById('gif_tv_button_hd'),
+				isActive: true,
+				message: document.getElementById('gif_tv_message_hd'),
+				messageTimer: null,
+			},
+			// Hue Shift Switch
+			hue: {
+				button: document.getElementById('gif_tv_button_hue_shift'),
+				isActive: false,
+				message: document.getElementById('gif_tv_message_hue_shift'),
+				messageTimer: null,
+			},
+			// Bright Switch
+			bright: {
+				button: document.getElementById('gif_tv_button_bright'),
+				isActive: true,
+				message: document.getElementById('gif_tv_message_bright'),
+				messageTimer: null,
+			},
+			// Black & White Switch
+			color: {
+				button: document.getElementById('gif_tv_button_color'),
+				isActive: true,
+				message: document.getElementById('gif_tv_message_color'),
+				messageTimer: null,
+			},
+		}
+	}
+
+	log()
+	{
+      console.log( 'gif TV on' )
+	}
+	
+	playSound( url, volume )
+	{
+		const sound = new Audio()
+		sound.src = url
+		sound.volume = volume/10
+		this.switch.mute.isActive !== true ? sound.play() : null
+	}
+
+	displayStatic()
+	{
+		this.gifVideo.setAttribute( "src", this.staticGIF )
+	}
+
+	displayChannel()
+	{
+		this.gifVideo.setAttribute( "src", this.currentChannelURL )
+	}
+
+	updateMessage( messageObj, theMessage )
+	{
+		let messageElem = messageObj.message
+		messageElem.innerHTML = theMessage
+
+		clearTimeout(messageObj.messageTimer);
+		
+		if ( !messageElem.classList.contains( 'active' ) ) {
+			messageElem.classList.add( 'active' )
+		}
+		
+		messageObj.messageTimer = setTimeout(() => {
+			messageElem.classList.remove( 'active' )
+		}, 2000);
+	}
+	
+	leadingZero(num, size)
+	{
+		var int = num+"";
+		while (int.length < size) int = "0" + int;
+		return int;
+	}
+		
+	changeChannel( direction )
+	{
+		const updateMessage = () => {
+			let channelsDecimal = (this.channels.length+1)/10
+			let channelIndex = this.leadingZero(this.dial.channel.currentIndex+1,  channelsDecimal < 2 ? 2 : channelsDecimal ) 
+			this.updateMessage( this.dial.channel, `CH ${channelIndex}` )
+		}
+
+		this.playSound( this.sound.dial, this.dial.volume.currentIndex )
+		this.playSound( this.sound.static, this.dial.volume.currentIndex/50 )
+		this.displayStatic()
+
+		switch ( direction ) {
+			case 'up':
+				this.dial.channel.currentIndex === this.channels.length-1 ? this.dial.channel.currentIndex = 0 : this.dial.channel.currentIndex++
+				updateMessage()
+				break;
+			case 'down':
+				this.dial.channel.currentIndex === 0 ? this.dial.channel.currentIndex = this.channels.length-1 : this.dial.channel.currentIndex--
+				updateMessage()
+				break;
+			default:
+				this.dial.channel.currentIndex === this.channels.length-1 ? this.dial.channel.currentIndex = 0 : this.dial.channel.currentIndex++
+				updateMessage()
+		}
+
+		setTimeout(() => {
+			this.currentChannelURL = this.channels[this.dial.channel.currentIndex]
+			this.displayChannel()
+		}, 333);
+	}
+
+	changeVolume( direction )
+	{
+		const updateMessage = () => {
+			let volumeIndex = this.leadingZero(this.dial.volume.currentIndex, 2 ) 
+			this.updateMessage( this.dial.volume, `VOL ${volumeIndex}` )
+		}
+
+		this.playSound( this.sound.dial, this.dial.volume.currentIndex )
+
+		switch ( direction ) {
+			case 'up':
+				this.dial.volume.currentIndex === 10 ? null : this.dial.volume.currentIndex++
+				updateMessage()
+				break;
+			case 'down':
+				this.dial.volume.currentIndex === 1 ? null : this.dial.volume.currentIndex--
+				updateMessage()
+				break;
+			default:
+				this.dial.volume.currentIndex === 10 ? null : this.dial.volume.currentIndex++
+				updateMessage()
+		}
+	}
+
+	toggleMute()
+	{
+		if ( this.switch.mute.isActive )
+		{
+			this.switch.mute.isActive = false
+			this.playSound( this.sound.switch, this.dial.volume.currentIndex )
+			this.updateMessage( this.switch.mute, `SOUND` )
+		}
+		
+		else
+		{
+			this.playSound( this.sound.switch, this.dial.volume.currentIndex )
+			this.switch.mute.isActive = true
+			this.updateMessage( this.switch.mute, `MUTE` )
+		}
+	}
+
+    
+	toggleHighDef()
+	{
+		this.playSound( this.sound.switch, this.dial.volume.currentIndex );
+
+		if ( this.switch.hd.isActive )
+		{
+			this.pixels.style.setProperty( 'visibility', 'hidden' );
+			this.switch.hd.isActive = false
+			this.updateMessage( this.switch.hd, `HIGH DEF` )
+		}
+		
+		else
+		{
+			this.pixels.style.setProperty( 'visibility', 'visible' );
+			this.switch.hd.isActive = true
+			this.updateMessage( this.switch.hd, `STND DEF` )
+		}
+	}
+
+	toggleHueShift()
+	{
+		this.playSound( this.sound.switch, this.dial.volume.currentIndex );
+
+		if ( this.switch.hue.isActive )
+		{
+			this.gifVideo.setAttribute( "style", 'filter: none' );
+			this.switch.hue.isActive = false
+			// since this is overriding colorOn we set it back to the default
+			this.switch.color.isActive = true
+			this.updateMessage( this.switch.hue, `NO SHIFT` )
+		}
+		
+		else
+		{
+			this.gifVideo.setAttribute( "style", 'animation: rainbow_barf infinite 2000ms;' );
+			this.switch.hue.isActive = true
+			// since this is overriding colorOn we set it back to the default
+			this.switch.color.isActive = true
+			this.updateMessage( this.switch.hue, `HUE SHIFT` )
+		}
+	}
+
+	toggleBright()
+	{
+		this.playSound( this.sound.switch, this.dial.volume.currentIndex );
+
+		if ( this.switch.bright.isActive )
+		{
+			this.viewport.setAttribute( "style", 'opacity: 0.5;' );
+			this.switch.bright.isActive = false
+			this.updateMessage( this.switch.bright, `DARK` )
+		}
+		
+		else
+		{
+			this.viewport.setAttribute( "style", 'opacity: 1;' );
+			this.switch.bright.isActive = true
+			this.updateMessage( this.switch.bright, `BRIGHT` )
+		}
+	}
+
+	toggleColor()
+	{
+		this.playSound( this.sound.switch, this.dial.volume.currentIndex );
+
+		if ( this.switch.color.isActive )
+		{
+			this.gifVideo.setAttribute( "style", 'filter: grayscale(100%);' );
+			this.switch.color.isActive = false
+			// since this is overriding invertColor we set it back to the default
+			this.switch.hue.isActive = false
+			this.updateMessage( this.switch.color, `B&W` )
+		}
+		
+		else
+		{
+			this.gifVideo.setAttribute( "style", 'filter: none' );
+			this.switch.color.isActive = true
+			// since this is overriding invertColor we set it back to the default
+			this.switch.hue.isActive = false
+			this.updateMessage( this.switch.color, `COLOR` )
+		}
+	}
+
+	init()
+	{
+		// this.log();
+		
+		this.displayChannel();
+
+		// Channel Dial
+		this.dial.channel.button.addEventListener( 'click', () => { this.changeChannel( 'up' ) })
+		this.dial.channel.button.addEventListener( 'contextmenu', (e) => { e.preventDefault(); this.changeChannel( 'down' ); })
+
+		// Volume Dial
+		this.dial.volume.button.addEventListener( 'contextmenu', (e) => { e.preventDefault(); this.changeVolume( 'up' ); })
+		this.dial.volume.button.addEventListener( 'click', () => { this.changeVolume( 'down' ) })
+
+		// Mute Switch
+		this.switch.mute.button.addEventListener( 'click', () => { this.toggleMute() })
+
+		// HD Switch
+		this.switch.hd.button.addEventListener( 'click', () => { this.toggleHighDef() })
+
+		// Hue Shift Switch
+		this.switch.hue.button.addEventListener( 'click', () => { this.toggleHueShift() })
+
+		// Brightness Switch
+		this.switch.bright.button.addEventListener( 'click', () => { this.toggleBright() })
+
+		// Black and White Switch
+		this.switch.color.button.addEventListener( 'click', () => { this.toggleColor() })
+
+		document.onkeydown = ( e ) =>
+		{
+			e.preventDefault();
+			// left key
+			e.keyCode == '39' ? this.changeChannel( 'up' ) : null
+			// right key
+			e.keyCode == '37' ? this.changeChannel( 'down' ) : null
+			// up key
+			e.keyCode == '38' ? this.changeVolume( 'up' ) : null
+			// down key
+			e.keyCode == '40' ? this.changeVolume( 'down' ) : null
+		}
+	}
 }
 
-// Initialize GIF TV with channel names
-const gifTV = new GifTV(gifTVVideoNames);
+const gifTV = new GifTV( gifTVURLs )
 
-// Button Interactions
-document.getElementById('gif_tv_button_channel').addEventListener('click', () => gifTV.changeChannel('up'));
-document.getElementById('gif_tv_button_volume').addEventListener('click', () => alert('Volume feature not implemented.'));
-document.getElementById('gif_tv_button_mute').addEventListener('click', () => alert('Mute feature not implemented.'));
-</script>
-</body>
-</html>
+gifTV.init()
+    </script>
