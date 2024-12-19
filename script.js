@@ -60,9 +60,14 @@ function displayMessage(username, message) {
 }
 
 // Listen for new messages from the server
-socket.on('new message', (data) => {
+// socket.on('new message', (data) => {
+//   displayMessage(data.username, data.message);
+// });
+socket.emit('new message', { username, message }); // Send message
+socket.on('new message', (data) => {              // Receive message
   displayMessage(data.username, data.message);
 });
+
 
 // Add event listener to the send button
 sendButton.addEventListener('click', sendMessage);
