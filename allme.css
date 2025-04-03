@@ -1,0 +1,320 @@
+body {
+    background-color: #49c8f4;
+    margin: 0;
+    padding: 0;
+  /*  Background fallback in case of IE8 & down, or in case video doens't load, such as with slower connections  */
+    
+    background-attachment: fixed;
+    background-size: cover;
+  
+  }
+
+
+
+
+
+
+  .content {
+    margin-bottom: 10;
+     font-size: 5px;
+     line-height: 3;
+     letter-spacing: 50px;
+     color: grey;
+     width: 900px;
+     margin: 0 auto;
+   }
+   
+   .content:hover {
+     margin: 50px;
+     font-size: 20px;
+     color: black;
+     width: 900px;
+     margin: 0 auto;
+   }
+   
+   .gif {
+     position: absolute;
+     bottom: 0;
+     left: 500px;
+     height: 400px;
+   }
+   
+
+   .subhead {
+    margin-bottom: 10;
+    font-size: 90px;
+    line-height: 1.2;
+    letter-spacing: 40px;
+    color: grey;
+    transition: all .8s;
+    width: 900px;
+    margin: 0 auto;
+  }
+
+
+
+  #video-background {
+  /*  making the video fullscreen  */
+  display: none;
+    position: fixed;
+    right: 0; 
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+    width: auto; 
+    height: auto;
+    z-index: -100;
+  }
+  span{
+    display: inline-block;
+  }
+  
+  .mid {
+    position: absolute;
+    width:30%;
+    left: 45%;
+    right:35%;
+    top: 30px;
+    z-index: 100;
+    transition: all 2s;
+  }
+  .mid:hover, .mid:focus{
+    left: 305px;
+    
+    transform: rotate(10deg);
+    opacity: 0.2;
+  }
+  
+  
+  .funbox{
+    transition: all .2s;
+  }
+  .funbox:hover{
+    transform: rotate(10deg);
+  }
+  .subhead {
+     position: absolute;
+    left: 45%;
+    width: 100%;
+    top: 50px;
+  transition: all .2s;
+    font-size: 12px;
+  }
+  .subhead:hover{
+    transform: rotate(-8deg);
+  }
+  .verticalLine {
+    position: absolute;
+    border-left: thick solid #ff0000;
+    left: 45%;
+    top: 84px;
+    height: 240px;
+    width: 40px;
+    border-color: black;
+    border-width: 1px;
+  transform: rotate(3deg);
+  }
+  .circle{
+    position: absolute;
+    left: 26%;
+    top: 316px;
+    width: 90px;
+    height: 90px;
+    background-color: #ed1c24;
+    border-radius: 100%;
+  }
+  .headline1 {
+    position: absolute;
+    top: 330px;
+  }
+  .st0{
+      fill:#BFE0B9;
+      transition: all 2s;
+  }
+  .st0:hover, .st0:focus{
+    fill: white;
+  }
+      .st1{font-family:'HelveticaNeueLTStd-Roman';}
+      .st2{font-size:12px;}
+  .intro {
+    position:absolute;
+    float: left;
+    width: 60%;
+    transition: all 2s;
+  }
+  .intro:hover, .intro:focus{
+    fill: blue;
+  }
+  h1 {
+    font-family: helvetica;
+    font-size: 22px;
+    width: 100%;
+    background-color: #00b5ba;
+    padding-bottom: 7px;
+    text-align: left;
+  }
+  
+  .back {
+    font-family: bodoni;
+    width: 30%;
+    float: right;
+    padding: 30px;
+  }
+  
+  .p1 {
+   
+    transform: rotate(7deg);
+    font-family:  monospace;
+    font-size: 9px;
+    transition: all .3s;
+    border-bottom: 9px;
+    background-color: #de0c5e;
+    -ms-transform: skewX(20deg); /* IE 9 */
+      -webkit-transform: skewX(20deg); /* Safari */
+      transform: skewX(20deg); /* Standard syntax */
+  }
+  
+  .fuck{
+    transition: all .3s;
+  }
+  .fuck:hover {
+    opacity: 0.5;
+  }
+  
+  .p2 {
+    transform: rotate(-4deg);
+    font-family: monospace;
+    font-size: 12px;
+    transition: all .3s;
+    background-color: #fff8d5;
+    -ms-transform: skewX(20deg); /* IE 9 */
+      -webkit-transform: skewX(-20deg); /* Safari */
+      transform: skewX(-20deg); /* Standard syntax */
+  }
+  .p2:hover {
+    transform: rotate(-40deg);
+    -ms-transform: skewX(60deg); /* IE 9 */
+      -webkit-transform: skewX(60deg); /* Safari */
+      transform: skewX(60deg); /* Standard syntax */
+  }
+  .p3 {
+    transform: rotate(4deg);
+    font-family: monospace;
+    font-size: 9px;
+    transition: all .3s;
+    background-color: #7bc692;
+  }
+  .p3:hover {
+    transform: rotate(-28deg);
+  }
+  .p4 {
+    transform: rotate(-4deg);
+    font-family: monospace;
+    font-size: 9px;
+    transition: all .3s;
+    background-color: #ee325e;
+  }
+  .p4:hover {
+    transform: rotate(12deg);
+  }
+  .p5 {
+    transform: rotate(4deg);
+    font-family: monospace;
+    font-size: 9px;
+    transition: all .2s;
+    background-color: #f47b42;
+  }
+  .p5:hover{
+    transform: rotate(-18deg);
+  }
+  .p6 {
+    transform: rotate(4deg);
+    font-family: monospace;
+    font-size: 9px;
+    transition: all .3s;
+    background-color: #ffda6b;
+  }
+  .p6:hover{
+    transform: rotate(-11deg);
+  }
+  .p7 {
+    transform: rotate(4deg);
+    font-family: monospace;
+    font-size: 9px;
+    transition: all .3s;
+    background-color: #a8daf5;
+  }
+  .p7:hover{
+    transform: rotate(-30deg);
+  }
+  .p8 {
+    transform: rotate(-4deg);
+    font-family: monospace;
+    font-size: 9px;
+    background-color: #ebf1fa;
+    transition: all 1s;
+  }
+  .p8:hover {
+    transform: rotate(-10deg); 
+    font-size: 200%;
+  }
+  .p9 {
+    transform: rotate(4deg);
+    font-family: monospace;
+    font-size: 9px;
+    background-color: #3077bd;
+    transition: all .2s
+  }
+  .p9:hover{
+    transform: rotate(-14deg);
+  }
+  .p10 {
+    position: absolute;   
+      left: 50%;
+    transform: rotate(-4deg);
+    font-family: monospace;
+    font-size: 9px;
+    background-color: #aac9e9;
+    transition: all .2s;
+  }
+  .p10:hover{
+    transform: rotate(-16deg);
+    margin-right: 50px;
+    background-color: #fbfcf0;
+    font-size: 14px;
+    font-family: helvetica;
+  }
+  .p11 {
+    position: absolute;   
+      left: 50%;
+    transform: rotate(4deg);
+    font-family: monospace;
+    font-size: 9px;
+    background-color: #cce8de;
+    transition: all .3s
+  }
+  .p11:hover {
+    transform: rotate(-18deg);
+    background-color: fbfcf0;
+  }
+  .p12 {
+  position: absolute;    
+    left: 40%;
+  transform: rotate(4deg);
+    font-family: monospace;
+    font-size: 16px;
+    background-color: #dfe574;
+    transition: all .5s
+  }
+  .p12:hover{
+    transform: rotate(14deg);
+    font-size: 29px;
+    background-color: #ee325e;
+    color: white;
+  }
+  .bigbox {
+    position: absolute;
+    padding: 100px;
+  }
+  
+  

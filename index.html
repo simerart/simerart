@@ -15,6 +15,7 @@
 </head>
 
 <body>
+  
 
   <div class="menu">
     <div class="dropup">
@@ -28,6 +29,7 @@
         <a href="#" onclick="openTab(7)">About Me</a>
         <a href="#" onclick="openTab(5)">Chat Room</a>
         <a href="#" onclick="openTab(6)">Poem</a>
+        <a href="#" onclick="openTab(3)">Books</a>
 
        
 
@@ -57,8 +59,8 @@
 
 
   <div class="icons">
-    <button class="icon" onclick="openTab(2)">
-      <img src="icon/open_file_mydocs-1.png">
+    <button class="icon" onclick="openTab(2)" onclick="changeFrame('pics.html')"">
+      <img src="icon/open_file_mydocs-1.png"style="width: 45px;">
       <br>
       Gallery
     </button>
@@ -71,13 +73,13 @@
     </button> -->
 
     <button class="icon" onclick="openTab(7)">
-      <img src="icon/help_book_small-4.png">
+      <img src="icon/help_book_small-4.png"style="width: 50px;">
       <br>
       About Me
     </button>
 
-    <button class="icon" onclick="window.location.href='movie.html'">
-      <img src="icon/television-0106.gif" alt="Movie Icon">
+    <button class="icon" onclick="changeFrame('movie.html')"">
+      <img src="icon/television-0106.gif" alt="Movie Icon" style="width: 45px;">
       <br>
       Movies
   </button>
@@ -91,17 +93,24 @@
     </button> -->
 
     <button class="icon" onclick="openTab(5)">
-      <img src="icon/network_internet_pcs_installer-4.png" style="width: 32px;">
-      <a href="chat.html"></a>
+      <img src="icon/network_internet_pcs_installer-4.png" style="width: 45px;">
+      <a href="http://127.0.0.1:5500/chat.html"></a>
       <br>
-      Chat Roon
+      ChatRoon
     </button>
 
     <button class="icon" onclick="openTab(6)">
-      <img src="icon/address_book_pad.png" style="width: 32px;">
+      <img src="icon/address_book_pad.png" style="width: 45px;">
       <a href="Poem.html"></a>
       <br>
       Poems
+    </button>
+    
+    <button class="icon" onclick="changeFrame('bookwrk.html')"">
+      <img src="icon/book-pages.gif" style="width: 45px;">
+      <a href="bookwrk.html"></a>
+      <br>
+      Book
     </button>
 
     <!-- <button class="icon" onclick="openTab(8)">
@@ -115,17 +124,18 @@
 
   <div id="div2" class="hidden-div draggable">
     <div class="header">
-      <img src="icon/open_file_mydocs-1.png" style="height: 20px; width: 20px; padding-top: 2px;"><b>Concert photograghy</b>
+      <img src="icon/open_file_mydocs-1.png" style="height: 20px; width: 20px; padding-top: 2px;"><b>SIMERART</b>
       
       <button class="x-button border" onclick="closeTab(2)">X</button>
     </div>
     <div class="explorer-navigator">
-      <span class="nav-tab"><u>F</u>ile</span> <span class="nav-tab"><u>E</u>dit</span>
+    
+      <buttton class="nav-tab"><u>F</u>ile</button> <span class="nav-tab"><u>E</u>dit</span>
       <span class="nav-tab"><u>S</u>earch</span><span class="nav-tab"><u>H</u>elp</span>
     </div>
     <div class="nav-search-bar">
       <div class="explorer-navigator">
-        <span class="back-button border" onclick="loaFrame(this)">&#6;</span>
+        <span class="back-button border" onclick="loadFrame(this)">&#6;</span>
         <span class="nav-search-bar" class="search-bar-text" style="top:2px">My Documents</span>
       </div>
     </div>
@@ -135,7 +145,7 @@
   </div>
 
  
-
+<!-- ?????? -->
   <div id="div8" class="hidden-div draggable">
     <div class="header"><img src="icon/open_file_mydocs-1.png"
         style="height: 20px; width: 20px; padding-top: 2px;"><b>Photograghy</b>
@@ -183,7 +193,7 @@
 
   
 
-
+<!-- about me window -->
   <div id="div7" class="hidden-div draggable">
     <div class="header"><img src="images\todo32.png"><b>About Me</b>
       <button class="x-button border" onclick="closeTab(7)">X</button>
@@ -239,6 +249,13 @@
       <iframe src="Poem.html"></iframe>
     </div>
   </div>
+  <script>
+    function changeFrame(url) {
+        document.getElementById('frame2').src = url;
+    }
+
+   
+</script>
 
   <script src="assets/jquery-3.7.1.min.js"></script>
   <script src="assets/jquery-ui.min.js"></script>

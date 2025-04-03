@@ -1,0 +1,270 @@
+* {
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+}
+
+body {
+    margin: 0;
+    background-color: #000000;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.container {
+    background-color: #000000;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    
+}
+
+.marquee {
+    width: max-content;
+    height: fit-content;
+    white-space: nowrap;
+    filter: blur(1px);
+    position: fixed;
+    top: 0;
+    
+
+}
+
+.title-text {
+    font-size: 60px;
+    font-family: "redaction";
+    color: rgb(255, 255, 255);
+    animation: marquee 10s infinite linear;
+}
+
+.caption {
+    font-size: 18px;
+    font-family: "redaction";
+    color: rgb(255, 255, 255);
+    display: block;
+}
+
+@keyframes marquee {
+    
+    0% {
+        transform: translateX(-50%)
+    }
+}
+
+.bottom-container{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+    justify-content: center;
+    margin: 3%;
+}
+
+
+
+.itemleft {
+    display: flex;
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+    width: 40%;
+    margin: 5%;
+    height: 300px;
+    justify-content: center;
+    text-align: center;
+    
+    
+}
+
+.itemright{
+    display: flex;
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+    margin: 5%;
+    width: 40%;
+    height: 300px; 
+    justify-content: center;
+    text-align: center;
+    
+}
+
+.display-pic {
+    height: 350px;
+}
+
+
+.bottom-container2{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+    justify-content: center;
+    margin-top: 15%;
+}
+
+.bottom-container3{
+    display: flex;
+    flex-wrap: wrap;
+    width: 25%;
+    margin-top: 20%;
+    margin-left: 37.5%;
+    filter: blur(.5px);
+}
+
+.photos {
+    height: 500px;
+}
+
+
+.display-container{
+    display: flex;
+    width: fit-content;
+    position: fixed;   
+}
+
+.w3-button {
+    height: 40px;
+    color: white;
+    background-color: black;
+    border: 0 none;
+    position: absolute;
+    top: 50%; 
+    transform: translateY(-50%);
+    
+}
+
+.w3-button:hover {
+    color: black;
+    background-color: white;
+    transition: 1s;
+}
+
+.w3-display-left {
+    /* margin-left: 0; */
+    left: 0
+    
+}
+
+.w3-display-right {
+    /* margin-left: 97.5%; */
+    right: 0
+    
+}
+
+.cursor{
+    position: relative;
+    width: 24em;
+    margin: 0 auto;
+    border-right: 2px solid rgba(255,255,255,.75);
+    font-size: 20px;
+    font-family: "redaction";
+    color: white;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-50%);    
+}
+
+.contact {
+    font-size: 20px;
+    font-family: "redaction";
+    color: white;
+    text-align: center;
+}
+
+.typewriter-animation {
+    animation: 
+      typewriter 5s steps(50) 1s 1 normal both, 
+      blinkingCursor 500ms steps(50) infinite normal;
+  }
+  @keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+  @keyframes blinkingCursor{
+    from { border-right-color: rgba(255,255,255,.75); }
+    to { border-right-color: transparent; }
+  }
+
+/*900 tablet style*/
+@media screen and (max-width: 1100px) {
+    
+
+    .bottom-container {
+        flex-wrap: wrap;
+        margin-top: 20%;
+        justify-content: center;
+    }
+
+    .itemleft, .itemright {
+        width: fit-content;
+        margin: 10%;
+        height: fit-content;
+    
+        
+    }
+}
+
+/*900 tablet style*/
+@media screen and (max-width: 1000px) {
+    
+    .photos {
+        height: 400px;
+        transition: 1s;
+    }
+
+    .bottom-container2{
+        display: flex;
+        flex-wrap: wrap;
+        width: 100vw;
+        justify-content: center;
+        margin-top: 20%;
+    }
+
+    .bottom-container3 {
+        margin-top: 35%;
+        transition: 1s;
+    }
+}
+
+/*900 tablet style*/
+@media screen and (max-width: 800px) {
+    
+    .photos {
+        height: 300px;
+        transition: 1s;
+    }
+
+    .bottom-container2{
+        display: flex;
+        flex-wrap: wrap;
+        width: 100vw;
+        justify-content: center;
+        margin-top: 50%;
+    }
+
+    .w3-display-right {
+        position: absolute;
+        margin-left: 96%;
+        
+    }
+
+    .bottom-container3 {
+        margin-top: 55%;
+        transition: 1s;
+    }
+}
+
+@media screen and (max-width:550px) {
+    
+    .display-pic {
+        height: 200px;
+    }
+
+
+}
+

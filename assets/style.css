@@ -447,12 +447,12 @@ p{
 
     .icons {
       position: fixed;
-      top: 10px;
+      top: 40px;
       left: 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 10px;
+      padding: 20px;
     }
     
     
@@ -469,8 +469,8 @@ p{
       font-family: 'w95fa';
       font-size: 14px;
       letter-spacing: -0.5px;
-      height: 64px;
-      width: 60px;
+      height: 80px;
+      width: 80px;
       position: relative;
       text-shadow:
       -1px -1px 0 #ffffff70,
@@ -881,12 +881,13 @@ body {
 
 
 #div2 {
+  position: fixed;
   display: block;
   padding-bottom: 5px;
-  left: 467px;
-  bottom: 19%;
-  width: 900px;
-  height: 900px;
+  left: calc(60px + 6%); /* Account for .icons width (≈50px) plus some spacing */
+  top: 0;
+  width: calc(93% - 60px); /* Adjust width to prevent overflow */
+  height: 100vh;
 }
 
 
@@ -1227,9 +1228,9 @@ body {
 
 
   @media screen and (max-width: 1500px) {
-    #div2 {
-      left: 500px;
-      top: 50px;
+    /* #div2 { */
+      /* left: 500px; */
+      /* top: 50px; */
     }
     #div6 {
       /* left: 1025px; */
@@ -1239,12 +1240,12 @@ body {
       left: 235px;
       top: 73px;
     }
-  }
+  
   
   @media screen and (max-width: 600px) {
-    #div2 {
-      left: 50px;
-      top: 60px;
+    /* #div2 { */
+      /* left: 50px; */
+      /* top: 60px; */
       
     }
     #div6 {
@@ -1255,7 +1256,7 @@ body {
       left: 135px;
       top: 73px;
     }
-  }
+  
 
 
 
@@ -1331,4 +1332,49 @@ body {
   
 
 
+  /* Base styles for all devices */
+.container {
+  width: 100%;
+  padding: 15px;
+}
+
+/* Styles for mobile devices */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
   
+  .navigation {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Hide certain elements on mobile */
+  .desktop-only {
+    display: none;
+  }
+}
+/* Mobile styles (default) */
+.container {
+  width: 100%;
+  padding: 10px;
+}
+@media screen and (max-width: 768px) {
+  /* Styles for screens smaller than 768px */
+}
+
+/* Tablet styles */
+@media (min-width: 768px) {
+  .container {
+    padding: 15px;
+    max-width: 750px;
+    margin: 0 auto;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 970px;
+  }
+}
