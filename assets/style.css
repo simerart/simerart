@@ -454,7 +454,11 @@ p{
       align-items: center;
       padding: 20px;
     }
-    
+    @media only screen and (max-width: 767px) {
+      .icons {
+        display: none;
+      }
+    }
     
     .icons .icon {
       box-sizing: border-box;
@@ -884,11 +888,22 @@ body {
   position: fixed;
   display: block;
   padding-bottom: 5px;
-  left: calc(60px + 6%); /* Account for .icons width (≈50px) plus some spacing */
+  left: calc(80px + 5.5%); /* Account for .icons width plus spacing on desktop */
   top: 0;
-  width: calc(93% - 60px); /* Adjust width to prevent overflow */
+  width: calc(100% - 90px - 10%); /* Adjust width to prevent overflow on desktop */
   height: 100vh;
 }
+
+/* Full screen on mobile devices */
+@media only screen and (max-width: 767px) {
+  #div2 {
+    left: 0;
+    top: 0;
+    width: 100%; /* Take full width on mobile */
+    height: 100vh;
+  }
+}
+
 
 
 #div2 .content {
