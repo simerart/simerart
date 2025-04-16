@@ -21,15 +21,27 @@
     <div class="dropup">
       <button class="box border" onclick="toggleDropUp()" style="color:black"><b>Start</b></button>
       <div class="drop-up-content" class="dropbtn">
-        <a href="#" onclick="openTab(5)">
+        <a href="#" onclick="openTab(2)">
           <img src="icon/user_computer-1.png">
           Home
         </a>
-        <a href="#" onclick="openTab(2)">Gallery</a>
-        <a href="#" onclick="openTab(7)">About Me</a>
-        <a href="#" onclick="openTab(5)">Chat Room</a>
-        <a href="#" onclick="openTab(6)">Poem</a>
-        <a href="#" onclick="openTab(3)">Books</a>
+        <a href="#" onclick="changeFrame('pics.html')"">
+          <img src="icon/camera-018.gif">
+          Gallery</a>
+          
+        <a href="#" onclick="changeFrame('bookwrk.html')"">
+          <img src="icon/open_file_mydocs-1.png">
+          Project</a>
+        <a href="#" onclick="openTab(7)">
+          <img src="icon/spin-smile.gif">
+          About Me</a>
+        <a href="#" onclick="openTab(5)">
+          <img src="icon/chat-0342.gif">
+          Chat Room</a>
+        <a href="#" onclick="openTab(6)">
+          <img src="icon/address_book_pad.png">
+          Poem</a>
+        
 
        
 
@@ -45,7 +57,7 @@
     <button id="tab8" class="box border" onclick="closeTab(8)" style="display: none;">Email</button>
 
     <button id="tab1" class="box border" onclick="closeTab(1)" style="display: none;">Movies</button>
-    <button id="tab3" class="box border" onclick="closeTab(3)" style="display: none;">Books</button>
+    <button id="tab3" class="box border" onclick="closeTab(3)" style="display: none;">Projects</button>
 
 
     <div class="divider"></div>
@@ -110,7 +122,7 @@
       <img src="icon/book-pages.gif" style="width: 45px;">
       <a href="bookwrk.html"></a>
       <br>
-      Book
+      Projects
     </button>
 
     <!-- <button class="icon" onclick="openTab(8)">
