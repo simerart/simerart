@@ -1,0 +1,215 @@
+/*================================================
+Start Text animation CSS
+==================================================*/
+.underline--magical {
+    background-image: linear-gradient(120deg, #f8b5aa 0%, #f8f7f0 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 0.1em;
+    background-position: 0 88%;
+    transition: background-size 0.25s ease-in;
+  }
+  .underline--magical:hover {
+    background-size: 100% 88%;
+  }
+  
+  /*================================================
+  End Text animation CSS
+  ==================================================*/
+  
+  
+  
+  .heading{
+    font-family: Old News Paper;
+    color: #523f29;
+    /* font-size: x-large; */
+  }
+  .subheading {
+    font-family: Old News Paper;
+    color: #523f29;
+    font-size: x-large;
+  }
+  .body_style{
+    
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  /* .content_container{
+    margin-block-start: 32.4em;
+    margin-left: 26em;
+    width: 40%;
+  } */
+  
+  
+  
+  
+  
+  /*==============================================
+  Media Queries
+  ================================================*/
+  @media screen and (max-width: 1920px) {
+    .body_style{
+      background-image:url('../../../images/case_view_background.jpg');
+      padding-top:9%;
+      /* padding-bottom:12%; */
+    }
+    #blank_top_bar{
+      height: 3em;
+      margin-bottom: 18em;
+    }
+  }
+  
+  @media screen and (max-width: 1280px) {
+    .body_style{
+      background-image:url('../../../images/case_view_background-1280.jpg');
+      padding-top:0%;
+      /* padding-bottom:12%; */
+    }
+    #blank_top_bar{
+      height: 1em;
+      margin-bottom: 3em;
+    }
+    .content_container{
+      margin-left: 12em;
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /* CSS version - variables and nesting converted to standard CSS */
+
+.wrapper {
+  font-family: "PingFang SC", "Microsoft Yahei";
+  color: #444;
+  margin: 0 auto;
+  max-width: 460px;
+  min-height: 556px;
+  background-image: url('http://graphicdesignjunction.com/wp-content/uploads/2014/09/04+iPhone6+iPhone+Plus+Mockups.jpg');
+  background-repeat: no-repeat;
+  background-size: 490px 930px;
+  padding: 135px 20px 135px 13px;
+}
+
+.phone-container {
+  width:    375px;
+  margin: 0 auto;
+  height: 667px;
+  overflow-y: scroll;
+  background-color: #fff;
+}
+
+.phone-container .intro {
+  padding: 0 20px;
+}
+
+.phone-container .intro dd {
+  margin-left: 20px;
+}
+
+.phone-container .title {
+  text-align: center;
+  padding: 5px 5px;
+  margin: 15px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.phone-container .title h3 {
+  margin: 0;
+}
+
+.phone-container .card-outer-container {
+  width: 100%;
+  padding: 0;
+  height: 547px; /* 667px - 120px */
+  overflow: hidden; /* hide scroll bar */
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.phone-container .card-outer-container .card-inner-container {
+  width: auto;
+  height: 567px; /* 547px + 20px */
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.phone-container .card-outer-container .card-inner-container .card {
+  border: 1px solid #bbbbbb; /* lighten #444 by 60% approximately */
+  padding: 5px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: hidden;
+  white-space: normal; /* prevent text from extending div */
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 5px 5px 5px;
+  width: 325px; /* 375px - 50px */
+  height: 542px; /* 547px - 5px */
+}
+
+.phone-container .card-outer-container .card-inner-container .card img {
+  width: 100%;
+  height: 400px;
+}
+
+.phone-container .card-outer-container .card-inner-container .card .description {
+  height: 110px;
+  overflow: hidden;
+}
+
+.phone-container .card-outer-container .card-inner-container .card .description dl {
+  padding: 0 5px;
+  margin: 0;
+}
+
+.phone-container .card-outer-container .card-inner-container .card .description dl dt {
+  font-weight: bold;
+}
+
+.phone-container .card-outer-container .card-inner-container .card .description dl dd {
+  font-size: 13px;
+  font-weight: 400;
+  margin-left: 10px;
+}
+
+.phone-container .card-outer-container .card-inner-container .card .bot-tool {
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.phone-container .card-outer-container .card-inner-container .card .bot-tool .like {
+  text-align: right;
+  width: 100px;
+  float: right;
+  border: none;
+  margin-right: 10px;
+  color: #444;
+  text-decoration: none;
+}
