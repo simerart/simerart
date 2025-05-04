@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sandbox of Memories</title>
+    <style>
+        body {
+          
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('/projects/reel/073C.jpg');
+            ;
+            overflow: hidden;
+            cursor: url("/projects/reel/icons8-shovel-48.png"), auto;
+        }
+        
+        .image-controls {
+            background-color: rgba(0,0,0,0.7);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .image-controls label {
+            color: white;
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .image-controls input {
+            padding: 5px;
+            background-color: #333;
+            color: white;
+            border: 1px solid #555;
+            border-radius: 4px;
+        }
+        
+        .playground {
+            position: relative;
+            width: 900px;
+            height: 600px;
+            background-image: url('/projects/reel/WALNUTVL.JPG');
+
+            border-radius: 10px;
+            cursor: url("/projects/reel/icons8-shovel-48.png"), auto;
+        }
+        
+        .sandbox {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            width: 840px;
+            height: 540px;
+            background-image: url('/projects/reel/083C.jpg');
+            background-size: cover;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: url("/projects/reel/icons8-shovel-48.png"), auto;
+        }
+        
+        .hole {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: #3a1d09;
+            border-radius: 50%;
+            display: none;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+        }
+        
+        .box {
+            position: absolute;
+            width: 600px;
+            height: 500px;
+            background-image: url('/projects/reel/REELBOXCLOSED\ copy.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            display: none;
+            cursor: url("/projects/reel/icons8-shovel-48.png"), auto;
+            transform: translate(-50%, -50%);
+            filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.3));
+        }
+        
+        .reel-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 700px;
+            height: 700px;
+            border-radius: 10px;
+            transition: transform 0.5s;
+            z-index: 10;
+            display: flex;
+            
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+        }
+        
+        .film-reel {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            /* background-image: url('/projects/reel/reel1\ copy.png'); */
+
+            object-fit: contain;
+        }
+        
+        .reel-top, .reel-bottom {
+            position: absolute;
+            width: 100%;
+            height: 50px;
+            background-color: #222;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        
+        .reel-top {
+            top: 0;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .reel-bottom {
+            bottom: 0;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .reel-hole {
+            width: 10px;
+            height: 20px;
+            background-color: #111;
+            border-radius: 50%;
+            border: 2px solid #444;
+        }
+        
+        .slides {
+          top: -10px;
+            width: 400px;
+            height: 250px;
+            background-color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            background-color: #ff5555;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 5;
+        }
+        
+        .instructions {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            background-color: rgba(0,0,0,0.5);
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="instructions">Click on the sandbox to dig!</div>
+    
+    <!-- <div class="image-controls">
+        <label>
+            Sand Texture: <input type="file" id="sandTexture" accept="image/png, image/jpeg">
+        </label>
+        <label>
+            Box Image: <input type="file" id="boxImage" accept="image/png, image/jpeg">
+        </label>
+        <label>
+            Reel Image: <input type="file" id="reelImage" accept="image/png, image/jpeg">
+        </label>
+    </div> -->
+    
+    <div class="playground">
+        <div class="sandbox" src="projects/reel/083C.jpg"id="sandbox"></div>
+    </div>
+    <div class="overlay" id="overlay"></div>
+    <div class="reel-container" id="reel-container">
+        <img class="film-reel" src="projects/reel/reel1 copy.png" alt="Film Reel" id="film-reel-img">
+        <div class="slides">
+            <img class="slide active" style="width: 100%;" src="projects/reel/20220114_234040-2 copy.jpg"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/20210830_202230 copy.jpg"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/l9.png"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/20220322_150732-2 copy.jpg"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/l8.png"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/20230126_144832 copy.jpg"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/20230217_175206-2 copy.jpg"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/l7.png"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/DSC_4572 copy.jpg"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/DSC_4586 copy.jpg"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/DSC_4584 copy.jpg"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/20230217_175404-2 copy.jpg"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/l6.png"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/20230217_175728-2 copy.jpg"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/20230217_175753-2 copy.jpg"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/l5.png"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/20230217_180341-2 copy.jpg"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/l4.png"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/DSC_4587 copy.jpg"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/DSC_4589 copy.jpg"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/DSC_4682 copy.jpg"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/l2.png"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/20230217_182010-2 copy.jpg"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/20230228_211725 copy.jpg"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/l3.png"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/l18.png"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/l17.png"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/l11.png"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/l16.png"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/l15.png"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/l14.png"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/l13.png"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/l1.png"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/DSC_4708 copy.jpg"></img>
+            <img class="slide" style="width: 100%;" src="projects/reel/DSC_4857 copy.jpg"></img>
+      
+
+            
+        </div>
+        <div class="close-button" id="close-button">X</div>
+    </div>
+
+    <script>
+        // Function to allow custom image uploads
+        function loadImage(inputElement, targetElement, isBackground = true) {
+            inputElement.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        if (isBackground) {
+                            document.querySelector(targetElement).style.backgroundImage = `url(${event.target.result})`;
+                        } else {
+                            document.querySelector(targetElement).src = event.target.result;
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+    
+        document.addEventListener('DOMContentLoaded', function() {
+            const sandbox = document.getElementById('sandbox');
+            const overlay = document.getElementById('overlay');
+            const reelContainer = document.getElementById('reel-container');
+            const closeButton = document.getElementById('close-button');
+            let box = null;
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.slide');
+            let slideInterval;
+            let boxFound = false;
+            
+            sandbox.addEventListener('click', function(e) {
+                if (boxFound) return;
+                
+                // Calculate position relative to the sandbox
+                const rect = sandbox.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // Create a hole
+                const hole = document.createElement('div');
+                hole.className = 'hole';
+                hole.style.left = (x - 25) + 'px';
+                hole.style.top = (y - 25) + 'px';
+                sandbox.appendChild(hole);
+                
+                // Show the hole with animation
+                setTimeout(() => {
+                    hole.style.display = 'block';
+                }, 10);
+                
+                // If this is the 5th click, show the box
+                const holes = document.querySelectorAll('.hole');
+                if (holes.length === 5 && !boxFound) {
+                    boxFound = true;
+                    // Create the box
+                    box = document.createElement('div');
+                    box.className = 'box';
+                    box.style.left = x + 'px';
+                    box.style.top = y + 'px';
+                    sandbox.appendChild(box);
+                    
+                    // Show the box with animation
+                    setTimeout(() => {
+                        box.style.display = 'block';
+                    }, 300);
+                    
+                    // Add click event to the box
+                    box.addEventListener('click', function() {
+                        showReel();
+                    });
+                }
+            });
+            
+            function showReel() {
+                overlay.style.display = 'block';
+                reelContainer.style.transform = 'translate(-50%, -50%) scale(1)';
+                startSlideshow();
+            }
+            
+            function hideReel() {
+                overlay.style.display = 'none';
+                reelContainer.style.transform = 'translate(-50%, -50%) scale(0)';
+                stopSlideshow();
+            }
+            
+            function startSlideshow() {
+                slideInterval = setInterval(nextSlide, 2000);
+            }
+            
+            function stopSlideshow() {
+                clearInterval(slideInterval);
+            }
+            
+            function nextSlide() {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }
+            
+            closeButton.addEventListener('click', hideReel);
+            
+            // Allow clicking anywhere on the overlay to close the reel
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) {
+                    hideReel();
+                }
+            });
+            
+            // Setup image upload controls
+            loadImage(document.getElementById('sandTexture'), '.sandbox', true);
+            loadImage(document.getElementById('boxImage'), '.box', true);
+            loadImage(document.getElementById('reelImage'), '#film-reel-img', false);
+        });
+    </script>
+</body>
+</html>
