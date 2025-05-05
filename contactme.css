@@ -1,0 +1,23 @@
+body {
+  margin-top: 5%;
+}
+
+.title {
+  margin-bottom: 60px;
+}
+
+.page-padding {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.img-title {
+  margin: 0 auto;
+  margin-bottom: 50px;
+  
+}
+
+.text-footer {
+  color: #666;
+  font-size: 0.8em;
+}
