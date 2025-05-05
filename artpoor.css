@@ -1,0 +1,291 @@
+body {
+  margin: 0;
+  height: 100%;
+  padding: 10px;
+  background-color: #000000;
+  font-family: 'Times New Roman', serif;
+  color: #000000;
+  cursor: url('https://kruzidula.neocities.org/Images/Curser_pointing.png'), auto;
+}
+body:hover {
+cursor: url('https://kruzidula.neocities.org/Images/Curser_grabbing.png'), auto;
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Or with Grid */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+#container {  
+  border: 1px solid #000000;
+  color: #ffffff;
+  max-width: 1400px;
+  max-height: 0 auto;
+  margin: 0 auto;
+}
+.fluid-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+#container a {
+  color: #ffffff;
+  
+  text-decoration: line;
+}
+#container a:hover {
+  
+  color: #ffffff;
+  font-weight: bold;
+  cursor: url('https://kruzidula.neocities.org/Images/Curser_pointing.png'), auto;
+}
+.SUPERheader {
+  background-color: #000000;
+  width: auto;
+  height: 150px;
+  text-align: center;
+  margin: 0 auto;
+}
+.header {
+  background-color: #000000;
+  width: auto;
+  height: 50px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+footer {
+  background-color: #000000;
+  width: auto;
+  height: 20px;
+  text-align: center;
+  color: #2B3541;
+  margin: 0 auto;
+}
+
+main {
+  background-image: url(https://kruzidula.neocities.org/Images/brown055.gif);
+  background-size: 10%;
+  border: 10px solid #000000;
+  width: 0 auto;
+  height: 745px;
+  flex: 1;
+  padding: 0;
+  margin: 0;
+}
+
+
+aside {
+  background-color: #000000;
+  width: 210px;
+  padding: 0;
+  font-size: smaller;
+}
+/*TEXT*/
+h1 {
+  margin: 0 auto;
+  font-size: 40px;
+}
+ h2 {
+   margin: 0 auto;
+  font-size: 22px;
+}
+ h3 {
+   font-size: 17px;
+}
+ strong {
+}
+/*MISC*/
+ .topnav {
+  /*if width doesnt function u did something wrong*/
+  /*anything to do with Position refer to This page https://www2.cs.sfu.ca/CourseCentral/165/common/study-guide/content/css2-positioning.html*/
+ 
+  width: 750px;
+  padding: 5px;
+  overflow: hidden;
+  
+  text-align: center;
+  margin: 0 auto;
+}
+.topnav ul {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  justify-content: space-evenly;
+}
+ul {
+  padding-left:20px;
+  list-style-type: circle;
+  
+}
+/* THE BUTTON */
+.button {
+  width: 130px;
+  background-color:#000000; 
+  color: #ffffff; 
+  border: 1px solid #ffffff;
+  padding: 4px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-family: 'times';
+  box-shadow: 1px 1px #ffffff;
+  font-size: 13px;
+  margin: 5px 5px;
+  transition-duration: 0.0s;
+  cursor: url('https://kruzidula.neocities.org/Images/Curser_pointing.png'), auto;
+}
+
+.button:hover {
+  background-color:#000000;
+  
+  box-shadow: 0px 0px #000000;
+}
+
+table, th, td {
+  border: 0px solid transparent;
+}
+
+.SCROLL-FULL{
+  /*needs to corelate to MAIN height*/
+  height: 745px;
+  overflow: auto;
+}
+.SCROLL{
+  height: 150px;
+  overflow: auto;
+}
+.boxout1 {
+ background-color: #000000;
+ border-radius: 5px;
+ border: 1px double #ffffff;
+ color: #ffffff;
+ font-size: 14px;
+ padding: 2px;
+ margin: 10px;
+}
+.boxout2 {
+ background-color: #000000;
+ border-radius: 5px;
+ border: 1px double #ffffff;
+ color: #ffffff;
+ font-size: 14px;
+ padding: 5px;
+}
+.box {
+ background-color: #000000;
+ border-radius: 3px;
+ border: 1px solid #ffffff;
+ color: #ffffff;
+ font-size: 14px;
+ padding: 5px;
+}
+.divider {
+  background-color: #000000;
+  width: auto;
+  height: 10px;
+}
+/*THINGS that are important.. i think*/
+#flex {
+  display: flex;
+}
+*/ #leftSidebar {
+ order: 1;
+}
+ #rightSidebar {
+ order: 3;
+}
+
+/* container width - 100= X (= functioning)*/
+/*MAIN CONTROLES HEIGHT*/
+/*CONTAINER CONTROLES WIDTH*/
+  @media only screen and (max-width: 480px)
+         {
+                #flex {
+                    flex-wrap: wrap;
+                }
+
+                aside {
+                    width: 50%;
+                }
+
+                /* the order of the items is adjusted here for responsiveness!
+      since the sidebars would be too small on a mobile device.
+      feel free to play around with the order!
+      */
+                main {
+                    order: 1;
+                }
+
+                #leftSidebar {
+                    order: 2;
+                }
+
+                #rightSidebar {
+                    order: 3;
+                }
+
+                #navbar ul {
+                    flex-wrap: wrap;
+                  }
+                }
+
+        
+
+
+
+
+
+
+
+                /* Base styles for all screen sizes */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* Responsive typography */
+html {
+  font-size: 16px; /* Base font size */
+}
+
+/* Responsive images */
+
+/* Media queries for different screen sizes */
+/* Mobile devices (portrait) */
+@media only screen and (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+  
+  /* Adjust layout for small screens */
+  .column {
+    width: 100%;
+  }
+}
+
+/* Mobile devices (landscape) and tablets (portrait) */
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+  /* Tablet-specific styles */
+  .column {
+    width: 50%;
+  }
+}
+
+/* Tablets (landscape) and small desktops */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  /* Small desktop styles */
+}
+
+/* Large desktops and TVs */
+@media only screen and (min-width: 1201px) {
+  /* Large screen styles */
+}
