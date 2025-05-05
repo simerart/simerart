@@ -1,27 +1,406 @@
-<!doctype html>
-<html>
-    <head>
-            <title>ART</title>
-    </head>
-    <body style="background-color:bisque"></body>
-        <h1>Books</h1>
-        <H3><a href="https://heyzine.com/flip-book/ca1b258a4d.html">oF BeLLa</a>- Poor Things</H3>
-        <img src="Screenshot 2024-04-19 at 1.24.32 PM.png" width="600">
-        <br>
-        <video width="600" height="400" controls>
-            <source src="Screen Recording 2024-05-04 at 12.37.21 AM copy.mov" type="video/mp4">
-            <source src="movie.ogg" type="video/ogg">
-            oF BeLLa
-          </video>
-        <h3> Welcome to my dreams </h3>
-        <video width="600" height="400" controls>
-            <source src="reelvid.mp4" type="video/mp4">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Art Work</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="artpoor.css">
+    <link rel="shortcut icon" href="https://kruzidula.neocities.org/Images/eye.gif">
+    <style>
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            
+            background-color: #000000;
+            color: #333;
+        }
+
+        #container {
+            width: 100%;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        /* Header Styles */
+        .SUPERheader {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .header-table {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background-image: url(https://kruzidula.neocities.org/Images/brown143.jpg);
+            background-size: cover;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .header-table h1 {
+            font-size: 2.5rem;
+            text-shadow: 5px 3px black;
+            color: white;
+            margin: 0;
+            padding: 10px 0;
+        }
+
+        @media (max-width: 768px) {
+            .header-table h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-table h1 {
+                font-size: 1.5rem;
+                text-shadow: 3px 2px black;
+            }
+        }
+
+        .topnav {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        .topnav img {
+            margin: 0 10px;
+        }
+
+        /* Flex Container */
+        #flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        main {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        aside {
+            width: 15%;
+            min-width: 100px;
+        }
+
+        @media (max-width: 992px) {
+            aside {
+                width: 10%;
+                min-width: 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #flex {
+                flex-direction: column;
+            }
+            
+            aside {
+                display: none;
+            }
+            
+            main {
+                width: 100%;
+            }
+        }
+
+        /* Content Boxes */
+        .boxout1 {
+            width: 100%;
+            margin-bottom: 30px;
+            background-color: #f8f5f2;
+            border-radius: 10px;
+            padding: 1px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .boxout2 {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .box {
+            padding: 15px;
+        }
+
+        /* Project Tables */
+        .project-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .project-table h2 {
+            margin: 0;
+            padding: 0;
+            color: #444;
+        }
+
+        .project-table h3 {
+            margin: 0;
+            padding: 0;
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .project-table img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin: 5px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .project-table td {
+            padding: 10px;
+            vertical-align: top;
+        }
         
-        </video>
-        <img src="20230501_172016.jpg" width="500">
-        <img src="20230501_171145 copy.jpg" width="300"> <img src="20230501_171133 copy.jpg" width="300">
+        .project-table td a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            gap: 10px;
+        }
+
+        .image-gallery img {
+            max-width: 150px;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
         
-        <br>
-        <a href="smallweb.html">Go back home</a>
-    </body>
+        .image-gallery a {
+            display: block;
+            width: calc(33.33% - 10px);
+            max-width: 150px;
+        }
+
+        @media (max-width: 992px) {
+            .project-table {
+                table-layout: fixed;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .project-table td {
+                display: block;
+                width: 100% !important;
+            }
+            
+            .project-table td:first-child {
+                margin-bottom: 15px;
+            }
+            
+            .project-table td a img {
+                width: 100%;
+                max-height: 350px;
+                object-fit: contain;
+                margin: 0 auto;
+            }
+            
+            .image-gallery {
+                justify-content: center;
+            }
+            
+            .image-gallery a {
+                width: calc(33% - 10px);
+            }
+            
+            .image-gallery img {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .image-gallery a {
+                width: calc(50% - 10px);
+            }
+            
+            .project-table td a img {
+                max-height: 250px;
+            }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+  
+<div id="container">
+    <div class="SUPERheader">
+        <div class="header-table">
+            <center>
+              
+              
+                <h1><img src="https://kruzidula.neocities.org/Images/eye.gif" alt="Eye gif">Poor Things
+                <img src="https://kruzidula.neocities.org/Images/eye.gif" alt="Eye gif"></h1>
+                
+                    Book Adaptation
+                    
+               
+            </center>
+        </div>
+    </div>
+ 
+    <div id="flex">
+        <aside id="leftSidebar"></aside>
+        
+        <main>
+            <div class="SCROLL-FULL">
+                <!-- First Project Box -->
+                <div class="boxout1">
+                    <div class="boxout2">
+                        <div class="box">
+                            <table class="project-table">
+                                <tr>
+                                    <td style="width:65%;">
+                                        <a href="projects/ofbella/bookof.gif" target="_blank">
+                                            <img src="projects/ofbella/bookof.gif" alt="Book of Bella">
+                                        </a>
+                                    </td>
+                                    <td style="width:35%;">
+                                        <h2>oF BeLLA</h2>
+                                        <br>
+                                        <b>Spring 2024</b>
+                                        <br>
+                                        <b>6 in x 9 in</b>
+                                        <br><br>
+                                        Print on Vellum Paper
+                                        <br>
+                                        Spiral bind with a Glossy cardstock cover
+                                        <br><br>
+                                        Film by Yorgos Lanthimos.<br>
+                                        Bella Baxter, a young woman revived by the scientist Dr. Godwin Baxter, embarks on a journey of self-discovery and exploration of her sexuality and newfound freedom.
+                                        <br><br>
+                                        <img src="projects/ofbella/2.38.44 AM.png" alt="Bella Screenshot">
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Second Project Box -->
+                <div class="boxout1">
+                    <div class="boxout2">
+                        <div class="box">
+                            <table class="project-table">
+                                <tr>
+                                    <td style="width:40%;">
+                                        <h2>Screen Play</h2>
+                                        <b>Dec 2023</b>
+                                        <br><br>
+                                        Script
+                                        <br>
+                                        Details:
+                                        <br>
+                                        <div class="image-gallery">
+                                            <a href="projects/ofbella/Poor-Things-Read-39-50.png" target="_blank">
+                                                <img src="projects/ofbella/Poor-Things-Read-39-50.png" alt="Script Page">
+                                            </a>
+                                            <a href="projects/ofbella/Poor-Things-Read-39-16.png" target="_blank">
+                                                <img src="projects/ofbella/Poor-Things-Read-39-16.png" alt="Script Page">
+                                            </a>
+                                            <a href="projects/ofbella/skyy.png" target="_blank">
+                                                <img src="projects/ofbella/skyy.png" alt="Sky Scene">
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td style="width:60%;">
+                                        <a href="projects/ofbella/Screenshot 2025-01-28 at 9.39.41 AM.png" target="_blank">
+                                            <img src="projects/ofbella/Screenshot 2025-01-28 at 9.39.41 AM.png" alt="Screenshot">
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Third Project Box -->
+                <div class="boxout1">
+                    <div class="boxout2">
+                        <div class="box">
+                            <table class="project-table">
+                                <tr>
+                                    <td style="width:40%;">
+                                        <a href="projects/ofbella/max.png" target="_blank">
+                                            <img src="projects/ofbella/max.png" alt="Dr. Godwin's Creation">
+                                        </a>
+                                    </td>
+                                    <td style="width:60%;">
+                                        <h2>Windows</h2>
+                                        <h3>The unorthodox scientist Dr.Godwin creations</h3>
+                                        <br>
+                                        <b>2024</b>
+                                        <br>
+                                        <b>6 x 9 in</b>
+                                        <br>
+                                        Hand cut on Vellum paper
+                                        <br><br>
+                                        Creatures created by Dr. Godwin Baxter through experimentation, combining parts of different animals,
+                                        <br> combinations: a goose/bulldog ("gooseWillis"), a duck/goat ("billThe Kid"), a bulldog/goose ("barkWahlberg"), a goose/basset hound ("gooseBumps"), a pig/shaggy dog ("sixSox"), a shaggy dog/duck ("siriusQuack"), and a pig/chicken ("davidEggham").
+                                        <br><br>
+                                        <div class="image-gallery">
+                                            <a href="projects/ofbella/bark.png" target="_blank">
+                                                <img src="projects/ofbella/bark.png" alt="Bark Wahlberg">
+                                            </a>
+                                            <a href="projects/ofbella/goose.png" target="_blank">
+                                                <img src="projects/ofbella/goose.png" alt="Goose Willis">
+                                            </a>
+                                            <a href="projects/ofbella/bill.png" target="_blank">
+                                                <img src="projects/ofbella/bill.png" alt="Bill The Kid">
+                                            </a>
+                                            <a href="projects/ofbella/Goosebumps.png" target="_blank">
+                                                <img src="projects/ofbella/Goosebumps.png" alt="Goose Bumps">
+                                            </a>
+                                            <a href="projects/ofbella/sss.png" target="_blank">
+                                                <img src="projects/ofbella/sss.png" alt="Six Sox">
+                                            </a>
+                                            <a href="projects/ofbella/david.png" target="_blank">
+                                                <img src="projects/ofbella/david.png" alt="David Eggham">
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <aside id="rightSidebar"></aside>
+    </div>
+    
+    <footer id="footer">
+        Made with love~Kruzidula-2024
+    </footer>
+</div>
+
+</body>
 </html>
