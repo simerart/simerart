@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Sound Map</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: #f0f8ff;
+        }
+        .map-container {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .map-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        svg {
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+        }
+        .location {
+            cursor: pointer;
+            transition: transform 0.2s;
+            pointer-events: all;
+        }
+        .location:hover {
+            transform: scale(1.1);
+        }
+        .location-info {
+            fill: #fff;
+            font-size: 12px;
+            text-anchor: middle;
+            pointer-events: none;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+        .legend {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 0 10px;
+        }
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        h1 {
+            color: #2e5090;
+            margin-bottom: 20px;
+        }
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .image-upload {
+            margin-bottom: 15px;
+        }
+        .button {
+            padding: 8px 16px;
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #3367d6;
+        }
+        .drag-instructions {
+            margin-top: 10px;
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Interactive Sound Map</h1>
+    
+    <div class="image-upload">
+        <input type="file" id="imageUpload" accept="image/*">
+        <button id="uploadBtn" class="button">Upload Your Map Image</button>
+        <p class="drag-instructions">After uploading, you can drag the markers to position them on your map.</p>
+    </div>
+    
+    <div class="map-container">
+        <!-- Default placeholder image -->
+        <img id="mapImage" class="map-image" src="/projects/map/Screenshot 2024-02-27 at 6.19.27 PM.png" alt="Map Image">
+        
+        <!-- Overlay for the interactive elements -->
+        <div class="map-overlay">
+            <svg id="mapSvg" viewBox="0 0 600 400">
+                <!-- Clickable Locations -->
+                <!-- Forest Location -->
+                <g class="location-group" data-location="forest">
+                    <circle class="location forest" cx="195" cy="190" r="10" fill="#228B22" stroke="#000" stroke-width="2"/>
+                    
+                </g>
+                
+                <!-- Beach Location -->
+                <g class="location-group" data-location="beach">
+                    <circle class="location beach" cx="300" cy="130" r="10" fill="#FFD700" stroke="#000" stroke-width="2"/>
+                    
+                </g>
+                
+                <!-- City Location -->
+                <g class="location-group" data-location="city">
+                    <circle class="location city" cx="275" cy="165" r="10" fill="#FF6347" stroke="#000" stroke-width="2"/>
+                    
+                </g>
+                
+                <!-- Mountain Location -->
+                <g class="location-group" data-location="mountain">
+                    <circle class="location mountain" cx="400" cy="150" r="10" fill="#8B4513" stroke="#000" stroke-width="2"/>
+                    
+            </svg>
+        </div>
+    </div>
+
+   
+
+    <div class="controls">
+        <button id="muteAll" class="button">Mute All Sounds</button>
+        <button id="resetPositions" class="button">Reset Marker Positions</button>
+    </div>
+
+    <script>
+        // Create audio context
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        const audioContext = new AudioContext();
+        
+        // Audio buffers for each location
+        const audioBuffers = {
+            forest: null,
+            beach: null,
+            city: null,
+            mountain: null
+        };
+        
+        // Currently playing sources
+        const activeSources = {};
+        
+        // Store original positions of markers for reset functionality
+        const originalPositions = {
+            forest: { x: 120, y: 120 },
+            beach: { x: 480, y: 270 },
+            city: { x: 320, y: 220 },
+            mountain: { x: 520, y: 70 }
+        };
+        
+        // Generate sounds for each location
+        function generateForestSound() {
+            const duration = 3;
+            const bufferSize = audioContext.sampleRate * duration;
+            const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+            const data = buffer.getChannelData(0);
+            
+            // Bird chirping simulation
+            for (let i = 0; i < bufferSize; i++) {
+                // Create random chirps
+                if (Math.random() < 0.001) {
+                    // Start of a chirp
+                    const chirpLength = Math.floor(audioContext.sampleRate * 0.1);
+                    const chirpFreq = 2000 + Math.random() * 2000;
+                    for (let j = 0; j < chirpLength && i + j < bufferSize; j++) {
+                        const t = j / audioContext.sampleRate;
+                        data[i + j] = Math.sin(2 * Math.PI * chirpFreq * t) * 
+                                    Math.exp(-10 * t) * 0.3;
+                    }
+                    i += chirpLength - 1;
+                }
+            }
+            
+            return buffer;
+        }
+        
+        function generateBeachSound() {
+            const duration = 4;
+            const bufferSize = audioContext.sampleRate * duration;
+            const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+            const data = buffer.getChannelData(0);
+            
+            // Wave sounds simulation
+            for (let i = 0; i < bufferSize; i++) {
+                const t = i / audioContext.sampleRate;
+                // Base wave sound
+                data[i] = (Math.random() * 2 - 1) * 0.15;
+                
+                // Add some wave crashes
+                const waveFreq = 0.1;
+                const waveCrash = Math.sin(2 * Math.PI * waveFreq * t);
+                if (waveCrash > 0.8) {
+                    data[i] += (Math.random() * 2 - 1) * 0.3 * waveCrash;
+                }
+            }
+            
+            return buffer;
+        }
+        
+        function generateCitySound() {
+            const duration = 3;
+            const bufferSize = audioContext.sampleRate * duration;
+            const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+            const data = buffer.getChannelData(0);
+            
+            // City ambient noise
+            for (let i = 0; i < bufferSize; i++) {
+                const t = i / audioContext.sampleRate;
+                
+                // Base ambient noise
+                data[i] = (Math.random() * 2 - 1) * 0.1;
+                
+                // Car horn occasionally
+                if (Math.random() < 0.0005) {
+                    const hornLength = Math.floor(audioContext.sampleRate * 0.3);
+                    const hornFreq = 400 + Math.random() * 200;
+                    for (let j = 0; j < hornLength && i + j < bufferSize; j++) {
+                        const ht = j / audioContext.sampleRate;
+                        data[i + j] += Math.sin(2 * Math.PI * hornFreq * ht) * 0.2;
+                    }
+                }
+                
+                // Traffic rumble
+                data[i] += Math.sin(2 * Math.PI * 50 * t) * 0.05;
+            }
+            
+            return buffer;
+        }
+        
+        function generateMountainSound() {
+            const duration = 3;
+            const bufferSize = audioContext.sampleRate * duration;
+            const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+            const data = buffer.getChannelData(0);
+            
+            // Wind howling simulation
+            for (let i = 0; i < bufferSize; i++) {
+                const t = i / audioContext.sampleRate;
+                
+                // Base wind noise
+                const windNoise = (Math.random() * 2 - 1) * 0.2;
+                
+                // Wind howl modulation
+                const windHowl = Math.sin(2 * Math.PI * 0.2 * t) * 0.5 + 0.5;
+                const modulatedWind = windNoise * windHowl;
+                
+                // Add some low frequency rumble
+                const rumble = Math.sin(2 * Math.PI * 60 * t) * 0.05;
+                
+                data[i] = modulatedWind + rumble;
+            }
+            
+            return buffer;
+        }
+        
+        // Generate all sound buffers
+        audioBuffers.forest = generateForestSound();
+        audioBuffers.beach = generateBeachSound();
+        audioBuffers.city = generateCitySound();
+        audioBuffers.mountain = generateMountainSound();
+        
+        // Play sound function
+        function playSound(location) {
+            // Stop any previously playing sound for this location
+            if (activeSources[location]) {
+                activeSources[location].stop();
+            }
+            
+            // Create new audio source
+            const source = audioContext.createBufferSource();
+            source.buffer = audioBuffers[location];
+            
+            // Create a gain node for volume control
+            const gainNode = audioContext.createGain();
+            gainNode.gain.value = 0.5;
+            
+            // Connect nodes
+            source.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            // Loop the sound
+            source.loop = true;
+            
+            // Start playing
+            source.start();
+            
+            // Save reference to stop later
+            activeSources[location] = source;
+            
+            // Visual feedback
+            document.querySelector(`.${location}`).setAttribute('stroke-width', '4');
+            setTimeout(() => {
+                document.querySelector(`.${location}`).setAttribute('stroke-width', '2');
+            }, 300);
+        }
+        
+        // Image upload handling
+        document.getElementById('uploadBtn').addEventListener('click', () => {
+            document.getElementById('imageUpload').click();
+        });
+        
+        document.getElementById('imageUpload').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    document.getElementById('mapImage').src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Make the location markers draggable
+        const locationGroups = document.querySelectorAll('.location-group');
+        
+        locationGroups.forEach(group => {
+            const location = group.getAttribute('data-location');
+            const circle = group.querySelector('circle');
+            const text = group.querySelector('text');
+            
+            let isDragging = false;
+            let offsetX, offsetY;
+            
+            // SVG coordinates helper
+            function getSvgCoordinates(svg, event) {
+                const CTM = svg.getScreenCTM();
+                const point = svg.createSVGPoint();
+                point.x = event.clientX;
+                point.y = event.clientY;
+                return point.matrixTransform(CTM.inverse());
+            }
+            
+            // Mouse down event to start dragging
+            circle.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                const coords = getSvgCoordinates(document.getElementById('mapSvg'), e);
+                offsetX = coords.x - parseFloat(circle.getAttribute('cx'));
+                offsetY = coords.y - parseFloat(circle.getAttribute('cy'));
+                e.preventDefault();
+            });
+            
+            // Mouse move event to drag
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    const coords = getSvgCoordinates(document.getElementById('mapSvg'), e);
+                    const newX = coords.x - offsetX;
+                    const newY = coords.y - offsetY;
+                    
+                    // Update circle position
+                    circle.setAttribute('cx', newX);
+                    circle.setAttribute('cy', newY);
+                    
+                    // Update text position
+                    text.setAttribute('x', newX);
+                    text.setAttribute('y', newY + 5); // +5 for vertical centering
+                }
+            });
+            
+            // Mouse up event to stop dragging
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+            
+            // Touch events for mobile
+            circle.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                const touch = e.touches[0];
+                const coords = getSvgCoordinates(document.getElementById('mapSvg'), touch);
+                offsetX = coords.x - parseFloat(circle.getAttribute('cx'));
+                offsetY = coords.y - parseFloat(circle.getAttribute('cy'));
+                e.preventDefault();
+            });
+            
+            document.addEventListener('touchmove', (e) => {
+                if (isDragging) {
+                    const touch = e.touches[0];
+                    const coords = getSvgCoordinates(document.getElementById('mapSvg'), touch);
+                    const newX = coords.x - offsetX;
+                    
+    </script>
+</body>
+</html>
