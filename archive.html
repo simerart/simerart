@@ -1,0 +1,396 @@
+<style>
+    *,
+    *:after,
+    *:before {
+      box-sizing: border-box;
+      object-fit: cover;
+    }
+    
+    :root {
+      --texture: url("https://www.textureking.com/content/img/stock/big/DSC_2704.JPG");
+      --blue: #359ca2;
+      --dark: #111c1d;
+      --white: #e8e7e6;
+      --red: #a45044;
+      --block: 4rem/100% "Notable", sans-serif;
+      --sans: 0.9rem/110% "Urbanist", sans-serif;
+      --funky: 0.9rem/110% "Unica One", sans-serif;
+    }
+    
+    /* width */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: var(--dark);
+      box-shadow: inset 0 0 10px black;
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: var(--red);
+    }
+    
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--white);
+    }
+    
+    body {
+      background: var(--dark);
+    }
+    
+    body:after {
+      content: "";
+      position: fixed;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100vw;
+      height: 100vh;
+      background: var(--dark) var(--texture) fixed no-repeat center / cover;
+      background-blend-mode: color-dodge;
+      opacity: 0.7;
+      filter: brightness(0.65);
+      z-index: -1;
+    }
+    
+    author-page {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      grid-template-rows: repeat(4, fit-content);
+      grid-column-gap: 10px;
+      grid-row-gap: 10px;
+      width: clamp(400px, 80%, 900px);
+      height: auto;
+      margin: 50px auto;
+      background: var(--dark);
+      border-radius: 10px;
+      box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.5);
+    }
+    
+    author-name {
+      display: block;
+      width: 100%;
+      grid-area: 1 / 1 / 2 / 3;
+      font: var(--block);
+      letter-spacing: 0.5rem;
+      color: var(--blue);
+      text-align: center;
+      justify-self: center;
+      padding: 10px;
+      border-bottom: 6px double var(--blue);
+    }
+    
+    author-pic {
+      display: block;
+      grid-area: 2 / 1 / 3 / 2;
+      width: 200px;
+      height: auto;
+      justify-self: center;
+      -webkit-mask-image: radial-gradient(black, transparent);
+      mask-image: radial-gradient (black, transparent);
+    }
+    
+    author-pic img {
+      width: 200px;
+      height: auto;
+    }
+    
+    author-bio {
+      display: block;
+      width: 95%;
+      grid-area: 2 / 2 / 3 / 3;
+      font: var(--sans);
+      color: var(--white);
+      text-align: justify;
+      justify-self: start;
+      padding: 20px 10px 10px;
+    }
+    
+    author-links {
+      grid-area: 3 / 1 / 4 / 3;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-evenly;
+    }
+    
+    author-links a {
+      font: var(--funky);
+      color: var(--blue);
+      text-decoration: none;
+      letter-spacing: 0.05rem;
+    }
+    
+    author-links a:hover {
+      color: var(--white);
+    }
+    
+    author-books {
+      grid-area: 4 / 1 / 5 / 3;
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      grid-gap: 20px;
+      width: 100%;
+      height: fit-content;
+      margin: 20px auto;
+    }
+    
+    author-writing {
+      grid-area: 1 / 1 / 2 / 2;
+      display: grid;
+      grid-template-rows: fit-content 1fr;
+      height: 300px;
+    }
+    
+    author-reading {
+      grid-area: 2 / 1 / 3 / 2;
+      display: grid;
+      grid-template-rows: fit-content 1fr;
+      height: 300px;
+    }
+    
+    books-title {
+      display: block;
+      grid-area: 1 / 1 / 2 / 2;
+      font: var(--block);
+      font-size: 1.5rem;
+      color: var(--red);
+      letter-spacing: 0.05rem;
+      justify-self: center;
+      padding: 10px 0;
+    }
+    
+    books-list {
+      display: flex;
+      grid-area: 2 / 1 / 3 / 2;
+      justify-self: center;
+      width: 95%;
+      flex-flow: row no-wrap;
+      gap: 20px;
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+    
+    book-cover {
+      display: block;
+      height: calc(300px - 3rem);
+      width: auto;
+    }
+    
+    book-cover img {
+      height: calc(300px - 3rem);
+      width: auto;
+    }
+    
+    book-cover:hover {
+      transform: translateY(-10px);
+    }
+    
+    book-cover img {
+      height: calc(300px - 3rem);
+      width: auto;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Falling images container */
+    .falling-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 100;
+    }
+    
+    /* Fallen image styles */
+    .fallen-image {
+      position: absolute;
+      width: 100px;
+      height: auto;
+      opacity: 0;
+      border-radius: 4px;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+      pointer-events: auto;
+      cursor: pointer;
+      transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
+    }
+    
+    .fallen-image.enlarged {
+      transform: scale(2.5);
+      z-index: 200;
+    }
+
+    </style>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Notable&family=Unica+One&family=Urbanist&display=swap" rel="stylesheet">
+      </head>
+      
+      <author-page>
+        <author-name>Concert Archive</author-name>
+        <br><br> <br><br> <br><br>
+  <author-links>
+    <author-bio>There’s nothing like the feeling of being at a concert surrounded by music, energy, and people who get it. Each show becomes a memory etched into your heart, whether it’s a favorite song live, a shared moment with the crowd, or a quick snapshot that takes you right back. Concerts aren’t just events they’re pieces of who you are.</author-bio>
+        <!-- <author-links>
+          <a href="https://diacodes.tumblr.com/"><h1>Video</h1></a>
+         
+           <br><br> <br><br>
+        </author-links> -->
+        
+        <author-books>
+           
+          <author-writing>
+            
+            <books-title href="https://diacodes.tumblr.com/" title="Covers are Canva templates">Poster</books-title>
+            <books-list>
+                <book-cover data-images='["/projects/concertar/Untitled-2.png", "/projects/concertar/20210908_140635.jpg", "/projects/concertar/vipb.png"]'>
+                  <img src="/projects/concertar/blackppng copy.png" title="Concert Poster 1">
+                </book-cover>
+                <book-cover data-images='["/projects/concertar/ronni.png", "/projects/concertar/tick.png", "/projects/concertar/wband.png","/projects/concertar/ron.png"]'>
+                  <img src="/projects/concertar/Falling INp copy.png" title="Concert Poster 2">
+                </book-cover>
+                <book-cover data-images='["/projects/concertar/-1.jpeg", "/projects/concertar/the.png"]'>
+                  <img src="/projects/concertar/thh.png" title="Concert Poster 3">
+                </book-cover>
+                <book-cover data-images='["/projects/concertar/modbk.png", "/projects/concertar/scot.png", "/projects/concertar/miller.png", "/projects/concertar/modt.png", "/projects/concertar/mod2.png"]'>
+                  <img src="/projects/concertar/modp.png" title="Concert Poster 4">
+                  </book-cover>
+                <book-cover data-images='["/projects/concertar/stik.png", "//projects/concertar/codi.png", "/projects/concertar/tixs.jpg", "/projects/concertar/siovip.png", "/projects/concertar/pick.png"]'>
+                    <img src="/projects/concertar/siop.png" title="Concert Poster 5">
+                </book-cover>
+              </books-list>
+          </author-writing>
+          
+        </author-books>
+      </author-page>
+    
+      <div class="falling-container"></div>
+
+    
+    
+    
+    
+    
+      <script>document.addEventListener('DOMContentLoaded', function() {
+        // Get all book covers
+        const bookCovers = document.querySelectorAll('book-cover');
+        const fallingContainer = document.querySelector('.falling-container');
+        let currentlyActiveBookCover = null;
+        
+        // Add click event to each book cover
+        bookCovers.forEach(cover => {
+          cover.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            // If this is a different book cover than the currently active one
+            if (currentlyActiveBookCover !== this) {
+              // Clear any existing fallen images
+              clearFallenImages();
+              
+              // Set this as the currently active book cover
+              currentlyActiveBookCover = this;
+              
+              // Get the source position for animation
+              const rect = this.getBoundingClientRect();
+              const startX = rect.left + rect.width / 2;
+              const startY = rect.top + rect.height / 2;
+              
+              // Get images data from the data attribute
+              const imagesData = JSON.parse(this.getAttribute('data-images'));
+              
+              // Create falling images
+              imagesData.forEach((imgSrc, index) => {
+                setTimeout(() => {
+                  createFallingImage(imgSrc, startX, startY, index);
+                }, index * 200); // Stagger the falling animation
+              });
+            }
+          });
+        });
+        
+        // Function to create a falling image
+        function createFallingImage(imgSrc, startX, startY, index) {
+          const img = document.createElement('img');
+          img.src = imgSrc;
+          img.className = 'fallen-image';
+          
+          // Set initial position
+          img.style.top = startY + 'px';
+          img.style.left = startX + 'px';
+          
+          // Add to container
+          fallingContainer.appendChild(img);
+          
+          // Calculate final position with viewport constraints
+          const angle = (index / 5) * Math.PI * 2; // Distribute in a circle
+          const distance = 100 + Math.random() * 80; // Reduced distance
+          
+          // Raw calculated position
+          let finalX = startX + Math.cos(angle) * distance;
+          let finalY = startY + Math.sin(angle) * distance + 50; // Less vertical drop
+          
+          // Get viewport dimensions and ensure images stay within view
+          const viewportWidth = window.innerWidth;
+          const viewportHeight = window.innerHeight;
+          
+          // Apply padding from edges
+          const padding = 120; // This accounts for the image size plus some margin
+          
+          // Constrain to viewport
+          finalX = Math.max(padding, Math.min(viewportWidth - padding, finalX));
+          finalY = Math.max(padding, Math.min(viewportHeight - padding, finalY));
+          
+          // Force layout reflow
+          img.offsetWidth;
+          
+          // Set up transition
+          img.style.transition = 'top 1s cubic-bezier(.17,.67,.83,.67), left 1s cubic-bezier(.17,.67,.83,.67), opacity 0.5s';
+          
+          // Apply final position and make visible
+          setTimeout(() => {
+            img.style.top = finalY + 'px';
+            img.style.left = finalX + 'px';
+            img.style.opacity = '1';
+          }, 10);
+          
+          // Add click event to toggle enlarge
+          img.addEventListener('click', function(e) {
+            e.stopPropagation();
+            this.classList.toggle('enlarged');
+          });
+        }
+        
+        // Function to clear all fallen images
+        function clearFallenImages() {
+          const fallenImages = document.querySelectorAll('.fallen-image');
+          
+          fallenImages.forEach(img => {
+            // Fade out
+            img.style.opacity = '0';
+            
+            // Remove after animation
+            setTimeout(() => {
+              if (img.parentNode) {
+                img.parentNode.removeChild(img);
+              }
+            }, 500);
+          });
+        }
+        
+        // Clear fallen images when clicking elsewhere
+        document.addEventListener('click', function(e) {
+          if (!e.target.closest('book-cover') && !e.target.classList.contains('fallen-image')) {
+            clearFallenImages();
+            currentlyActiveBookCover = null;
+          }
+        });
+      });
+    </script>
