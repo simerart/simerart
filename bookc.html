@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="bookc.css">
+
+
+<h1 class="demo-title"></h1>
+
+<div id="book" class="view-cover">
+	<div class="main">
+		<div class="book-font">
+			<div class="book-cover">
+				<img style="width: 100%;" src="projects/bookcover/front.png">
+			</div>
+			<div class="book-cover-back"></div>
+		</div>
+		<div class="book-page">
+			
+			<div class="page-number">- 1 -</div>
+		</div>
+		<div class="book-back">
+			<div class="description">
+				<p>"Ideal for the college survey course: judicious introduction plus just the right admixture of explanatory notes (vital for American students' comprehension of dialect words), up-to-date bibliography, and several other brief, indispensable supports to well-informed reading."</p>
+				<p class="txt-right">--Katherine Linehan, Oberlin College</p>
+			</div>
+			
+		</div>
+		<div class="book-bone">
+			<h2>Emily Bronte　Wuthering Heights</h2>
+		</div>
+		<div class="book-top"></div>
+		<div class="book-right"></div>
+		<div class="book-bottom"></div>
+	</div>
+</div>
+
+<script>
+    $(function(){
+	var book = $('#book');
+	$('#view-cover').click(function(){
+		$(this).addClass('cur').siblings().removeClass('cur');
+		book.removeClass().addClass('view-cover');
+	});
+	$('#view-back').click(function(){
+		$(this).addClass('cur').siblings().removeClass('cur');
+		book.removeClass().addClass('view-back');
+	});
+	$('#open-book').click(function(){
+		if ( book.attr('class') !='open-book') {
+			$(this).addClass('cur').siblings().removeClass('cur');
+			book.removeClass().addClass('open-book');
+		}else{
+			$(this).removeClass('cur');
+			$('#view-cover').addClass('cur');
+			book.removeClass().addClass('view-cover');
+		}
+	});
+	$('#view-rotate').click(function(){
+		$(this).addClass('cur').siblings().removeClass('cur');
+		book.removeClass().addClass('view-rotate');
+	});
+});
+</script>
