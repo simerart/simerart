@@ -121,40 +121,94 @@
 
 
 
+// ----------------------------------
+// const express = require('express');
+// const http = require('http');
+// const socketIo = require('socket.io');
+// const path = require('path');
 
+// const app = express();
+// const server = http.createServer(app);
+// const io = socketIo(server, {
+//   cors: {
+//     origin: "*",
+//     methods: ["GET", "POST"]
+//   }
+// });
+// // Serve static files
+// app.use(express.static(path.join(__dirname, 'public')));
+
+// io.on('connection', (socket) => {
+//   console.log('A user connected');
+
+//   socket.on('new message', (data) => {
+//     console.log('New message received:', data);
+//     io.emit('new message', data); // Broadcast to all clients
+//   });
+
+//   socket.on('disconnect', () => {
+//     console.log('A user disconnected');
+//   });
+// });
+
+// const PORT = 3000;
+// server.listen(PORT, () => {
+//   console.log(`Server is running on http://localhost:${PORT}`);
+// });
+// 7/;
+
+
+
+
+
+
+// Server-side code (save as server.js)
 const express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
 const path = require('path');
 
+// Initialize Express and create HTTP server
 const app = express();
 const server = http.createServer(app);
-const io = socketIo(server, {
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST"]
-  }
-});
-// Serve static files
-app.use(express.static(path.join(__dirname, 'public')));
+const io = socketIo(server);
 
+// Serve static files from the current directory
+app.use(express.static(path.join(__dirname)));
+
+// Store messages in memory (you could use a database in production)
+const chatHistory = [];
+
+// Socket.IO connection handler
 io.on('connection', (socket) => {
-  console.log('A user connected');
-
-  socket.on('new message', (data) => {
-    console.log('New message received:', data);
-    io.emit('new message', data); // Broadcast to all clients
+  console.log('New user connected:', socket.id);
+  
+  // Send chat history to newly connected users
+  socket.emit('chat history', chatHistory);
+  
+  // Handle new messages
+  socket.on('chat message', (data) => {
+    console.log('Message received:', data);
+    
+    // Store message in history (limited to last 100 messages)
+    chatHistory.push(data);
+    if (chatHistory.length > 100) {
+      chatHistory.shift(); // Remove oldest message
+    }
+    
+    // Broadcast the message to all connected clients
+    io.emit('chat message', data);
   });
-
+  
+  // Handle disconnection
   socket.on('disconnect', () => {
-    console.log('A user disconnected');
+    console.log('User disconnected:', socket.id);
   });
 });
 
-const PORT = 3000;
+// Start the server
+const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
-7/;
-
 
