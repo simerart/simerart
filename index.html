@@ -6,9 +6,10 @@
   <link rel="stylesheet" href="assets/jquery-ui.css">
   <link rel="stylesheet" href="assets/style.css">
   <link rel="stylesheet" href="contactme.css">
+  
   <!-- <link rel="window.js"> -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <meta http-equiv="Permissions-Policy" content="autoplay=(self)">
   <link rel="shortcut icon" type="image/png" href="icon/spin-smile.gif">
 
 
@@ -25,6 +26,9 @@
           <img src="icon/user_computer-1.png">
           Home
         </a>
+        <a href="#" onclick="openTab(7)">
+          <img src="icon/spin-smile.gif">
+          About Me</a>
         <a href="#" onclick="changeFrame('pics.html')"">
           <img src="icon/camera-018.gif">
           Gallery</a>
@@ -36,9 +40,6 @@
             <img src="icon/television-0106.gif">
             Movies</a>
 
-        <a href="#" onclick="openTab(7)">
-          <img src="icon/spin-smile.gif">
-          About Me</a>
         <a href="#" onclick="openTab(5)">
           <img src="icon/chat-0342.gif">
           Chat Room</a>
@@ -74,7 +75,7 @@
 
 
   <div class="icons">
-    <button class="icon" onclick="openTab(2)" onclick="changeFrame('pics.html')"">
+    <button class="icon" onclick="openTab(2)" onclick="changeFrame('pics.html')">
       <img src="icon/open_file_mydocs-1.png"style="width: 45px;">
       <br>
       Gallery
@@ -93,7 +94,7 @@
       About Me
     </button>
 
-    <button class="icon" onclick="changeFrame('movie.html')"">
+    <button class="icon" onclick="changeFrame('movie.html')">
       <img src="icon/television-0106.gif" alt="Movie Icon" style="width: 45px;">
       <br>
       Movies
@@ -107,12 +108,12 @@
       Bus
     </button> -->
 
-    <!-- <button class="icon" onclick="openTab(5)">
+    <button class="icon" onclick="openTab(5)">
       <img src="icon/network_internet_pcs_installer-4.png" style="width: 45px;">
-      <a href="http://127.0.0.1:5500/chat.html"></a>
+      
       <br>
       ChatRoon
-    </button> -->
+    </button>
 
     <button class="icon" onclick="openTab(6)">
       <img src="icon/address_book_pad.png" style="width: 45px;">
@@ -121,7 +122,7 @@
       Poems
     </button>
     
-    <button class="icon" onclick="changeFrame('bookwrk.html')"">
+    <button class="icon" onclick="changeFrame('bookwrk.html')">
       <img src="icon/book-pages.gif" style="width: 45px;">
       <a href="bookwrk.html"></a>
       <br>
@@ -137,7 +138,7 @@
 
   </div>
 
-  <div id="div2" class="hidden-div draggable">
+  <div id="div2" class="hidden-div">
     <div class="header">
       <img src="icon/open_file_mydocs-1.png" style="height: 20px; width: 20px; padding-top: 2px;"><b>SIMERART</b>
       
@@ -160,7 +161,7 @@
   </div>
 
  
-<!-- ?????? -->
+<!--
   <div id="div8" class="hidden-div draggable">
     <div class="header"><img src="icon/open_file_mydocs-1.png"
         style="height: 20px; width: 20px; padding-top: 2px;"><b>Photograghy</b>
@@ -178,13 +179,13 @@
       </div>
     </div>
     <div class="content">
-      <!-- Email Icon -->
-      <div class="email-icon" onclick="toggleEmailPopup()">
+     Email Icon -->
+      <!-- <div class="email-icon" onclick="toggleEmailPopup()">
         📧
       </div>
   
-      <!-- Email Popup -->
-      <div id="emailPopup" class="email-popup">
+      Email Popup -->
+      <!-- <div id="emailPopup" class="email-popup">
         <div class="email-header">
           <h3>Inbox</h3>
           <button onclick="toggleEmailPopup()">✖</button>
@@ -204,26 +205,24 @@
   
       </div>
     </div>
-  </div>
-
-  
+  </div>  --> 
 
 <!-- about me window -->
-  <div id="div7" class="hidden-div draggable">
+  <div id="div7" class="hidden-div">
     <div class="header"><img src="icon/spin-smile.gif"><b>Welcome to Me</b>
       <button class="x-button border" onclick="closeTab(7)">X</button>
     </div>
-    <div class="content">
-      <div style="margin-bottom: 5px;"><b><h1>Simera</h1></b></div>
-      <div style="margin-bottom: 5px;"><b><h1> Robertson</h1></b></div>
-<small>Graphic Designer| Photographer</small>
+    <div class="content"><div class="crystal-ball mb-2"></div>
+    <div style="margin-bottom: 5px; font-family: 'IM Fell English SC', serif;">
+      <h1>Simera Robertson</h1>
+    </div>
+    
+      
+<small class="text-sm italic">Graphic Designer| Photographer</small>
       
       </header>
       <main>
 
-       
-        
-            
         
             <div>
               
@@ -236,37 +235,41 @@
                     </div>
               </p>
               <div>
-              <img src="icon/sims.gif" style="width: 100px;">
+              <img src="icon/sims.gif" style="width: 100px; position: center;">
             </div>
               
-              <h2>Contact Me</h2>
+              <h2>Conjure Me</h2>
               <hr>
-              <p>
-                If you want to know more about Me you can visit these links:
-                <ul class="lead">
-                  <li>
-                    <a target="_blank" href="http://www.instagram.com/simerart/">Instagram</a>
-                  </li>
-                  <li>
-                    <a target="_blank" href="https://rbrtsimer@gmail.com">Email</a>
-                  </li>
-                  <li>
-                    <a target="_blank" href="https://www.tiktok.com/@simerart?_t=ZT-8wUv2DkFNT4&_r=1">Tiktok</a>
-                  </li>
-                 
-                </ul>
-                <p>
-                  @2025 Created by Simera Robertson
-                </p>
+              
+                
+          <li>
+            <a target="_blank" href="http://www.instagram.com/simerart/">
+              <img src="icon/instalogo-48.png" style= width:20px;></i>Instagram Scrolls
+            </a>
+          </li>
+          <li>
+            <a target="_blank" href="https://rbrtsimer@gmail.com">
+              <img src="icon/mail-0664.gif" style= width:20px;></i>Owl Post
+            </a>
+          </li>
+          <li>
+            <a target="_blank" href="https://www.tiktok.com/@simerart?_t=ZT-8wUv2DkFNT4&_r=1">
+              <img src="icon/icons8-tiktok-logo-64.png" style= width:20px;></i>Moving Portraits
+            </a>
+          </li>
+        </ul>
+        <div class="text-xs italic text-center mt-6 opacity-70">
+          <p>© 2025 Simera Robertson | Crafted under a waxing moon</p>
+          <div class="moon-phase"></div>
               </p>
             </div>
           </div>
           
        
           
-          
-        </div>
-        </div>
+          </div>
+      
+        
         <!-- <section id="about" class="container">
           <div class="row">
             <div class="col-md-3 text-right hidden-sm hidden-xs">
@@ -314,9 +317,9 @@
           <span class="pull-left">&copy; 2025, Simera Robertson</span>
           <span class="pull-right"> -->
            
-          </span>
+          <!-- </span>
         </div>
-      </footer>
+      </footer> -->
 
       <!-- <p> <span style="color: rgb(255, 123, 0);">p.s Simera :)</span> </p>
       <p>"Hi! I'm an unconventional, hippie, alternative graphic design artist with a love for exploring the world in my
@@ -332,9 +335,9 @@
         <li>rock climing </li>
         <li>yoga</li>
         <li>Unconventional <a href="Art.html">art</a></li> -->
-      </ul>
+      <!-- </ul>
     </div>
-  </div>
+  </div> -->
 
 
 
@@ -342,12 +345,13 @@
 
 
 <!-- chat room window -->
-  <div id="div5" class="hidden-div draggable" style="display:none;">
+  <div id="div5" class="hidden-div" style="display:none;">
     <div class="header"><img src="icon/network_internet_pcs_installer-4.png"><b>Chat Room</b>
       <button class="x-button border" onclick="closeTab(5)">X</button>
     </div>
-    <div class="content">
-      <iframe src="chat.html"></iframe>
+    <div class="content" style=" height: calc(100% - 30px); background-image: url('/assets/wall/062.GIF'); ">
+  
+      <iframe src="https://www3.cbox.ws/box/?boxid=3546810&boxtag=yYpAqR" allowtransparency="yes" allow="autoplay" frameborder="0"  marginheight="0" marginwidth="0" scrolling="auto" style="width: 100%; height: 100%; "></iframe>	
     </div>
   </div>
 
@@ -355,7 +359,7 @@
 
 
 <!-- poem window -->
-  <div id="div6" class="hidden-div draggable" style="display:none;">
+  <div id="div6" class="hidden-div" style="display:none;">
     <div class="header"><img src="icon/address_book_pad.png"><b>Poems</b>
       <button class="x-button border" onclick="closeTab(6)">X</button>
     </div>
