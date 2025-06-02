@@ -5,6 +5,9 @@ p{
 *{
   font-family:  "Courier New", 'Courier New', Courier, monospace;
   box-sizing: border-box;
+  margin: 0;
+            padding: 0;
+            box-sizing: border-box;
 }
   body{
     background-image:url("wall/CARPET5.JPG");
@@ -12,8 +15,9 @@ p{
     flex-wrap:wrap;
   }
   html, body {
-    height: 100%;
-    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden; 
     margin: 0;
     padding: 0;
   }
@@ -903,7 +907,15 @@ body {
     height: 100vh;
   }
 }
-
+@media (max-width: 768px) {
+  h1 {
+      font-size: 2rem;
+  }
+  
+  p {
+      font-size: 1rem;
+  }
+}
 
 
 #div2 .content {
@@ -998,7 +1010,7 @@ body {
 }
 #chat-container {
   width: 100px;
-
+  background-image: url('/assets/wall/nightskystar.gif')
 }
 
 /* updates div6 */
@@ -1041,8 +1053,8 @@ body {
 
 /* information / to do div7 */
 #div7 {
-  
-  width: 250px;
+  font-family: 'IM Fell English SC', serif;
+  width: 280px;
   height: 500px;
   padding-bottom: 2px;
   right: 120px;
@@ -1050,9 +1062,22 @@ body {
   font-size: 14px;
   line-height: 13px;
 }
-
+#div7 body {
+  background-color: #1a1a2e;
+  color: #e2d5d5;
+  font-family: 'IM Fell English', serif;
+}
 
 #div7 .content {
+  background-color: #1a1a2e;
+  color: #e2d5d5;
+  padding: 15px;
+  font-family: 'IM Fell English SC', serif;
+  background-color: rgba(26, 26, 46, 0.8);
+  background: linear-gradient(135deg, #2a1b3d 0%, #1a1a2e 50%, #44318d 100%);
+  border: 2px solid #8265a7;
+  box-shadow: 0 0 15px rgba(188, 158, 230, 0.3);
+  /* font-family: 'IM Fell English', serif;
   background-color: var(--contrastbg);
   border: 2px solid var(--darkest);
   border-right: 2px solid var(--lightest);
@@ -1060,7 +1085,61 @@ body {
   /* height: 90%;
   width: 232px; */
   margin-left: 2px;
-  margin-top: 1px;
+  margin-top: 1px; 
+}
+#div7 .header {
+  background: linear-gradient(90deg, #2a1b3d 0%, #8265a7 100%);
+  border-bottom: 1px solid #d4af37;
+  font-family: 'IM Fell English SC', serif;
+}
+#div7 .crystal-ball {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fff, #bc9ee6 60%, #2a1b3d 90%);
+  box-shadow: 0 0 20px #bc9ee6;
+  margin: 0 auto;
+  position: relative;
+  animation: float 6s ease-in-out infinite;
+}
+#div7 a:hover {
+  color: #d4af37;
+  border-bottom: 1px solid #d4af37;
+}
+#div7 .crystal-ball {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fff, #bc9ee6 60%, #2a1b3d 90%);
+  box-shadow: 0 0 20px #bc9ee6;
+  margin: 0 auto;
+  position: relative;
+  animation: float 6s ease-in-out infinite;
+}
+#div7 a {
+  color: #bc9ee6;
+  text-decoration: none;
+  border-bottom: 1px dotted #8265a7;
+}
+#div7 h1, h2, h3 {
+  font-family: 'IM Fell English SC', serif;
+  color: #d4af37;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+#div7 .moon-phase {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #2a1b3d 50%, transparent 50%);
+  box-shadow: inset -5px 0 0 #d4af37;
 }
 .paper {
   position: relative;
