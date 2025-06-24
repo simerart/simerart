@@ -32,13 +32,6 @@ $( ".bib-link.desk" ).click(function() {
   $( ".home-bib" ).addClass('active');
 });
 
-$( function() {
-  $( ".stackable" ).draggable({
-    stack: ".stackable",
-    cursor: "grabbing"
-  });
-  $( ".draggable" ).draggable();
-} );
 
 
 
