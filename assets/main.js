@@ -3,7 +3,11 @@ $(".draggable").draggable({
 });
 $(".draggable").resizable();
 
-
+window.addEventListener('click'
+  , () => {
+    document.getElementById("song").play();
+  }
+);
 // document.addEventListener("DOMContentLoaded", function() {
 //   const draggableElements = document.querySelectorAll(".draggable");
   
