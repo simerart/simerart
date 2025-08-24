@@ -1058,11 +1058,13 @@ body {
   width: 300px;
   height: 550px;
   padding-bottom: 2px;
-  right: 90px;
-  bottom: 25%;
+  position: absolute;
+  top: 0;
+  left: 0;
   font-size: 14px;
-  line-height: 17px;
+  line-height: 1.6; /* Changed from 17px to 1.6 for better spacing */
 }
+
 #div7 body {
   background-color: #1a1a2e;
   color: #e2d5d5;
@@ -1078,60 +1080,124 @@ body {
   background: linear-gradient(135deg, #2a1b3d 0%, #1a1a2e 50%, #44318d 100%);
   border: 2px solid #8265a7;
   box-shadow: 0 0 15px rgba(188, 158, 230, 0.3);
-  /* font-family: 'IM Fell English', serif;
-  background-color: var(--contrastbg);
-  border: 2px solid var(--darkest);
-  border-right: 2px solid var(--lightest);
-  border-bottom: 2px solid var(--lightest);
-  /* height: 90%;
-  width: 232px; */
   margin-left: 2px;
-  margin-top: 1px; 
+  margin-top: 1px;
+  line-height: 1.7; /* Added better line spacing for content */
 }
+
+/* Add spacing for paragraphs */
+#div7 .content p {
+  margin-bottom: 12px; /* Space between paragraphs */
+  line-height: 1.7; /* Better line spacing within paragraphs */
+}
+
+/* Add spacing for list items */
+#div7 .content li {
+  margin-bottom: 8px; /* Space between list items */
+}
+
+/* Better spacing for headings */
+#div7 h1, #div7 h2, #div7 h3 {
+  font-family: 'IM Fell English SC', serif;
+  color: #d4af37;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  margin: 15px 0 10px 0; /* Top and bottom margins for headings */
+  line-height: 1.3; /* Tighter line height for headings is okay */
+}
+
 #div7 .header {
   background: linear-gradient(90deg, #2a1b3d 0%, #8265a7 100%);
   border-bottom: 1px solid #d4af37;
   font-family: 'IM Fell English SC', serif;
+  padding: 10px 15px; /* Added padding for better header spacing */
 }
+
 #div7 .crystal-ball {
   width: 100px;
   height: 100px;
   border-radius: 50%;
   background: radial-gradient(circle at 30% 30%, #fff, #bc9ee6 60%, #2a1b3d 90%);
   box-shadow: 0 0 20px #bc9ee6;
-  margin: 0 auto;
+  margin: 15px auto; /* Added top/bottom margin */
   position: relative;
   animation: float 6s ease-in-out infinite;
 }
+
 #div7 a:hover {
   color: #d4af37;
   border-bottom: 1px solid #d4af37;
 }
-#div7 .crystal-ball {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #fff, #bc9ee6 60%, #2a1b3d 90%);
-  box-shadow: 0 0 20px #bc9ee6;
-  margin: 0 auto;
-  position: relative;
-  animation: float 6s ease-in-out infinite;
-}
+
 #div7 a {
   color: #bc9ee6;
   text-decoration: none;
   border-bottom: 1px dotted #8265a7;
 }
-#div7 h1, h2, h3 {
-  font-family: 'IM Fell English SC', serif;
-  color: #d4af37;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+
+/* Add spacing for hr elements */
+#div7 hr {
+  margin: 15px 0;
+  border: none;
+  border-top: 1px solid #8265a7;
 }
+
+/* Add spacing for small text elements */
+#div7 small {
+  display: block;
+  margin-bottom: 10px;
+}
+
+
+
+/* List styling */
+#div7 ul {
+  list-style: none;
+  padding: 0;
+}
+
+#div7 li img {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* Center text utility */
+#div7 .text-center {
+  text-align: center;
+}
+
+/* Text size utilities */
+#div7 .text-sm {
+  font-size: 12px;
+}
+
+#div7 .text-xs {
+  font-size: 10px;
+}
+
+#div7 .italic {
+  font-style: italic;
+}
+
+#div7 .opacity-70 {
+  opacity: 0.7;
+}
+
+#div7 .mt-6 {
+  margin-top: 24px;
+}
+
+#div7 .mb-2 {
+  margin-bottom: 8px;
+}
+
 @keyframes float {
   0% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
   100% { transform: translateY(0px); }
 }
+
 #div7 .moon-phase {
   position: absolute;
   bottom: 10px;
