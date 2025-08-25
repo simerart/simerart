@@ -1208,33 +1208,8 @@ body {
   background: linear-gradient(90deg, #2a1b3d 50%, transparent 50%);
   box-shadow: inset -5px 0 0 #d4af37;
 }
-@media screen and (max-width: 1200px) {
-  #div7 {
-    left: 10px;
-    top: 10px;
-    width: 280px; /* Slightly smaller on smaller screens */
-  }
-}
 
-@media screen and (max-width: 768px) {
-  #div7 {
-    left: 5px;
-    top: 5px;
-    width: calc(100vw - 20px); /* Full width minus margins on mobile */
-    max-width: 300px;
-    height: calc(100vh - 100px); /* Account for mobile browser UI */
-  }
-}
 
-@media screen and (max-width: 480px) {
-  #div7 {
-    left: 5px;
-    top: 5px;
-    right: 5px;
-    width: auto; /* Let it auto-size with left/right constraints */
-    height: calc(100vh - 80px);
-  }
-}
 .paper {
   position: relative;
   padding: 10px;
@@ -1564,7 +1539,7 @@ body {
       top: 73px;
     }
     #div7 {
-      left: 135px;
+      left: 100px;
       top: 73px;
     }
   
