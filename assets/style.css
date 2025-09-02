@@ -895,7 +895,7 @@ body {
   left: calc(80px + 5.5%); /* Account for .icons width plus spacing on desktop */
   top: 0;
   width: calc(100% - 90px - 10%); /* Adjust width to prevent overflow on desktop */
-  height: 100vh;
+  height: 98vh;
 }
 
 /* Full screen on mobile devices */
@@ -904,7 +904,7 @@ body {
     left: 0;
     top: 0;
     width: 100%; /* Take full width on mobile */
-    height: 100vh;
+    height: 98vh;
   }
 }
 @media (max-width: 768px) {
@@ -938,7 +938,7 @@ body {
 
 #div2 .cover {
   width: 450px;
-  height: 450px;
+  height: 300px;
   border: 1px solid var(--darkest);
 }
 

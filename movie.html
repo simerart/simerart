@@ -1,8 +1,303 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="movie.css">
-    <title>SIM TV</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto|VT323&display=swap');
+
+        html {
+            @media ( max-width: 480px ) {
+                font-size: 12px;
+            }
+
+            @media ( min-width: 480px ) and ( max-width: 768px ) {
+                font-size: 16px;
+            }
+
+            @media ( min-width: 768px ) {
+                font-size: 20px;
+            }
+        }
+
+        body {
+            position: relative;
+            background-color: #000;
+            font-size: 1rem;
+            font-family: Roboto;
+            color: #ccc;
+            
+            &:before {
+                position: fixed;
+                z-index: -999;
+                top: 0; right: 0; bottom: 0; left: 0;
+                background-image: url('https://res.cloudinary.com/cyborgspaceviking/image/upload/v1571119521/space-background_fowfq3.jpg');
+                opacity: 0.3;
+                content: '';
+            }
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .section {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+        .gutter {
+            padding-right: 2rem;
+            padding-left: 2rem;
+        }
+        .wrapper {
+            max-width: 1080px;
+            margin: auto;
+        }
+
+        .gif-tv {
+            position: relative;
+            margin-right: 1rem;
+
+            .viewport {
+                position: absolute;
+                top: 9%;
+                right: 26%;
+                bottom: 15%;
+                left: 7%;
+                background: #161616;
+                z-index: -1;
+                overflow: hidden;
+
+                .video {
+                    z-index: 0;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    /* FASTER TRANSITION FOR VIDEO CHANGES */
+                    transition: all 0.05s ease-in-out;
+                }
+                .pixels {
+                    z-index: 1;
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    background-position: center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    content: '';
+                    /* FASTER TRANSITION FOR PIXEL OVERLAY */
+                    transition: all 0.1s ease-in-out;
+                }
+
+                .meta-left,
+                .meta-right {
+                    display: flex;
+                    flex-flow: column;
+                    position: absolute;
+                    z-index: 2;
+                    top: 0;
+                    bottom: 0;
+                    width: 50%;
+                    padding: 4% 6%;
+                }
+                .meta-left {
+                    align-items: flex-start;
+                    left: 0;
+                    right: unset;
+                }
+                .meta-right {
+                    align-items: flex-end;
+                    left: unset;
+                    right: 0;
+                }
+                
+                span {
+                    text-shadow: 0 0 3px #888;
+                    font-size: 4rem;
+                    font-family: VT323;
+                    /* FASTER MESSAGE TRANSITIONS */
+                    transition: all 0.1s ease-in-out;
+                }
+                span:not(.active) {
+                    display: none;
+                }
+                span.active {
+                    display: block;
+                }
+            }
+
+            button.dial {
+                display: block;
+                position: absolute;
+                left: 85.6%;
+                transform: translateY(-50%);
+                padding: 0;
+                border-radius: 50%;
+                border: #DFDDD1 solid 3px;
+                background-color: transparent;
+                width: 10.2%;
+                line-height: 0;
+                cursor: pointer;
+                /* FASTER BUTTON TRANSITIONS */
+                transition: all 0.05s ease-in-out;
+
+                &:hover,
+                &:focus {
+                    outline: none;
+                }
+                
+                &:hover {
+                    border-color: #00aaff;
+                }
+
+                &:active {
+                    border-color: #007fff;
+                }
+                
+                &::before {
+                    display: block;
+                    width: 100%;
+                    padding-top: 100%;
+                    content: '';
+                }
+            }
+
+            button#gif_tv_button_channel { top: 56.3%; }
+            button#gif_tv_button_volume { top: 74.6%; }
+
+            button.switch {
+                display: block;
+                position: absolute;
+                left: 82.2%;
+                transform: translateY(-50%);
+                padding: 0;
+                border-radius: 50%;
+                border: none;
+                background-color: #DFDDD1;
+                width: 1.6%;
+                line-height: 0;
+                cursor: pointer;
+                /* FASTER BUTTON TRANSITIONS */
+                transition: all 0.05s ease-in-out;
+                
+                &:hover,
+                &:focus {
+                    outline: none;
+                    border: none;
+                }
+
+                &:hover {
+                    background-color: #00aaff;
+                }
+
+                &:active {
+                    background-color: #007fff;
+                }
+                
+                &::before {
+                    display: block;
+                    width: 100%;
+                    padding-top: 100%;
+                    content: '';
+                }
+            }
+
+            button#gif_tv_button_mute { top: 53.7%; }
+            button#gif_tv_button_hd { top: 60.2%; }
+            button#gif_tv_button_hue_shift { top: 66.5%; }
+            button#gif_tv_button_bright { top: 72.9%; }
+            button#gif_tv_button_color { top: 79.1%; }
+
+            @keyframes rainbow_barf {
+                0% {
+                    filter: hue-rotate(0deg);
+                }
+                25% {
+                    filter: hue-rotate(90deg);
+                }
+                50% {
+                    filter: hue-rotate(180deg);
+                }
+                75% {
+                    filter: hue-rotate(270deg);
+                }
+                100% {
+                    filter: hue-rotate(360deg);
+                }
+            }
+
+            .cta {
+                position: absolute;
+                top: 0;
+                right: 0;
+                transform-origin: bottom left;
+                transform: translate( 100%, 0) rotate(90deg);
+                text-shadow: 0 2px 8px #999;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+        }
+
+        /* Default styles for larger screens */
+        .menu {
+          display: flex;
+          justify-content: space-around;
+        }
+
+        .icons {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 10px;
+        }
+
+        /* Adjustments for mobile screens */
+        @media (max-width: 768px) {
+          .menu {
+            flex-direction: column;
+            align-items: center;
+          }
+
+          .icons button.icon {
+            width: 100px;
+            font-size: 14px;
+          }
+
+          iframe {
+            width: 100%;
+            height: 300px;
+          }
+
+          .hidden-div {
+            width: 90%;
+            margin: auto;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .menu {
+            font-size: 14px;
+          }
+
+          .icons {
+            flex-direction: column;
+          }
+
+          .icons button.icon {
+            width: 80px;
+          }
+
+          .header {
+            font-size: 16px;
+            padding: 10px;
+          }
+        }
+    </style>
+    <title>SIM TV - FAST</title>
 </head>
 <body>
     <section class="section gutter">
@@ -37,9 +332,6 @@
             
                 <span class="cta">Push the Buttons!</span>
             </div>
-            
-         
-    
         </div>
     </section>
    
@@ -47,12 +339,12 @@
         
 const gifTVURLs = [
 	'modvie.gif',
-	'Movie0069.gif',
-	'nolovesent.gif',
-	'Movie0075 copy.gif',
-	'OBSESSED.gif',
-	'.gif',
-	'.gif',
+    'Movie0069.gif',
+    'nolovesent.gif',
+    'Movie0075 copy.gif',
+    'OBSESSED.gif',
+    'AneesHome25.gif',
+	'https://media.giphy.com/media/xT8qB3V6eNJl0vYOyc/giphy.gif',
 ]
 
 class GifTV
@@ -68,6 +360,10 @@ class GifTV
 		this.channels = channels;
 		this.staticGIF = 'https://res.cloudinary.com/cyborgspaceviking/image/upload/v1571155222/giphy_n0r827.gif';
 		this.currentChannelURL = this.channels[0];
+		
+		// FAST SWITCHING CONFIGURATION
+		this.fastSwitchDelay = 50; // Reduced from 333ms to 50ms!
+		this.staticDisplayTime = 25; // Even shorter static display
 		
 		// sounds
 		this.sound = {
@@ -136,7 +432,7 @@ class GifTV
 
 	log()
 	{
-      console.log( 'gif TV on' )
+      console.log( 'gif TV on - FAST MODE ENABLED! 🚀' )
 	}
 	
 	playSound( url, volume )
@@ -168,9 +464,10 @@ class GifTV
 			messageElem.classList.add( 'active' )
 		}
 		
+		// FASTER MESSAGE DISPLAY - reduced from 2000ms to 1000ms
 		messageObj.messageTimer = setTimeout(() => {
 			messageElem.classList.remove( 'active' )
-		}, 2000);
+		}, 1000);
 	}
 	
 	leadingZero(num, size)
@@ -180,6 +477,7 @@ class GifTV
 		return int;
 	}
 		
+	// OPTIMIZED FAST CHANNEL SWITCHING METHOD
 	changeChannel( direction )
 	{
 		const updateMessage = () => {
@@ -188,8 +486,12 @@ class GifTV
 			this.updateMessage( this.dial.channel, `CH ${channelIndex}` )
 		}
 
+		// Play sounds with reduced volume for static to make it less jarring
 		this.playSound( this.sound.dial, this.dial.volume.currentIndex )
-		this.playSound( this.sound.static, this.dial.volume.currentIndex/50 )
+		this.playSound( this.sound.static, this.dial.volume.currentIndex/100 ) // Reduced static volume
+
+		// OPTIONAL: Skip static display entirely for instant switching
+		// Comment out the next line for ZERO delay switching:
 		this.displayStatic()
 
 		switch ( direction ) {
@@ -206,10 +508,42 @@ class GifTV
 				updateMessage()
 		}
 
+		// MUCH FASTER SWITCHING - from 333ms to 50ms!
 		setTimeout(() => {
 			this.currentChannelURL = this.channels[this.dial.channel.currentIndex]
 			this.displayChannel()
-		}, 333);
+		}, this.fastSwitchDelay);
+	}
+
+	// INSTANT CHANNEL SWITCHING (NO STATIC)
+	fastChangeChannel( direction )
+	{
+		const updateMessage = () => {
+			let channelsDecimal = (this.channels.length+1)/10
+			let channelIndex = this.leadingZero(this.dial.channel.currentIndex+1,  channelsDecimal < 2 ? 2 : channelsDecimal ) 
+			this.updateMessage( this.dial.channel, `CH ${channelIndex}` )
+		}
+
+		// Only play dial sound, no static
+		this.playSound( this.sound.dial, this.dial.volume.currentIndex )
+
+		switch ( direction ) {
+			case 'up':
+				this.dial.channel.currentIndex === this.channels.length-1 ? this.dial.channel.currentIndex = 0 : this.dial.channel.currentIndex++
+				updateMessage()
+				break;
+			case 'down':
+				this.dial.channel.currentIndex === 0 ? this.dial.channel.currentIndex = this.channels.length-1 : this.dial.channel.currentIndex--
+				updateMessage()
+				break;
+			default:
+				this.dial.channel.currentIndex === this.channels.length-1 ? this.dial.channel.currentIndex = 0 : this.dial.channel.currentIndex++
+				updateMessage()
+		}
+
+		// INSTANT SWITCHING - no delay!
+		this.currentChannelURL = this.channels[this.dial.channel.currentIndex]
+		this.displayChannel()
 	}
 
 	changeVolume( direction )
@@ -340,13 +674,16 @@ class GifTV
 
 	init()
 	{
-		// this.log();
+		this.log();
 		
 		this.displayChannel();
 
-		// Channel Dial
+		// FAST Channel Dial - regular click uses fast switching
 		this.dial.channel.button.addEventListener( 'click', () => { this.changeChannel( 'up' ) })
 		this.dial.channel.button.addEventListener( 'contextmenu', (e) => { e.preventDefault(); this.changeChannel( 'down' ); })
+		
+		// ULTRA-FAST Channel Switching - double-click for instant switching
+		this.dial.channel.button.addEventListener( 'dblclick', () => { this.fastChangeChannel( 'up' ) })
 
 		// Volume Dial
 		this.dial.volume.button.addEventListener( 'contextmenu', (e) => { e.preventDefault(); this.changeVolume( 'up' ); })
@@ -370,10 +707,11 @@ class GifTV
 		document.onkeydown = ( e ) =>
 		{
 			e.preventDefault();
-			// left key
-			e.keyCode == '39' ? this.changeChannel( 'up' ) : null
+			// FAST keyboard controls
+			// left key - use fast switching when holding Shift
+			e.keyCode == '39' ? (e.shiftKey ? this.fastChangeChannel( 'up' ) : this.changeChannel( 'up' )) : null
 			// right key
-			e.keyCode == '37' ? this.changeChannel( 'down' ) : null
+			e.keyCode == '37' ? (e.shiftKey ? this.fastChangeChannel( 'down' ) : this.changeChannel( 'down' )) : null
 			// up key
 			e.keyCode == '38' ? this.changeVolume( 'up' ) : null
 			// down key
@@ -386,3 +724,5 @@ const gifTV = new GifTV( gifTVURLs )
 
 gifTV.init()
     </script>
+</body>
+</html>
