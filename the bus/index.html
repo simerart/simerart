@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<html>
+<head>
+  <p><a href="../pation/smallweb.html">Go <br>home</a></p>
+  <br>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic School Bus</title>
+    <link rel="stylesheet" href="main.css">
+<a href="../pation/smallweb.html">Go home</a>
+
+</head>
+<br>
+<body>
+    <img src="bus-conversion.webp" class="main">
+    <p></p>
+    <div class="text">
+
+    </div>
+    <div class="main"></div>
+<img class="hover" src="âPngtreeâred wine bottle_5397518.png" style="right: 600px; bottom:560px; height:100px;" onclick="showImage('newImage1')" alt="Image 1">
+<img class="hover" src="pumkinpillow.png" style="right:610px; bottom:100px; height:32px" onclick="showImage('newImage2')" alt="Image 2">
+<img class="hover" src="âPngtreeâ3d style modern pet bed_17307665.png" style="right:490px; bottom:16px; height:32px;" onclick="showImage('newImage3')">
+<img class="hover" src="—Pngtree—purple beads flashing pendant curtain_4833486.png" style="right:460px; bottom:150px; height:32px;"onclick="toggleFoatingImage(4)">
+<img class="hover" src="greenlightlamp.png" style="right:800px; bottom:90px; height:32px;">
+<img class="hover" src="teapot.png" style="right:377px; bottom:190px; height: 90px;" onclick="showImage('newImage6')" alt="Image 6">
+
+
+<img id="newImage1" src="wine.gif" style="display: none; position:absolute; right:225px; bottom:100px;" alt="New Image 1">
+<img id="newImage2" src="pumpkin-s.gif" style="display: none; position:absolute; right:700px; bottom:200px;" alt="New Image 2">
+<img id="newImage2" src="pumpkin-i.gif" style="display: none; position:absolute; right:700px; bottom: 300px;" alt="New Image 2">
+<img id="newImage2" src="pumpkin-m.gif" style="display: none; position:absolute; right:700px; bottom:250px;" alt="New Image 2">
+
+<img id="newImage3" src="hole-pig.gif" style="display: none; position:absolute; right:550px; bottom:90px;" alt="New Image 3">
+<img id="newImage6" src="howls.gif" style="display: none; position:absolute; right:377px; bottom:190px;" alt="New Image 6">
+<img id="newImage1" src="wine.gif" style="display: none; position:absolute; right:600px; bottom:500px;" alt="New Image 1">
+
+
+
+    </div>
+</body>
+
+
+
+<script>
+    function showImage(imageId) {
+    // Hide any previously visible images (optional)
+    var allImages = document.querySelectorAll('img[id^="newImage"]');
+    allImages.forEach(function(img) {
+      img.style.display = "none";  // Hide all other images
+    });
+
+    // Show the clicked image
+    var img = document.getElementById(imageId);
+    img.style.display = "block";  // Display the clicked image
+  }
+</script>
+  
+
+</html>
+
+

@@ -1,13 +1,28 @@
-$(".draggable").draggable({
-    stack: ".draggable"
+$(document).ready(function() {
+  $(".draggable").draggable({
+      handle: ".header",
+      containment: "window",
+      stack: ".draggable",
+      
+      start: function(event, ui) {
+          $(this).addClass('ui-draggable-dragging');
+      },
+      
+      stop: function(event, ui) {
+          $(this).removeClass('ui-draggable-dragging');
+      }
+  });
+  
+  $(".draggable").resizable();
+  
+  // Click to bring to front
+  $(".draggable").on('mousedown', function(e) {
+      if (!$(e.target).hasClass('x-button')) {
+          $(".draggable").removeClass('active-window');
+          $(this).addClass('active-window');
+      }
+  });
 });
-$(".draggable").resizable();
-
-window.addEventListener('click'
-  , () => {
-    document.getElementById("song").play();
-  }
-);
 // document.addEventListener("DOMContentLoaded", function() {
 //   const draggableElements = document.querySelectorAll(".draggable");
   

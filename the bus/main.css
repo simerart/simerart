@@ -1,0 +1,136 @@
+body {
+    background-color:black;
+}
+img {
+    max-width:100%;
+}
+
+body {
+    background: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 1%;
+    color: white;
+  }
+  /* Horizontally center address text */
+.address-text {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  color: #555;
+  padding: 5px 10px;
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-right: 10px;
+  text-align: center; /* Center text horizontally */
+}
+
+/* Horizontally center search bar text */
+.search-bar-text {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  color: #333;
+  text-align: center; /* Center text horizontally */
+}
+  .main {
+    position: relative;
+    border: 3px solid white;
+    background: url(bus-conversion.webp);
+    height: 500px;
+    width: 2000;
+    bottom: -9px;
+    right:50px;
+  }
+  
+  img {
+    position: absolute;
+      -webkit-filter: drop-shadow(2px 1px 0 #00000095) drop-shadow(-1px -1px 0 #00000095);
+      filter:drop-shadow(2px 1px 0 #00000095) drop-shadow(-1px -1px 0 #00000095);
+  }
+  
+  .hover:hover {
+        -webkit-filter: drop-shadow(2px 1px 0 #000000) drop-shadow(-1px -1px 0 #000000);
+      filter:drop-shadow(2px 1px 0 #000000) drop-shadow(-1px -1px 0 #000000);
+      transform: rotate(1deg);
+      cursor: pointer;
+  }
+  
+  .cd {
+    height: 80px;
+    display: none;
+  }
+  
+  .music:active ~ .cd {
+    display: block;
+  }
+  
+  .item {
+    display: none;  
+  }
+  
+  .drawers:active ~ .item {
+    display: block;
+  }
+  
+  .text {
+    padding-left: 2px;
+    padding-top: 2px;
+    padding-bottom: 10px;
+    font-size: 17px;
+    letter-spacing: -1px;
+    line-height: 14px;
+    font-weight: 900;
+  }
+  
+ 
+  .case:active ~ .opencase {
+    display: block;
+  }
+  
+  .case:active {
+    display: none;
+  }
+  
+  .hell {
+    display: none;
+  }
+  .cushion:active ~ .hell {
+    display: block;
+    animation: blink 0.3s infinite;
+  }
+  
+ 
+  
+  a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: white;
+    text-decoration: underline;
+  }
+  
+  a:active {
+    color: #EAE1CC;
+    text-decoration: underline;
+  }
+  
+  .floating-image {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    display: none; /* Hidden by default */
+    z-index: 1000; /* Ensures it floats above other elements */
+    width: 150px; /* Adjust the size */
+  }
+  .hover-1 {
+    right: 490px;
+    bottom: 16px;
+  }
+  .hover-2 {
+    left: 100px;
+    top: 50px;
+  }
