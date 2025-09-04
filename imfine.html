@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D STL Model with GIF</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #711e72, #2a5298);
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    #canvas {
+      display: block;
+      cursor: pointer;
+    }
+
+    #gifContainer {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.9);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      display: none;
+    }
+
+    #gifImage {
+      max-width: 80vw;
+      max-height: 80vh;
+      border-radius: 10px;
+      display: block;
+    }
+
+    #closeButton {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: #ff4757;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    #closeButton:hover {
+      background: #ff3838;
+      transform: scale(1.1);
+    }
+
+    #instructions {
+      position: absolute;
+      bottom: 135px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 15px 25px;
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <canvas id="canvas"></canvas>
+    
+    <div id="gifContainer">
+      <button id="closeButton">&times;</button>
+      <!-- 👇 Replace with your GIF file -->
+      <img id="gifImage" src="imfine copy.gif" alt="GIF Animation">
+    </div>
+    
+    <div id="instructions">
+      <strong>Click on the 3D model to view the Video</strong>
+    </div>
+  </div>
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- STL Loader -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
+
+  <script>
+    let scene, camera, renderer, model, raycaster, mouse, isMouseDown = false;
+
+    function init() {
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+
+      // Lighting
+      const ambientLight = new THREE.AmbientLight(0x404040, 0.8);
+      scene.add(ambientLight);
+      const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+      directionalLight.position.set(5, 5, 5);
+      scene.add(directionalLight);
+
+      // Load STL model
+      const loader = new THREE.STLLoader();
+      loader.load("base.stl", (geometry) => {
+        const material = new THREE.MeshPhongMaterial({ color: 0x0077ff, shininess: 100 });
+        model = new THREE.Mesh(geometry, material);
+        model.scale.set(1.50, 1.50, 1.50); // adjust size (STL files are often huge)
+        model.rotation.x = -Math.PI / 90; // fix orientation if needed
+        scene.add(model);
+      });
+
+      camera.position.z = 5;
+
+      raycaster = new THREE.Raycaster();
+      mouse = new THREE.Vector2();
+
+      setupEventListeners();
+      animate();
+    }
+
+    function setupEventListeners() {
+      renderer.domElement.addEventListener("click", onMouseClick);
+      renderer.domElement.addEventListener("mousedown", () => { isMouseDown = true; });
+      renderer.domElement.addEventListener("mouseup", () => { setTimeout(() => { isMouseDown = false; }, 100); });
+      renderer.domElement.addEventListener("mousemove", onMouseMove);
+
+      document.getElementById("closeButton").addEventListener("click", closeGIF);
+      window.addEventListener("resize", onWindowResize);
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeGIF(); });
+    }
+
+    function onMouseClick(event) {
+      if (isMouseDown) return;
+      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+      raycaster.setFromCamera(mouse, camera);
+
+      if (model) {
+        const intersects = raycaster.intersectObject(model, true);
+        if (intersects.length > 0) openGIF();
+      }
+    }
+
+    function onMouseMove(event) {
+      if (isMouseDown && model) {
+        const deltaX = event.movementX * 0.01;
+        const deltaY = event.movementY * 0.01;
+        model.rotation.y += deltaX;
+        model.rotation.x += deltaY;
+      }
+    }
+
+    function openGIF() {
+      document.getElementById("gifContainer").style.display = "block";
+    }
+
+    function closeGIF() {
+      document.getElementById("gifContainer").style.display = "none";
+    }
+
+    function onWindowResize() {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      if (model && !isMouseDown) model.rotation.y += 0.01;
+      renderer.render(scene, camera);
+    }
+
+    window.addEventListener("load", init);
+  </script>
+</body>
+</html>
