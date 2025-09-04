@@ -1,0 +1,353 @@
+* {
+	transform-style: preserve-3d;
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	perspective: 1000vmin;
+	background: radial-gradient(circle at 50% 150%, #333, #021320);
+	cursor: zoom-in;
+	font-family: Arial, Helvetica, serif;
+}
+
+body:active .scene {
+	transform: scale3d(1.35, 1.35, 1.35);
+	transition: all 1s ease 0s;
+}
+
+.scene {
+	width: 50vmin;
+	height: 50vmin;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 1s ease 0s;
+}
+
+
+
+.content {
+	width: 50vmin;
+	height: 50vmin;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transform: rotateX(-2deg) rotateY(0deg);
+	transition: all 1s ease 0s;
+	margin-top: -25vmin;
+	animation: spin-sculpture 18s linear 0s infinite;
+}
+
+.scene:hover, .scene:hover .content {
+	animation-play-state: paused;
+}
+
+@keyframes spin-sculpture {
+	0% { transform: rotateX(-2deg) rotateY(0deg); }
+	50% { transform: rotateX(-20deg) rotateY(-180deg);}
+	100% { transform: rotateX(-2deg) rotateY(-360deg);}
+}
+
+
+
+/*** CUBOID ***/
+
+.cuboid {
+	--height: 28;
+	--width: 28;
+	--depth: 28;
+	--hue: 280;
+	--sat: 5%;
+	--lum: 50%;
+	height: calc(var(--height) * 1vmin);
+	width: calc(var(--width) * 1vmin);
+	position: absolute;
+	animation: cube1 0.6s linear 0s infinite;
+	transform: translate3d(0vmin, 0vmin, 0vmin);
+}
+
+.cuboid .side {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 100%;
+	width: 100%;
+	border-radius: 2px;
+	background: hsl(var(--hue), var(--sat), var(--lum));
+}
+
+.cuboid .side:nth-of-type(1) {
+	transform: translate3d(-50%, -50%, calc(var(--depth) * 0.5vmin));
+	filter: brightness(0.75);
+}
+.cuboid .side:nth-of-type(2) {
+	transform: translate3d(-50%, -50%, calc(var(--depth) * -0.5vmin)) rotateY(180deg);
+}
+.cuboid .side:nth-of-type(3) {
+	width: calc(var(--depth) * 1vmin);
+	transform: translate(-50%, -50%) rotateY(90deg)	translate3d(0, 0, calc(var(--width) * 0.5vmin));
+	filter: brightness(1.5);
+}
+.cuboid .side:nth-of-type(4) {
+	width: calc(var(--depth) * 1vmin);
+	transform: translate(-50%, -50%) rotateY(-90deg) translate3d(0, 0, calc(var(--width) * 0.5vmin));
+	filter: brightness(0.6);
+}
+.cuboid .side:nth-of-type(5) {
+	height: calc(var(--depth) * 1vmin);
+	transform: translate(-50%, -50%) rotateX(90deg)	translate3d(0, 0, calc(var(--height) * 0.5vmin));
+	filter: brightness(2);
+}
+.cuboid .side:nth-of-type(6) {
+	height: calc(var(--depth) * 1vmin);
+	transform: translate(-50%, -50%) rotateX(-90deg) translate3d(0, 0, calc(var(--height) * 0.5vmin));
+	filter: brightness(1.25);
+}
+
+
+
+
+
+
+
+
+/*** SHAPE ***/
+.sculpture {
+	position: absolute;
+	width: 50vmin;
+	height: 50vmin;
+	transform: translate3d(0vmin, 0vmin, 0vmin) rotateY(0deg);
+}
+
+.sculpture .cuboid {
+	--height: 32;
+	--width: 32;
+	--depth: 32;
+	transform: translate3d(9vmin, 5vmin, 0vmin);
+}
+
+.sculpture .cuboid .side {
+	background: #fff0;
+	border: 0.75vmin solid #68301c;
+	border-radius: 0.2vmin;
+	box-shadow: 0 0 3px 0 #070802cc inset;
+}
+
+
+
+
+.sculpture .cuboid:nth-child(1) {
+	transform: translate3d(9vmin, 8vmin, 0vmin) rotateY(0deg);
+}
+.sculpture .cuboid:nth-child(2) {
+	transform: translate3d(9vmin, 8vmin, 0vmin) rotateY(-45deg);
+}
+.sculpture .cuboid:nth-child(3) {
+	transform: translate3d(9vmin, 8vmin, 0vmin) rotateY(-45deg) rotateX(45deg);
+}
+.sculpture .cuboid:nth-child(4) {
+	transform: translate3d(9vmin, 8vmin, 0vmin) rotateY(45deg) rotateX(135deg);
+}
+
+
+
+
+.bases {
+	transform: translate3d(0vmin, 35.5vmin, 0vmin);
+	position: absolute;
+	/*background: red;*/
+	width: 28vmin;
+	height: 28vmin;
+}
+
+
+
+
+
+.cuboid.base {
+	transform: translate3d(0vmin, 35vmin, 0vmin);
+	--width: 16;
+	--depth: 16;
+	--height: 16;
+}
+
+.cuboid.base .side {
+	opacity: 1;	
+}
+
+.cuboid.base .side:before, .cuboid.block .side:before {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	/*grain*/
+	background:	repeating-conic-gradient(#0004 0%, transparent .00003%, transparent .0005%,  transparent .00095%),
+		repeating-conic-gradient(#fff2 0%, transparent .00005%, transparent .00015%, transparent .0009%);
+	background-size: 100% 101%;
+}
+
+
+
+
+
+
+
+
+.cuboid.block {
+	--depth: 2;
+	--height: 2;
+}
+
+.block .side  {
+	background: #343434;
+}
+
+.block:nth-child(1) {
+	transform: translate3d(0vmin, 24vmin, 11.5vmin);
+}
+
+.block:nth-child(2) {
+	transform: translate3d(0vmin, 24vmin, -11.5vmin);
+}
+
+.block:nth-child(3) {
+	transform: translate3d(0vmin, 1vmin, 11.5vmin);
+}
+
+.block:nth-child(4) {
+	transform: translate3d(0vmin, 1vmin, -11.5vmin);
+}
+
+
+
+.block:nth-child(n+5) {
+	--depth: 2;
+	--width: 2;
+	--height: 28;
+}
+.block:nth-child(5) {
+	transform: translate3d(2vmin, 0vmin, -11.5vmin);
+	--hue: 111;
+}
+.block:nth-child(6) {
+	transform: translate3d(2vmin, 0vmin, 11.5vmin);
+}
+.block:nth-child(7) {
+	transform: translate3d(24vmin, 0vmin, 11.5vmin);
+}
+.block:nth-child(8) {
+	transform: translate3d(24vmin, 0vmin, -11.5vmin);
+}
+
+.block:nth-child(n+9) {
+	--depth: 28;
+	--width: 2;
+	--height: 2;
+}
+.block:nth-child(9) {
+	transform: translate3d(24vmin, 1vmin, 0vmin);
+}
+.block:nth-child(10) {
+	transform: translate3d(2vmin, 1vmin, 0vmin);
+}
+.block:nth-child(11) {
+	transform: translate3d(2vmin, 24vmin, 0vmin);
+}
+.block:nth-child(12) {
+	transform: translate3d(24vmin, 24vmin, 0vmin);
+}
+
+
+
+
+
+.cuboid.plaque {
+	--width: 1;
+	--height: 18;
+	--depth: 18;
+	transform: translate3d(11vmin, 34.75vmin, 0vmin);
+}
+
+.cuboid.plaque .side {
+	background: #72695b;
+}
+
+.cuboid.plaque .side:nth-of-type(3) {
+	text-align: center;
+	font-size: 1.5vmin;
+	color: #605544;
+	text-shadow: 1px 1px 0px #0e0e0e, -0.5px -0.5px 0px #fff4;
+	padding: 1vmin;
+}
+
+
+.cuboid.plaque .side:nth-of-type(3):before {
+	content: "M.C. ESCHER";
+	font-size: 2vmin;
+	display: block;
+	text-align: center;
+	margin-bottom: 0.35vmin;
+}
+
+.cuboid.plaque .side:nth-of-type(3):after {
+	content: "Dutch graphic artist. \A His work features mathematical and impossible objects, explorations of infinity, reflection, symmetry, perspective, truncated and stellated polyhedra, hyperbolic geometry, and tessellations.";
+	text-transform: uppercase;
+	font-size: 0.95vmin;
+	display: block;
+	text-align: center;
+	padding: 0.75vmin 0;
+	white-space: pre-wrap;
+}
+
+
+
+
+.sculpture + .sculpture {
+	transform: scale3d(0.85, 0.85, 0.85);
+}
+
+.sculpture + .sculpture + .sculpture {
+	transform: scale3d(0.7, 0.7, 0.7);
+}
+
+.sculpture + .sculpture + .sculpture + .sculpture {
+	transform: scale3d(0.55, 0.55, 0.55);
+}
+
+.sculpture + .sculpture + .sculpture + .sculpture + .sculpture {
+	transform: scale3d(0.4, 0.4, 0.4);
+}
+
+.sculpture + .sculpture + .sculpture + .sculpture + .sculpture + .sculpture {
+	transform: scale3d(0.25, 0.25, 0.25);
+}
+
+
+
+.sculpture + .sculpture .cuboid .side {
+	border-width: 0.95vmin;
+}
+
+.sculpture + .sculpture + .sculpture .cuboid .side {
+	border-width: 1.15vmin;
+}
+
+.sculpture + .sculpture + .sculpture + .sculpture .cuboid .side {
+	border-width: 1.35vmin;
+}
+
+.sculpture + .sculpture + .sculpture + .sculpture + .sculpture .cuboid .side {
+	border-width: 1.55vmin;
+}
+
+.sculpture + .sculpture + .sculpture + .sculpture + .sculpture + .sculpture .cuboid .side {
+	border-width: 2.5vmin;
+}
