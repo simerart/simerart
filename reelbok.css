@@ -320,3 +320,51 @@
                margin-top: 0%;
                cursor: pointer;
            }
+           @media (max-width: 768px) {
+            body {
+                padding: 5px;
+            }
+            
+            .instructions {
+                position: relative;
+                margin-bottom: 10px;
+                font-size: 14px;
+            }
+            
+            .playground {
+                width: 95vw;
+                height: 50vh;
+                margin-top: 10px;
+            }
+            
+            .reel-container {
+                width: 95vw;
+                height: 85vh;
+                padding: 10px;
+            }
+            
+            .slides {
+                width: 85%;
+                height: 45%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .playground {
+                height: 40vh;
+            }
+            
+            .hole {
+                width: 25px;
+                height: 25px;
+            }
+            
+            .box {
+                width: 100px;
+                height: 80px;
+            }
+            
+            .box::before {
+                font-size: 30px;
+            }
+        }
