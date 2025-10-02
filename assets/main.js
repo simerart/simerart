@@ -199,7 +199,13 @@ $(document).ready(function() {
   
   
   
-  
+  function goBackIframe() {
+    const iframe = document.getElementById('frame2');
+    if (iframe && iframe.contentWindow) {
+        iframe.contentWindow.history.back();
+    }
+}
+
   
   
   
