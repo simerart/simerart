@@ -392,7 +392,9 @@ p{
       cursor: url(images/cursorhover.png), auto !important;
       
     }
-
+/* #div2 .x-button {
+  display: inline;
+} */
 
     .explorer-navigator .search-bar-text:hover {
       background-color: var(--dark);
@@ -576,9 +578,9 @@ p{
   padding: 2px 8px;
 }
 
-.x-button:hover {
+/* .x-button:hover {
   background-color: #e74c3c;
-}
+} */
 
 /* Explorer navigator styles */
 .explorer-navigator {
@@ -589,13 +591,13 @@ p{
 
 .nav-tab {
   padding: 5px;
-  cursor: pointer;
+  
 }
 
-.nav-tab:hover {
+/* .nav-tab:hover {
   background-color: #000000;
   color: white;
-}
+} */
 
 /* Address and search bar */
 .address-text, .search-bar-text {
@@ -683,14 +685,14 @@ body {
   border: 1px solid white;
   border-radius: 3px;
   color: white;
-  cursor: pointer;
+  
   font-size: 14px;
   padding: 2px 8px;
 }
 
-.x-button:hover {
+/* .x-button:hover {
   background-color: #e74c3c;
-}
+} */
 
 /* Explorer navigator styles */
 .explorer-navigator {
@@ -701,13 +703,13 @@ body {
 
 .nav-tab {
   padding: 5px;
-  cursor: pointer;
+  
 }
-
+/* 
 .nav-tab:hover {
   background-color: #3498db;
   color: white;
-}
+} */
 
 /* Address and search bar */
 .address-text, .search-bar-text {
@@ -814,16 +816,16 @@ body {
   padding-right: 10px;
 }
 
-
+/* 
 .explorer-navigator .nav-tab:hover {
   box-shadow: 1px 1px 0px var(--shadow), -1px -1px 0px var(--lightest);
  
-}
+} */
 
 
-.explorer-navigator .nav-tab:active {
+/* .explorer-navigator .nav-tab:active {
   box-shadow: 1px 1px 0px var(--lightest), -1px -1px 0px var(--shadow);
-}
+} */
 
 
 .explorer-navigator .back-button {
@@ -832,6 +834,7 @@ body {
   margin-top: 1px;
   width: 18px;
   padding-left: 3px;
+
 }
 
 .explorer-navigator .back-button:hover {
@@ -854,12 +857,12 @@ body {
   box-shadow: inset 1px 1px 0px var(--shadow), -1px -1px 0px var(--darkest);
 }
 
-
+/* 
 .explorer-navigator .search-bar-text:hover {
   background-color: var(--dark);
   color: white;
   padding: 0px;
-}
+} */
 
 
 .border {
