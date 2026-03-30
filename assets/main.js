@@ -115,11 +115,27 @@ $(document).ready(function() {
   
   
   
+  // function toggleDropUp() {
+  // var dropUpContent = document.getElementById("dropUpContent");
+  // dropUpContent.classList.toggle("show");
+  // }
   function toggleDropUp() {
-  var dropUpContent = document.getElementById("dropUpContent");
-  dropUpContent.classList.toggle("show");
+    const content = document.querySelector('.drop-up-content');
+    content.style.display = content.style.display === 'block' ? 'none' : 'block';
   }
-  
+
+  function closeDropUp() {
+    document.querySelector('.drop-up-content').style.display = 'none';
+  }
+
+  // Close when clicking outside
+  document.addEventListener('click', function(event) {
+    const dropup = document.querySelector('.dropup');
+    const content = document.querySelector('.drop-up-content');
+    if (!dropup.contains(event.target)) {
+      content.style.display = 'none';
+    }
+  });
   // document.addEventListener("click", function(event) {
   // var dropUpContent = document.getElementById("dropUpContent");
   // var dropUpButton = document.querySelector(".box");
